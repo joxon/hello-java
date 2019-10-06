@@ -58,9 +58,7 @@ public class HashTableSet extends Set {
     table[index] = newNode;
     ++size;
 
-    /**
-     * If current load factor exceeds the limit then double the size of table
-     */
+    // If current load factor exceeds the limit then double the size of table
     if ((1.0 * size) / maxSize >= MAX_LOAD_FACTOR) {
       var oldTable = this.table;
       var newTable = new LinkedListNode[2 * maxSize];
@@ -96,48 +94,37 @@ public class HashTableSet extends Set {
     return false;
   }
 
-  // Method to remove a given word
   public boolean remove(String word) {
-    // Apply hash function to find index for given word
     int index = getIndex(word);
-
-    // Get head of chain
     LinkedListNode node = table[index];
-
-    // Search for word in its chain
     LinkedListNode prev = null;
-    while (node != null) {
-      // If word found
-      if (node.word.equals(word))
-        break;
 
-      // Else keep moving in chain
+    while (node != null && !node.word.equals(word)) {
       prev = node;
       node = node.next;
     }
 
-    // If word was not there
-    if (node == null)
+    if (node == null) {
       return false;
+    } else {
+      --size;
 
-    // Reduce size
-    --size;
+      if (prev != null) {
+        prev.next = node.next;
+      } else {
+        table[index] = node.next;
+      }
 
-    // Remove word
-    if (prev != null)
-      prev.next = node.next;
-    else
-      table[index] = node.next;
-
-    return true;
+      return true;
+    }
   }
 
   public static void main(String[] args) {
     var set = new HashTableSet();
-    set.add("hello");
-    set.add("world");
-    set.add("你好");
-    set.add("世界");
+    System.out.println(set.add("hello"));
+    System.out.println(set.add("world"));
+    System.out.println(set.add("你好"));
+    System.out.println(set.add("世界"));
     System.out.println(set.size());
     System.out.println(set.contains("hello"));
     System.out.println(set.remove("hello"));
