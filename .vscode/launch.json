@@ -2,6 +2,19 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - HashTableSet",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe241p.ex1.HashTableSet",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - LinkedListNode",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe241p.ex1.LinkedListNode"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1.Main"

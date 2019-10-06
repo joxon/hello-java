@@ -64,8 +64,8 @@ abstract class Set {
 
     try (PrintWriter out = new PrintWriter(new FileWriter(fout))) {
       // read all words in the book and save them to the set
+      var wordsInBook = 0;
       try (Scanner scanner = new Scanner(new File("./data/in/pride-and-prejudice.txt"))) {
-        var total = 0;
         while (scanner.hasNextLine()) {
           var line = scanner.nextLine();
           String[] words;
@@ -84,23 +84,19 @@ abstract class Set {
               var wordAdded = this.add(word);
               var end = System.nanoTime();
               var time = end - start;
-              out.printf("%d. add(%s): %b, %d ns\n", ++total, word, wordAdded, time);
+              out.printf("%d. add(%s): %b, %d ns\n", ++wordsInBook, word, wordAdded, time);
             }
           }
         }
         // scanner.close();
-        out.println("************************");
-        out.println("Total word count (book) = " + total);
-        out.println("Set size = " + this.size());
-        out.println("************************");
       } catch (FileNotFoundException e) {
         e.printStackTrace();
         return;
       }
       // read shuffled words and search them in the set
+      var wordsShuffled = 0;
+      var wordContainedCount = 0;
       try (Scanner scanner = new Scanner(new File("./data/in/words-shuffled.txt"))) {
-        var total = 0;
-        var wordContainedCount = 0;
         while (scanner.hasNextLine()) {
           var word = scanner.nextLine();
           var start = System.nanoTime();
@@ -110,18 +106,22 @@ abstract class Set {
           }
           var end = System.nanoTime();
           var time = end - start;
-          out.printf("%d. contains(%s): %b, %d ns\n", ++total, word, wordContained, time);
+          out.printf("%d. contains(%s): %b, %d ns\n", ++wordsShuffled, word, wordContained, time);
         }
         // scanner.close();
-        out.println("************************");
-        out.println("Total word count (shuffled) = " + total);
-        out.println("Total word contained in set = " + wordContainedCount);
-        out.println("Total word NOT contained = " + (total - wordContainedCount));
-        out.println("************************");
       } catch (FileNotFoundException e) {
         e.printStackTrace();
         return;
       }
+
+      out.println("************************");
+      out.println("Words in book = " + wordsInBook);
+      out.println("Words unique, or set size = " + this.size());
+      out.println("************************");
+      out.println("Words shuffled = " + wordsShuffled);
+      out.println("Words contained in set = " + wordContainedCount);
+      out.println("Words NOT contained = " + (wordsShuffled - wordContainedCount));
+      out.println("************************");
 
     } catch (IOException e) {
       e.printStackTrace();

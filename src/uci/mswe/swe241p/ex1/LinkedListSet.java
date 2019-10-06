@@ -20,13 +20,18 @@ public class LinkedListSet extends Set {
       }
       node = node.next;
     }
-    node.next = new LinkedListNode(word);
-    return true;
+    // now node.next == null, i.e. the last node
+    if (node.word.equals(word)) {
+      return false;
+    } else {
+      node.next = new LinkedListNode(word);
+      return true;
+    }
   }
 
   public boolean contains(String word) {
     var node = this.dummyHead;
-    while (node.next != null) {
+    while (node != null) {
       if (node.word.equals(word)) {
         return true;
       }

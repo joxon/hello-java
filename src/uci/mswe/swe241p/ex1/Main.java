@@ -8,11 +8,11 @@ package uci.mswe.swe241p.ex1;
 
 class Main {
   public static void main(String[] args) {
-    final var runCount = 10;
+    final var runCount = 1;
     for (var i = 0; i < runCount; ++i) {
       new LinkedListSet().run();
       // new BinaryTreeSet().run();
-      // new HashTableSet().run();
+      new HashTableSet().run();
     }
   }
 }
