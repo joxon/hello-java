@@ -8,7 +8,8 @@ import uci.mswe.swe241p.ex1.LinkedListNode;
 public class HashTableSet extends Set {
   private final int DEFAULT_MAX_SIZE = 10000;
 
-  private final double MAX_LOAD_FACTOR = 0.7;
+  // Actually we have 7105 unique words in the book
+  private final double MAX_LOAD_FACTOR = 0.8;
 
   private LinkedListNode[] table;
 
@@ -38,7 +39,16 @@ public class HashTableSet extends Set {
   }
 
   private int getIndex(String word) {
-    return Math.abs(word.hashCode() % maxSize);
+    /**
+     * Modulus can be negative using % operator
+     *
+     * because the sign same as Dividend
+     *
+     * Solution 1: (a % b + b) % b
+     *
+     * Solution 2: Math.floorMod() # sign same as Divisor
+     */
+    return Math.floorMod(word.hashCode(), maxSize);
   }
 
   public boolean add(String word) {

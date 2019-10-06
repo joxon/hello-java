@@ -45,6 +45,7 @@ abstract class Set {
   public void run() {
     var className = this.getClass().getSimpleName();
     System.out.println(className + " test started.");
+
     // outputint to a txt file is a lot faster than console
     // make sure no colons in file name!
     var dateTime = LocalDateTime.now().toString().replace(":", "-");
@@ -84,7 +85,7 @@ abstract class Set {
               var wordAdded = this.add(word);
               var end = System.nanoTime();
               var time = end - start;
-              out.printf("%d. add(%s): %b, %d ns\n", ++wordsInBook, word, wordAdded, time);
+              out.printf("%d, add(%s), %b, %d ns\n", ++wordsInBook, word, wordAdded, time);
             }
           }
         }
@@ -106,7 +107,7 @@ abstract class Set {
           }
           var end = System.nanoTime();
           var time = end - start;
-          out.printf("%d. contains(%s): %b, %d ns\n", ++wordsShuffled, word, wordContained, time);
+          out.printf("%d, contains(%s), %b, %d ns\n", ++wordsShuffled, word, wordContained, time);
         }
         // scanner.close();
       } catch (FileNotFoundException e) {
@@ -114,6 +115,8 @@ abstract class Set {
         return;
       }
 
+      out.println("************************");
+      out.println(className + " test started at " + dateTime);
       out.println("************************");
       out.println("Words in book = " + wordsInBook);
       out.println("Words unique, or set size = " + this.size());
@@ -131,6 +134,7 @@ abstract class Set {
     System.out.println(className + " test ended.");
   }
 
+  @Deprecated
   private String[] splitLineByChar(String line) {
     int len = line.length();
     String[] words = new String[len];
