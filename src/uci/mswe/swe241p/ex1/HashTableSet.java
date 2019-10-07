@@ -1,7 +1,5 @@
 package uci.mswe.swe241p.ex1;
 
-import uci.mswe.swe241p.ex1.LinkedListNode;
-
 /**
  * HashTableSet
  */
@@ -56,15 +54,15 @@ public class HashTableSet extends Set {
     LinkedListNode node = table[index];
 
     while (node != null) {
-      if (node.word.equals(word)) {
+      if (node.getWord().equals(word)) {
         return false;
       }
-      node = node.next;
+      node = node.getNext();
     }
 
     // Insert key to the head of chain
     var newNode = new LinkedListNode(word);
-    newNode.next = table[index];
+    newNode.setNext(table[index]);
     table[index] = newNode;
     ++size;
 
@@ -82,8 +80,8 @@ public class HashTableSet extends Set {
 
       for (LinkedListNode oldNode : oldTable) {
         while (oldNode != null) {
-          add(oldNode.word);
-          oldNode = oldNode.next;
+          add(oldNode.getWord());
+          oldNode = oldNode.getNext();
         }
       }
     }
@@ -95,10 +93,10 @@ public class HashTableSet extends Set {
     var node = table[getIndex(word)];
 
     while (node != null) {
-      if (node.word.equals(word)) {
+      if (node.getWord().equals(word)) {
         return true;
       }
-      node = node.next;
+      node = node.getNext();
     }
 
     return false;
@@ -109,9 +107,9 @@ public class HashTableSet extends Set {
     LinkedListNode node = table[index];
     LinkedListNode prev = null;
 
-    while (node != null && !node.word.equals(word)) {
+    while (node != null && !node.getWord().equals(word)) {
       prev = node;
-      node = node.next;
+      node = node.getNext();
     }
 
     if (node == null) {
@@ -120,9 +118,9 @@ public class HashTableSet extends Set {
       --size;
 
       if (prev != null) {
-        prev.next = node.next;
+        prev.setNext(node.getNext());
       } else {
-        table[index] = node.next;
+        table[index] = node.getNext();
       }
 
       return true;

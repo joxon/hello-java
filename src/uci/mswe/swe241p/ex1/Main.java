@@ -11,7 +11,7 @@ class Main {
     final var runCount = 1;
     for (var i = 0; i < runCount; ++i) {
       new LinkedListSet().run();
-      // new BinaryTreeSet().run();
+      new BinaryTreeSet().run();
       new HashTableSet().run();
     }
   }

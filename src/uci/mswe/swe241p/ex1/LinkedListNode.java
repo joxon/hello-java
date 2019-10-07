@@ -4,16 +4,51 @@ package uci.mswe.swe241p.ex1;
  * LinkedListNode
  */
 public class LinkedListNode {
-  String word;
-  LinkedListNode next;
+  private String word;
+
+  private LinkedListNode next;
+
+  public LinkedListNode() {
+    this.word = null;
+    this.next = null;
+  }
 
   public LinkedListNode(String word) {
     this.word = word;
+    this.next = null;
   }
 
   public LinkedListNode(String word, LinkedListNode next) {
     this.word = word;
     this.next = next;
+  }
+
+  /**
+   * @return the next
+   */
+  public LinkedListNode getNext() {
+    return next;
+  }
+
+  /**
+   * @param next the next to set
+   */
+  public void setNext(LinkedListNode next) {
+    this.next = next;
+  }
+
+  /**
+   * @return the word
+   */
+  public String getWord() {
+    return word;
+  }
+
+  /**
+   * @param word the word to set
+   */
+  public void setWord(String word) {
+    this.word = word;
   }
 
   public void append(String word) {

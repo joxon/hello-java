@@ -1,30 +1,32 @@
 package uci.mswe.swe241p.ex1;
 
-import uci.mswe.swe241p.ex1.LinkedListNode;
-
 /**
  * LinkedListSet
  */
 public class LinkedListSet extends Set {
   private LinkedListNode dummyHead;
 
+  private int size;
+
   public LinkedListSet() {
-    this.dummyHead = new LinkedListNode("");
+    this.dummyHead = new LinkedListNode(""); // Should NOT be null
+    this.size = 0;
   }
 
   public boolean add(String word) {
     var node = this.dummyHead;
-    while (node.next != null) {
-      if (node.word.equals(word)) {
+    while (node.getNext() != null) {
+      if (node.getWord().equals(word)) {
         return false;
       }
-      node = node.next;
+      node = node.getNext();
     }
     // now node.next == null, i.e. the last node
-    if (node.word.equals(word)) {
+    if (node.getWord().equals(word)) {
       return false;
     } else {
-      node.next = new LinkedListNode(word);
+      node.setNext(new LinkedListNode(word));
+      ++size;
       return true;
     }
   }
@@ -32,22 +34,25 @@ public class LinkedListSet extends Set {
   public boolean contains(String word) {
     var node = this.dummyHead;
     while (node != null) {
-      if (node.word.equals(word)) {
+      if (node.getWord().equals(word)) {
         return true;
       }
-      node = node.next;
+      node = node.getNext();
     }
     return false;
   }
 
   public int size() {
-    int size = 0;
-    var node = this.dummyHead;
-    while (node.next != null) {
-      ++size;
-      node = node.next;
-    }
     return size;
   }
 
+  public int sizeTheSlowWay() {
+    int size = 0;
+    var node = this.dummyHead;
+    while (node.getNext() != null) {
+      ++size;
+      node = node.getNext();
+    }
+    return size;
+  }
 }

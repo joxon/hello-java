@@ -50,7 +50,7 @@ abstract class Set {
     // make sure no colons in file name!
     var dateTime = LocalDateTime.now().toString().replace(":", "-");
     // var sep = System.getProperty("file.separator");
-    var fpath = "./data/out/" + className + "-" + dateTime + ".txt";
+    var fpath = "./data/out/" + dateTime + "-" + className + ".txt";
     var fout = new File(fpath);
     try {
       if (fout.createNewFile()) {

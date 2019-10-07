@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - BinaryTreeSet",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe241p.ex1.BinaryTreeSet",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - HashTableSet",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1.HashTableSet",
