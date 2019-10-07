@@ -40,7 +40,28 @@ abstract class Set {
    */
   public abstract int size();
 
-  private final boolean useRegexToSplit = true;
+  private PrintWriter createPrintWriter(String filePath) {
+    var fout = new File(filePath);
+    // Java does not create folder for us
+    fout.getParentFile().mkdirs();
+    try {
+      if (fout.createNewFile()) {
+        System.out.println(filePath + " is created!");
+      } else {
+        System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    try {
+      return new PrintWriter(new FileWriter(fout));
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 
   public void run() {
     var className = this.getClass().getSimpleName();
@@ -48,117 +69,86 @@ abstract class Set {
 
     // outputint to a txt file is a lot faster than console
     // make sure no colons in file name!
-    var dateTime = LocalDateTime.now().toString().replace(":", "-");
+    var dateTime = LocalDateTime.now().toString().split("[.]")[0].replace(":", "-");
+
     // var sep = System.getProperty("file.separator");
-    var fpath = "./data/out/" + dateTime + "-" + className + ".txt";
-    var fout = new File(fpath);
-    try {
-      if (fout.createNewFile()) {
-        System.out.println(fpath + " is created!");
-      } else {
-        System.out.println("File already exists.");
+    var fileDir = "./data/out/" + className + "/";
+
+    // read all words in the book and save them to the set
+    var wordsInBook = 0;
+    try (Scanner scanner = new Scanner(new File("./data/in/pride-and-prejudice.txt"))) {
+      var fileName = dateTime + "-" + className + "-add.txt";
+      var out = createPrintWriter(fileDir + "add/" + fileName);
+      out.println("Index,FuncName,FuncReturns,NanoSeconds");
+
+      while (scanner.hasNextLine()) {
+        var line = scanner.nextLine();
+        String[] words;
+
+        words = line.split("[^a-zA-Z0-9]");
+
+        for (var word : words) {
+          if (word != null && word.length() > 0) {
+            // var wordLowerCased = word.toLowerCase();
+            // https://www.techiedelight.com/measure-elapsed-time-execution-time-java/
+            var start = System.nanoTime();
+            var wordAdded = this.add(word);
+            var end = System.nanoTime();
+            var time = end - start;
+            out.printf("%d,add(%s),%b,%d\n", ++wordsInBook, word, wordAdded, time);
+          }
+        }
       }
-    } catch (Exception e) {
+
+      out.close();
+      // scanner.close();
+    } catch (FileNotFoundException e) {
       e.printStackTrace();
       return;
     }
 
-    try (PrintWriter out = new PrintWriter(new FileWriter(fout))) {
-      // read all words in the book and save them to the set
-      var wordsInBook = 0;
-      try (Scanner scanner = new Scanner(new File("./data/in/pride-and-prejudice.txt"))) {
-        while (scanner.hasNextLine()) {
-          var line = scanner.nextLine();
-          String[] words;
+    // read shuffled words and search them in the set
+    var wordsShuffled = 0;
+    var wordContainedCount = 0;
+    try (Scanner scanner = new Scanner(new File("./data/in/words-shuffled.txt"))) {
+      var fileName = dateTime + "-" + className + "-contains.txt";
+      var out = createPrintWriter(fileDir + "contains/" + fileName);
+      out.println("Index,FuncName,FuncReturns,NanoSeconds");
 
-          if (useRegexToSplit) {
-            words = line.split("[^a-zA-Z0-9]");
-          } else {
-            words = splitLineByChar(line);
-          }
-
-          for (var word : words) {
-            if (word != null && word.length() > 0) {
-              // var wordLowerCased = word.toLowerCase();
-              // https://www.techiedelight.com/measure-elapsed-time-execution-time-java/
-              var start = System.nanoTime();
-              var wordAdded = this.add(word);
-              var end = System.nanoTime();
-              var time = end - start;
-              out.printf("%d,add(%s),%b,%d\n", ++wordsInBook, word, wordAdded, time);
-            }
-          }
+      while (scanner.hasNextLine()) {
+        var word = scanner.nextLine();
+        var start = System.nanoTime();
+        var wordContained = this.contains(word);
+        if (wordContained) {
+          ++wordContainedCount;
         }
-        // scanner.close();
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        return;
-      }
-      // read shuffled words and search them in the set
-      var wordsShuffled = 0;
-      var wordContainedCount = 0;
-      try (Scanner scanner = new Scanner(new File("./data/in/words-shuffled.txt"))) {
-        while (scanner.hasNextLine()) {
-          var word = scanner.nextLine();
-          var start = System.nanoTime();
-          var wordContained = this.contains(word);
-          if (wordContained) {
-            ++wordContainedCount;
-          }
-          var end = System.nanoTime();
-          var time = end - start;
-          out.printf("%d,contains(%s),%b,%d\n", ++wordsShuffled, word, wordContained, time);
-        }
-        // scanner.close();
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        return;
+        var end = System.nanoTime();
+        var time = end - start;
+        out.printf("%d,contains(%s),%b,%d\n", ++wordsShuffled, word, wordContained, time);
       }
 
-      out.println("************************");
-      out.println(className + " test started at " + dateTime);
-      out.println("************************");
-      out.println("Words in book = " + wordsInBook);
-      out.println("Words unique, or set size = " + this.size());
-      out.println("************************");
-      out.println("Words shuffled = " + wordsShuffled);
-      out.println("Words contained in set = " + wordContainedCount);
-      out.println("Words NOT contained = " + (wordsShuffled - wordContainedCount));
-      out.println("************************");
-
-    } catch (IOException e) {
+      out.close();
+      // scanner.close();
+    } catch (FileNotFoundException e) {
       e.printStackTrace();
       return;
     }
+
+    var fileName = dateTime + "-" + className + "-summary.txt";
+    var out = createPrintWriter(fileDir + "summary/" + fileName);
+    out.println("************************");
+    out.println(className + " test started at " + dateTime);
+    out.println("************************");
+    out.println("Words in book = " + wordsInBook);
+    out.println("Words unique or set size = " + this.size());
+    out.println("************************");
+    out.println("Words shuffled = " + wordsShuffled);
+    out.println("Words contained in set = " + wordContainedCount);
+    out.println("Words NOT contained = " + (wordsShuffled - wordContainedCount));
+    out.println("************************");
+    out.close();
 
     System.out.println(className + " test ended.");
-  }
-
-  @Deprecated
-  private String[] splitLineByChar(String line) {
-    int len = line.length();
-    String[] words = new String[len];
-    String word = "";
-    int wordCount = 0;
-    // Add every word of the line except the last one
-    for (int i = 0; i < len; ++i) {
-      char ch = line.charAt(i);
-      boolean isValidChar = Character.isDigit(ch) || Character.isAlphabetic(ch);
-      // Construct the word
-      if (isValidChar) {
-        word += ch;
-      }
-      // If char not valid, then add it to the set
-      else if (word.length() > 0) {
-        words[wordCount++] = word;
-        word = "";
-      }
-    }
-    // Add final word of the line
-    if (word.length() > 0) {
-      words[wordCount++] = word;
-      word = "";
-    }
-    return words;
+    System.out.println();
   }
 }
