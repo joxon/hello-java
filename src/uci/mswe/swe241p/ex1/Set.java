@@ -85,7 +85,7 @@ abstract class Set {
               var wordAdded = this.add(word);
               var end = System.nanoTime();
               var time = end - start;
-              out.printf("%d, add(%s), %b, %d ns\n", ++wordsInBook, word, wordAdded, time);
+              out.printf("%d,add(%s),%b,%d\n", ++wordsInBook, word, wordAdded, time);
             }
           }
         }
@@ -107,7 +107,7 @@ abstract class Set {
           }
           var end = System.nanoTime();
           var time = end - start;
-          out.printf("%d, contains(%s), %b, %d ns\n", ++wordsShuffled, word, wordContained, time);
+          out.printf("%d,contains(%s),%b,%d\n", ++wordsShuffled, word, wordContained, time);
         }
         // scanner.close();
       } catch (FileNotFoundException e) {
