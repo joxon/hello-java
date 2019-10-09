@@ -85,17 +85,21 @@ abstract class Set {
         var line = scanner.nextLine();
         String[] words;
 
-        words = line.split("[^a-zA-Z0-9]");
+        words = line.split("[^\\w\\d_]");
 
+        var start = System.nanoTime();
         for (var word : words) {
           if (word != null && word.length() > 0) {
             // var wordLowerCased = word.toLowerCase();
             // https://www.techiedelight.com/measure-elapsed-time-execution-time-java/
-            var start = System.nanoTime();
             var wordAdded = this.add(word);
-            var end = System.nanoTime();
-            var time = end - start;
-            out.printf("%d,add(%s),%b,%d\n", ++wordsInBook, word, wordAdded, time);
+            ++wordsInBook;
+            if (wordsInBook % 100 == 0) {
+              var end = System.nanoTime();
+              var time = end - start;
+              out.printf("%d,add(%s),%b,%d\n", wordsInBook, word, wordAdded, time);
+              start = System.nanoTime();
+            }
           }
         }
       }

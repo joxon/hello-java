@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe241p.ex2.Main",
+      "projectName": "hell-java"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - BinaryTreeSet",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1.BinaryTreeSet",
