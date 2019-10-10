@@ -14,6 +14,12 @@ abstract class Sort {
 
   abstract void sort(List<String> wordList);
 
+  void swap(List<String> wordList, int a, int b) {
+    var temp = wordList.get(a);
+    wordList.set(a, wordList.get(b));
+    wordList.set(b, temp);
+  }
+
   private PrintWriter createPrintWriter(String filePath) {
     var fout = new File(filePath);
     // Java does not create folder for us
@@ -48,10 +54,12 @@ abstract class Sort {
     // var sep = System.getProperty("file.separator");
     var fileDir = "./data/out/" + className + "/";
 
+    System.out.println(wordList);
     var start = System.nanoTime();
     this.sort(wordList);
     var end = System.nanoTime();
     var time = end - start;
+    System.out.println(wordList);
 
     var fileName = dateTime + "-" + className + "-summary.txt";
     var out = createPrintWriter(fileDir + "summary/" + fileName);

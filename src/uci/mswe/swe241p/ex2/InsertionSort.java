@@ -17,12 +17,16 @@ public class InsertionSort extends Sort {
     for (var i = 1; i < len; ++i) {
       var word = wordList.get(i);
       var j = i - 1;
-      // then scan LARGER elements before it and move them forward
+      // then scan LARGER elements before it and move them to larger indices
       for (; j >= 0 && wordList.get(j).compareTo(word) > 0; --j) {
         wordList.set(j + 1, wordList.get(j));
       }
       // move the word to a smaller index
       wordList.set(j + 1, word);
+      // why is it called Insertion?
+      // it's like you move the smaller elements to smaller indices
+      // by inserting them before the larger ones
+      // and larger ones get moved forward to larger indices one by one
     }
   }
 }
