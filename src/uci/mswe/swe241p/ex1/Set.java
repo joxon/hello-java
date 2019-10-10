@@ -63,6 +63,8 @@ abstract class Set {
     }
   }
 
+  final private int LOG_FREQ = 100;
+
   public void run() {
     var className = this.getClass().getSimpleName();
     System.out.println(className + " test started.");
@@ -94,7 +96,8 @@ abstract class Set {
             // https://www.techiedelight.com/measure-elapsed-time-execution-time-java/
             var wordAdded = this.add(word);
             ++wordsInBook;
-            if (wordsInBook % 100 == 0) {
+            // log every 100 words instead of each word
+            if (wordsInBook % LOG_FREQ == 0) {
               var end = System.nanoTime();
               var time = end - start;
               out.printf("%d,add(%s),%b,%d\n", wordsInBook, word, wordAdded, time);

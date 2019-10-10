@@ -4,6 +4,7 @@ package uci.mswe.swe241p.ex1;
  * LinkedListNode
  */
 public class LinkedListNode {
+
   private String word;
 
   private LinkedListNode next;

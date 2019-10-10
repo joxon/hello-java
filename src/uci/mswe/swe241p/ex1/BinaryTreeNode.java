@@ -4,6 +4,7 @@ package uci.mswe.swe241p.ex1;
  * BinaryTreeNode
  */
 public class BinaryTreeNode {
+
   private String word;
 
   private BinaryTreeNode left;

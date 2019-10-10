@@ -4,6 +4,7 @@ package uci.mswe.swe241p.ex1;
  * LinkedListSet
  */
 public class LinkedListSet extends Set {
+
   private LinkedListNode dummyHead;
 
   private int size;

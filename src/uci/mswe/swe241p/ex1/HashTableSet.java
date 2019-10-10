@@ -4,6 +4,7 @@ package uci.mswe.swe241p.ex1;
  * HashTableSet
  */
 public class HashTableSet extends Set {
+
   private final int DEFAULT_MAX_SIZE = 10000;
 
   // Actually we have 7105 unique words in the book
