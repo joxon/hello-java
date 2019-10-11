@@ -15,6 +15,10 @@ public class InsertionSort extends Sort {
 
     // start at the 2nd element
     for (var i = 1; i < len; ++i) {
+      if (i % 10000 == 0) {
+        System.out.println("Iteration " + i + "/" + len);
+      }
+
       var word = wordList.get(i);
       var j = i - 1;
       // then scan LARGER elements before it and move them to larger indices

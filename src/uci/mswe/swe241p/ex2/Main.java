@@ -13,17 +13,19 @@ import java.util.Scanner;
 public class Main {
 
   public static void main(String[] args) {
-    final List<String> wordListConst = new ArrayList<String>();
-    // loadBookTo(wordList);
-    loadRandomTo(wordListConst, 10);
+    final List<String> wordList = new ArrayList<String>();
+
+    loadBookTo(wordList);
+    // System.out.println(wordList.size());
+    // loadRandomTo(wordList, 10);
 
     final var runCount = 1;
     for (var i = 0; i < runCount; ++i) {
-      new InsertionSort().run(new ArrayList<String>(wordListConst));
-      new SelectionSort().run(new ArrayList<String>(wordListConst));
-      new HeapSort().run(new ArrayList<String>(wordListConst));
-      new MergeSort().run(new ArrayList<String>(wordListConst));
-      new QuickSort().run(new ArrayList<String>(wordListConst));
+      new InsertionSort().run(new ArrayList<String>(wordList));
+      new SelectionSort().run(new ArrayList<String>(wordList));
+      new HeapSort().run(new ArrayList<String>(wordList));
+      new MergeSort().run(new ArrayList<String>(wordList));
+      new QuickSort().run(new ArrayList<String>(wordList));
     }
   }
 

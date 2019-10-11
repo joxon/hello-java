@@ -126,11 +126,11 @@ abstract class Set {
         var word = scanner.nextLine();
         var start = System.nanoTime();
         var wordContained = this.contains(word);
+        var end = System.nanoTime();
+        var time = end - start;
         if (wordContained) {
           ++wordContainedCount;
         }
-        var end = System.nanoTime();
-        var time = end - start;
         out.printf("%d,contains(%s),%b,%d\n", ++wordsShuffled, word, wordContained, time);
       }
 

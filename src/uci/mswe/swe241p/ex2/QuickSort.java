@@ -16,7 +16,13 @@ public class QuickSort extends Sort {
     qsort(wordList, 0, len - 1);
   }
 
+  int recurCount = 1;
+
   void qsort(List<String> wordList, int left, int right) {
+    if (recurCount % 10 == 0) {
+      System.out.println("Recursion " + (recurCount++));
+    }
+
     if (left < right) {
       int privotNewIndex = partition(wordList, left, right);
       qsort(wordList, left, privotNewIndex - 1);
@@ -25,6 +31,7 @@ public class QuickSort extends Sort {
   }
 
   int partition(List<String> wordList, int left, int right) {
+    // always take the rightmost element as pivot?
     var pivotOldIndex = right;
     var pivotValue = wordList.get(right);
     while (left < right) {
