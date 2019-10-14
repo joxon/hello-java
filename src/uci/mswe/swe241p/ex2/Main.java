@@ -17,9 +17,9 @@ public class Main {
 
     loadBookTo(wordList);
     // System.out.println(wordList.size());
-    // loadRandomTo(wordList, 10);
+    // loadRandomTo(wordList, 100);
 
-    final var runCount = 1;
+    final var runCount = 10;
     for (var i = 0; i < runCount; ++i) {
       new InsertionSort().run(new ArrayList<String>(wordList));
       new SelectionSort().run(new ArrayList<String>(wordList));

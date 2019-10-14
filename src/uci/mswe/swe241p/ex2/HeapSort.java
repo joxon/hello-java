@@ -34,12 +34,10 @@ public class HeapSort extends Sort {
     }
   }
 
-  int recurCount = 1;
+  // int recurCount = 1;
 
   void makeHeap(List<String> wordList, int len, int rootIndex) {
-    if (recurCount % 10 == 0) {
-      System.out.println("Recursion " + (recurCount++));
-    }
+    // System.out.println("Recursion " + (recurCount++));
 
     // assume the root word is the largest
     var wordLargestIndex = rootIndex;

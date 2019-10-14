@@ -16,12 +16,10 @@ public class MergeSort extends Sort {
     msort(wordList, 0, len - 1);
   }
 
-  int recurCount = 1;
+  // int recurCount = 1;
 
   void msort(List<String> wordList, int left, int right) {
-    if (recurCount % 10 == 0) {
-      System.out.println("Recursion " + (recurCount++));
-    }
+    // System.out.println("Recursion " + (recurCount++));
 
     if (left < right) {
       var mid = (left + right) / 2;

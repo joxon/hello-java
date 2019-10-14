@@ -19,15 +19,17 @@ public class SelectionSort extends Sort {
       }
 
       // assume the starting one is the minimun word
-      int minWordIndex = i;
+      int wordMinIndex = i;
       // then we look ahead to find smaller ones
       for (int j = i + 1; j < len; ++j) {
-        if (wordList.get(j).compareTo(wordList.get(minWordIndex)) < 0) {
-          minWordIndex = j;
+        var wordListAtJ = wordList.get(j);
+        var wordMin = wordList.get(wordMinIndex);
+        if (wordListAtJ.compareTo(wordMin) < 0) {
+          wordMinIndex = j;
         }
       }
       // finally we have found the smallest and move it to a smaller index
-      swap(wordList, i, minWordIndex);
+      swap(wordList, i, wordMinIndex);
     }
   }
 }

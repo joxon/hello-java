@@ -67,7 +67,8 @@ abstract class Sort {
     out.println("************************");
     out.println(className + " test started at " + dateTime);
     out.println("************************");
-    out.printf("%d\n", time);
+    out.printf("Nanaseconds: %d\n", time);
+    out.printf("Seconds: %.2f\n", (time / 1e9));
     out.println("************************");
     out.close();
 
