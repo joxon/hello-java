@@ -11,6 +11,9 @@ import java.util.List;
  *           called as max heap and the latter is called min heap.
  *
  *           The heap can be represented by binary tree or array.
+ *
+ *           Here we use max heap to find the max elements, then move them to
+ *           the end
  */
 public class HeapSort extends Sort {
   @Override
@@ -20,25 +23,30 @@ public class HeapSort extends Sort {
       return;
     }
 
-    // Build heap (rearrange array)
-    for (int i = len / 2 - 1; i >= 0; i--)
-      makeHeap(wordList, len, i);
+    // initialize the heap, from bottom to top
+    // then wordList[0] is the max element
+    // len / 2 - 1: the last node who has subtree on 2nd lowest level
+    // O(n)
+    for (int i = len / 2 - 1; i >= 0; --i) {
+      // O(lg(n))
+      makeMaxHeap(wordList, len, i);
+    }
+    // O(nlg(n))
 
-    // One by one extract an element from heap
-    for (int i = len - 1; i >= 0; i--) {
-      // Move current root to end
+    // O(n)
+    for (int i = len - 1; i >= 0; --i) {
+      // move the max element to end
       swap(wordList, 0, i);
 
-      // call max heapify on the reduced heap
-      makeHeap(wordList, i, 0);
+      // make heap to find the next max element
+      // O(lg(n))
+      makeMaxHeap(wordList, i, 0);
     }
+    // O(nlg(n))
   }
 
-  // int recurCount = 1;
-
-  void makeHeap(List<String> wordList, int len, int rootIndex) {
-    // System.out.println("Recursion " + (recurCount++));
-
+  // O(lg(n))
+  void makeMaxHeap(List<String> wordList, int len, int rootIndex) {
     // assume the root word is the largest
     var wordLargestIndex = rootIndex;
     var wordLargest = wordList.get(wordLargestIndex);
@@ -67,7 +75,7 @@ public class HeapSort extends Sort {
     if (wordLargestIndex != rootIndex) {
       swap(wordList, wordLargestIndex, rootIndex);
 
-      makeHeap(wordList, len, wordLargestIndex);
+      makeMaxHeap(wordList, len, wordLargestIndex);
     }
   }
 }

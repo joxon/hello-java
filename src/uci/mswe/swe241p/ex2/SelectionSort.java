@@ -14,9 +14,9 @@ public class SelectionSort extends Sort {
     }
 
     for (int i = 0; i < len - 1; ++i) {
-      if (i % 10000 == 0) {
-        System.out.println("Iteration " + i + "/" + len);
-      }
+      // if (i % 10000 == 0) {
+      // System.out.println("Iteration " + i + "/" + len);
+      // }
 
       // assume the starting one is the minimun word
       int wordMinIndex = i;

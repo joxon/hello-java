@@ -16,11 +16,7 @@ public class MergeSort extends Sort {
     msort(wordList, 0, len - 1);
   }
 
-  // int recurCount = 1;
-
   void msort(List<String> wordList, int left, int right) {
-    // System.out.println("Recursion " + (recurCount++));
-
     if (left < right) {
       var mid = (left + right) / 2;
       msort(wordList, left, mid);

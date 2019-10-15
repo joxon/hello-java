@@ -15,9 +15,9 @@ public class InsertionSort extends Sort {
 
     // start at the 2nd element
     for (var i = 1; i < len; ++i) {
-      if (i % 10000 == 0) {
-        System.out.println("Iteration " + i + "/" + len);
-      }
+      // if (i % 10000 == 0) {
+      // System.out.println("Iteration " + i + "/" + len);
+      // }
 
       var word = wordList.get(i);
       var j = i - 1;
@@ -25,7 +25,7 @@ public class InsertionSort extends Sort {
       for (; j >= 0 && wordList.get(j).compareTo(word) > 0; --j) {
         wordList.set(j + 1, wordList.get(j));
       }
-      // move the word to a smaller index
+      // "insert" the word to a smaller index
       wordList.set(j + 1, word);
       // why is it called Insertion?
       // it's like you move the smaller elements to smaller indices
