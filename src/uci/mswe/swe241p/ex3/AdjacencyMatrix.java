@@ -4,15 +4,15 @@ package uci.mswe.swe241p.ex3;
  * AdjacencyMatrix
  */
 public class AdjacencyMatrix extends UndirectedGraph {
-  int matrix[][];
+  protected int matrix[][];
 
-  AdjacencyMatrix(int v) {
+  public AdjacencyMatrix(int v) {
     this.vertexCount = v;
     this.matrix = new int[v][v];
   }
 
   @Override
-  boolean connect(int a, int b) {
+  public boolean connect(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -24,7 +24,7 @@ public class AdjacencyMatrix extends UndirectedGraph {
   }
 
   @Override
-  boolean isConnected(int a, int b) {
+  public boolean isConnected(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -33,7 +33,7 @@ public class AdjacencyMatrix extends UndirectedGraph {
   }
 
   @Override
-  boolean disconnect(int a, int b) {
+  public boolean disconnect(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -45,7 +45,7 @@ public class AdjacencyMatrix extends UndirectedGraph {
   }
 
   @Override
-  void print() {
+  public void print() {
     System.out.println(this.getClass().getSimpleName());
     var i = 0;
     for (var row : matrix) {

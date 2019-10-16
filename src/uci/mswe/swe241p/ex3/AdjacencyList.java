@@ -72,7 +72,7 @@ public class AdjacencyList extends UndirectedGraph {
   }
 
   @Override
-  boolean connect(int a, int b) {
+  public boolean connect(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -92,7 +92,7 @@ public class AdjacencyList extends UndirectedGraph {
   }
 
   @Override
-  boolean isConnected(int a, int b) {
+  public boolean isConnected(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -101,7 +101,7 @@ public class AdjacencyList extends UndirectedGraph {
   }
 
   @Override
-  boolean disconnect(int a, int b) {
+  public boolean disconnect(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -117,7 +117,7 @@ public class AdjacencyList extends UndirectedGraph {
   }
 
   @Override
-  void print() {
+  public void print() {
     System.out.println(this.getClass().getSimpleName());
     var i = 0;
     for (var list : lists) {
@@ -129,11 +129,11 @@ public class AdjacencyList extends UndirectedGraph {
     }
   }
 
-  static AdjacencyList fromAdjacencyMatrix(AdjacencyMatrix matrix) {
+  static public AdjacencyList fromAdjacencyMatrix(AdjacencyMatrix matrix) {
     return new AdjacencyList(matrix);
   }
 
-  static AdjacencyList fromIncidenceMatrix(IncidenceMatrix matrix) {
+  static public AdjacencyList fromIncidenceMatrix(IncidenceMatrix matrix) {
     return new AdjacencyList(matrix);
   }
 }

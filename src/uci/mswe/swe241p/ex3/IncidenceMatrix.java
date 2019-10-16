@@ -31,7 +31,7 @@ public class IncidenceMatrix extends UndirectedGraph {
   }
 
   @Override
-  boolean connect(int a, int b) {
+  public boolean connect(int a, int b) {
     if (!isValid(a, b) || isConnected(a, b)) {
       return false;
     }
@@ -57,7 +57,7 @@ public class IncidenceMatrix extends UndirectedGraph {
   }
 
   @Override
-  boolean isConnected(int a, int b) {
+  public boolean isConnected(int a, int b) {
     if (!isValid(a, b)) {
       return false;
     }
@@ -74,7 +74,7 @@ public class IncidenceMatrix extends UndirectedGraph {
   }
 
   @Override
-  boolean disconnect(int a, int b) {
+  public boolean disconnect(int a, int b) {
     if (!isValid(a, b) || !isConnected(a, b)) {
       return false;
     }
@@ -105,7 +105,7 @@ public class IncidenceMatrix extends UndirectedGraph {
   }
 
   @Override
-  void print() {
+  public void print() {
     System.out.println(this.getClass().getSimpleName());
     var i = 0;
     for (var row : matrix) {

@@ -6,23 +6,23 @@ import java.util.Random;
  * UndirectedGraph
  */
 abstract class UndirectedGraph {
-  int vertexCount;
+  protected int vertexCount;
 
-  int edgeCount;
+  protected int edgeCount;
 
-  abstract boolean connect(int a, int b);
+  abstract public boolean connect(int a, int b);
 
-  abstract boolean isConnected(int a, int b);
+  abstract public boolean isConnected(int a, int b);
 
-  abstract boolean disconnect(int a, int b);
+  abstract public boolean disconnect(int a, int b);
 
-  abstract void print();
+  abstract public void print();
 
-  boolean isValid(int a) {
+  public boolean isValid(int a) {
     return 0 <= a && a < vertexCount;
   }
 
-  boolean isValid(int a, int b) {
+  public boolean isValid(int a, int b) {
     return isValid(a) && isValid(b);
   }
 

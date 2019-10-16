@@ -4,6 +4,13 @@
       "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
+      "mainClass": "uci.mswe.swe241p.ex4.Main",
+      "projectName": "hell-java"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3.Main",
       "projectName": "hell-java"
     },
