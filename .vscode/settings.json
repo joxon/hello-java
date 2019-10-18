@@ -4,11 +4,11 @@
   "sqltools.connections": [
     {
       "askForPassword": true,
-      "database": "mysql",
+      "database": "ap",
       "dialect": "MySQL",
       "isActive": true,
       "isConnected": true,
-      "name": "MySQL80",
+      "name": "ap",
       "port": 3306,
       "server": "localhost",
       "username": "root"
