@@ -2,3 +2,4 @@
 /bin/
 *.class
 .project
+.vscode/settings.json
