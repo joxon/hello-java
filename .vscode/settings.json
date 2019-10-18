@@ -1,4 +1,17 @@
 {
   "java.dependency.syncWithFolderExplorer": true,
-  "java.dependency.packagePresentation": "hierarchical"
+  "java.dependency.packagePresentation": "hierarchical",
+  "sqltools.connections": [
+    {
+      "askForPassword": true,
+      "database": "mysql",
+      "dialect": "MySQL",
+      "isActive": true,
+      "isConnected": true,
+      "name": "MySQL80",
+      "port": 3306,
+      "server": "localhost",
+      "username": "root"
+    }
+  ]
 }
