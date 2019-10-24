@@ -15,7 +15,7 @@ union
     from
       vendors
     where
-      vendor_state <> 'CA'
+      vendor_state != 'CA'
   )
 order by
   vendor_name

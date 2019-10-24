@@ -9,5 +9,6 @@ from
 where
   vendor_contact_last_name regexp '^[ABCE]'
 order by
-  vendor_contact_last_name asc,
-  vendor_contact_first_name asc;
+  full_name asc;
+-- vendor_contact_last_name asc,
+  -- vendor_contact_first_name asc;

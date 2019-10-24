@@ -10,7 +10,7 @@ from
   vendors a
   join vendors b
 where
-  a.vendor_id <> b.vendor_id
+  a.vendor_id != b.vendor_id
   and a.vendor_contact_last_name = b.vendor_contact_last_name
 order by
   a.vendor_contact_last_name;

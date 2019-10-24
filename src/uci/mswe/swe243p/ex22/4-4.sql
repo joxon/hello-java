@@ -1,7 +1,7 @@
 select
-  v.vendor_name as vendor_name,
-  i.invoice_date as invoice_date,
-  i.invoice_number as invoice_number,
+  v.vendor_name,
+  i.invoice_date,
+  i.invoice_number,
   ili.invoice_sequence as li_sequence,
   ili.line_item_amount as li_amount
 from
