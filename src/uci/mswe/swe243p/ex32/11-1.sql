@@ -1,1 +1,1 @@
-create index idx_zip_code on vendors(vendor_zip_code);
+create index zip_code_idx on ap.vendors(vendor_zip_code);

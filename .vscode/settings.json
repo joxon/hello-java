@@ -4,11 +4,35 @@
   "sqltools.connections": [
     {
       "askForPassword": true,
+      "database": "ex",
+      "dialect": "MySQL",
+      "isActive": false,
+      "isConnected": false,
+      "name": "ex",
+      "port": 3306,
+      "server": "localhost",
+      "username": "root"
+    },
+    {
+      "askForPassword": true,
+      "database": "sys",
+      "dialect": "MySQL",
+      "isActive": true,
+      "isConnected": true,
+      "name": "sys",
+      "password": "ilrt8384",
+      "port": 3306,
+      "server": "localhost",
+      "username": "root"
+    },
+    {
+      "askForPassword": true,
       "database": "ap",
       "dialect": "MySQL",
       "isActive": true,
       "isConnected": true,
       "name": "ap",
+      "password": "ilrt8384",
       "port": 3306,
       "server": "localhost",
       "username": "root"
