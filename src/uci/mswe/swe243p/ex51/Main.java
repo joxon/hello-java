@@ -1,4 +1,16 @@
-// C:\Program Files (x86)\MySQL\Connector J 8.0
+/**
+ * Setting up Connector/J
+ *
+ * 1. Find mysql-connector-java-8.0.18.jar
+ * in C:\Program Files (x86)\MySQL\Connector J 8.0
+ * or https://dev.mysql.com/downloads/connector/j/
+ * then copy it the /lib folder
+ *
+ * 2. Add it to the .classpath file with this line:
+ * <classpathentry kind="lib" path="lib/mysql-connector-java-8.0.18.jar" />
+ *
+ * 3. DONE
+ */
 package uci.mswe.swe243p.ex51;
 
 import java.sql.*;
