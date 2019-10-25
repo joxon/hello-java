@@ -4,36 +4,48 @@
       "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
+      "mainClass": "uci.mswe.swe243p.ex51.Main",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe243p.ex51.Main",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4.Main",
-      "projectName": "hell-java"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3.Main",
-      "projectName": "hell-java"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex2.Main",
-      "projectName": "hell-java"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "CodeLens (Launch) - BinaryTreeSet",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.BinaryTreeSet",
-      "projectName": "hello-java_e0c21e7a"
+      "mainClass": "uci.mswe.swe241p.ex1.BinaryTreeSet"
     },
     {
       "type": "java",
       "name": "CodeLens (Launch) - HashTableSet",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.HashTableSet",
-      "projectName": "hello-java_e0c21e7a"
+      "mainClass": "uci.mswe.swe241p.ex1.HashTableSet"
     },
     {
       "type": "java",
