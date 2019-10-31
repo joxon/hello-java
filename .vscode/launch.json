@@ -2,13 +2,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - LineCountsMethods",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2.LineCountsMethods",
-      "projectName": "hello-java_e0c21e7a"
-    },
-    {
-      "type": "java",
       "name": "LineCounts with custom args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
@@ -21,6 +14,13 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - LineCountsMethods",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex2.LineCountsMethods",
       "projectName": "hello-java_e0c21e7a"
     },
     {
