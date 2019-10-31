@@ -2,38 +2,54 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main",
+      "name": "CodeLens (Launch) - LineCountsMethods",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex2.LineCountsMethods",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "LineCounts with custom args",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
+      "args": "${command:SpecifyProgramArgs}",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "LineCounts with preset args",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
+      "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - swe243p.ex51.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe243p.ex51.Main",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe243p.ex51.Main",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - Main",
+      "name": "CodeLens (Launch) - swe241p.ex4.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4.Main",
-      "projectName": "hello-java"
+      "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main",
+      "name": "CodeLens (Launch) - swe241p.ex3.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3.Main",
-      "projectName": "hello-java"
+      "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main",
+      "name": "CodeLens (Launch) - swe241p.ex2.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex2.Main",
-      "projectName": "hello-java"
+      "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
@@ -55,7 +71,7 @@
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main",
+      "name": "CodeLens (Launch) - swe241p.ex1.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1.Main"
     },
