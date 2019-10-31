@@ -2,82 +2,65 @@
   "configurations": [
     {
       "type": "java",
-      "name": "LineCounts with custom args",
+      "name": "swe242p.ex2_line_counts.LineCounts with custom args",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
+      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "${command:SpecifyProgramArgs}",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "LineCounts with preset args",
+      "name": "swe242p.ex2_line_counts.LineCounts with preset args",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2.LineCounts",
+      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - LineCountsMethods",
+      "name": "swe242p.ex2_line_counts.LineCountsMethods demo",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2.LineCountsMethods",
+      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCountsMethods",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - swe243p.ex51.Main",
+      "name": "swe243p.ex51_jdbc_mysql.SchoolManager",
       "request": "launch",
-      "mainClass": "uci.mswe.swe243p.ex51.Main",
+      "mainClass": "uci.mswe.swe243p.ex51_jdbc_mysql.SchoolManager",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - swe241p.ex4.Main",
+      "name": "swe241p.ex1_set_implementations.RunSets",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex4.Main",
+      "mainClass": "uci.mswe.swe241p.ex1_set_implementations.RunSets",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - swe241p.ex3.Main",
+      "name": "swe241p.ex2_sorting_algorithms.RunSortings",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex3.Main",
+      "mainClass": "uci.mswe.swe241p.ex2_sorting_algorithms.RunSortings",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - swe241p.ex2.Main",
+      "name": "swe241p.ex3_graph_conversion.GraphConversion",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex2.Main",
+      "mainClass": "uci.mswe.swe241p.ex3_graph_conversion.GraphConversion",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - BinaryTreeSet",
+      "name": "swe241p.ex4_graph_traversal.GraphTraversal",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.BinaryTreeSet"
+      "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
+      "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - HashTableSet",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.HashTableSet"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - LinkedListNode",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.LinkedListNode"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - swe241p.ex1.Main",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1.Main"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - Hello",
+      "name": "Hello",
       "request": "launch",
       "mainClass": "Hello"
     }
