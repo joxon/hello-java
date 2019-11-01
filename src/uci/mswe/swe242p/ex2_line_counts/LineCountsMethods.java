@@ -7,42 +7,55 @@ import java.nio.file.*;
  * LineCountsMethods
  *
  * @see <a href=
+ *
  *      "https://stackoverflow.com/questions/453018/number-of-lines-in-a-file-in-java">
  *      number-of-lines-in-a-file-in-java</a>
  * @see <a href=
+ *
  *      "https://stackoverflow.com/questions/1277880/how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way">
  *      how-can-i-get-the-count-of-line-in-a-file-in-an-efficient-way</a>
  */
 public class LineCountsMethods {
 
+  public static void println() {
+    System.out.println();
+  }
+
+  public static <T> void println(T arg) {
+    System.out.println(arg);
+  }
+
   public static void main(String[] args) {
+    // In the root folder, try:
+    // javac LineCountsMethods.java && java -classpath ./src
+    // uci.mswe.swe242p.ex2_line_counts.LineCountsMethods
     try {
-      System.out.println(countLinesWithNIOFiles("./data/in/one-line-0.txt")); // 0
-      System.out.println(countLinesWithNIOFiles("./data/in/one-line-1.txt")); // 1
-      System.out.println(countLinesWithNIOFiles("./data/in/one-line-2.txt")); // 1
-      System.out.println(countLinesWithNIOFiles("./data/in/pride-and-prejudice.txt")); // 13426
-      System.out.println(countLinesWithNIOFiles("./data/in/words-shuffled.txt")); // 6744
-      System.out.println();
+      println(countLinesWithNIOFiles("./data/in/one-line-0.txt")); // 0
+      println(countLinesWithNIOFiles("./data/in/one-line-1.txt")); // 1
+      println(countLinesWithNIOFiles("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithNIOFiles("./data/in/pride-and-prejudice.txt")); // 13426
+      println(countLinesWithNIOFiles("./data/in/words-shuffled.txt")); // 6744
+      println();
 
-      System.out.println(countLinesWithLineNumberReader("./data/in/one-line-0.txt")); // 0
-      System.out.println(countLinesWithLineNumberReader("./data/in/one-line-1.txt")); // ! 1
-      System.out.println(countLinesWithLineNumberReader("./data/in/one-line-2.txt")); // 1
-      System.out.println(countLinesWithLineNumberReader("./data/in/pride-and-prejudice.txt")); // 13426
-      System.out.println(countLinesWithLineNumberReader("./data/in/words-shuffled.txt")); // 6744
-      System.out.println();
+      println(countLinesWithLineNumberReader("./data/in/one-line-0.txt")); // 0
+      println(countLinesWithLineNumberReader("./data/in/one-line-1.txt")); // ! 1
+      println(countLinesWithLineNumberReader("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithLineNumberReader("./data/in/pride-and-prejudice.txt")); // 13426
+      println(countLinesWithLineNumberReader("./data/in/words-shuffled.txt")); // 6744
+      println();
 
-      System.out.println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-0.txt")); // 0
-      System.out.println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-1.txt")); // 1
-      System.out.println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-2.txt")); // 1
-      System.out.println(countLinesWithBufferedInputStreamBetter("./data/in/pride-and-prejudice.txt")); // 13426
-      System.out.println(countLinesWithBufferedInputStreamBetter("./data/in/words-shuffled.txt")); // 6744
-      System.out.println();
+      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-0.txt")); // 0
+      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-1.txt")); // 1
+      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithBufferedInputStreamBetter("./data/in/pride-and-prejudice.txt")); // 13426
+      println(countLinesWithBufferedInputStreamBetter("./data/in/words-shuffled.txt")); // 6744
+      println();
 
-      System.out.println(countLinesWithBufferedInputStream("./data/in/one-line-0.txt")); // 0
-      System.out.println(countLinesWithBufferedInputStream("./data/in/one-line-1.txt")); // 1
-      System.out.println(countLinesWithBufferedInputStream("./data/in/one-line-2.txt")); // 1
-      System.out.println(countLinesWithBufferedInputStream("./data/in/pride-and-prejudice.txt")); // 13426
-      System.out.println(countLinesWithBufferedInputStream("./data/in/words-shuffled.txt")); // 6744
+      println(countLinesWithBufferedInputStream("./data/in/one-line-0.txt")); // 0
+      println(countLinesWithBufferedInputStream("./data/in/one-line-1.txt")); // 1
+      println(countLinesWithBufferedInputStream("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithBufferedInputStream("./data/in/pride-and-prejudice.txt")); // 13426
+      println(countLinesWithBufferedInputStream("./data/in/words-shuffled.txt")); // 6744
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -52,21 +65,22 @@ public class LineCountsMethods {
     return Files.lines(Paths.get(filename)).count();
   }
 
-  public static int countLinesWithLineNumberReader(String filename) throws FileNotFoundException, IOException {
+  public static int countLinesWithLineNumberReader(String filename)
+      throws FileNotFoundException, IOException {
     var lnr = new LineNumberReader(// Readers deal with characters
         new FileReader(filename));
 
     // Loop just in case the file is > Long.MAX_VALUE or skip() decides to not read
     // the entire file
-    while (lnr.skip(Long.MAX_VALUE) > 0)
-      ;
+    while (lnr.skip(Long.MAX_VALUE) > 0);
 
     var lineCounts = lnr.getLineNumber();
     lnr.close();
     return lineCounts;
   }
 
-  public static int countLinesWithBufferedInputStreamBetter(String filename) throws FileNotFoundException, IOException {
+  public static int countLinesWithBufferedInputStreamBetter(String filename)
+      throws FileNotFoundException, IOException {
     final int BUFFER_SIZE = 1024;
     int lineCounts = 0;
 
@@ -107,8 +121,7 @@ public class LineCountsMethods {
      *
      * text file with one line and '\n', and the 2nd line is empty: 1 line;
      *
-     * so it is not enough to just count '\n', we need to check the content after
-     * the last '\n'
+     * so it is not enough to just count '\n', we need to check the content after the last '\n'
      */
     if (bytes[byteCounts - 1] != '\n') {
       ++lineCounts;
@@ -118,7 +131,8 @@ public class LineCountsMethods {
     return lineCounts;
   }
 
-  public static int countLinesWithBufferedInputStream(String filename) throws FileNotFoundException, IOException {
+  public static int countLinesWithBufferedInputStream(String filename)
+      throws FileNotFoundException, IOException {
     final int BUFFER_SIZE = 1024;
     int lineCounts = 0;
 

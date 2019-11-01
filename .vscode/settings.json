@@ -37,5 +37,7 @@
       "server": "localhost",
       "username": "root"
     }
-  ]
+  ],
+  "java.checkstyle.configuration": "/google_checks.xml",
+  "java.checkstyle.version": "8.26"
 }
