@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - TCPFileClient",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - TCPFileServer",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "swe242p.ex2_line_counts.LineCounts with custom args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
