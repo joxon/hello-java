@@ -8,9 +8,6 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-/**
- * TCPFileClient
- */
 public class TCPFileClient {
   final static String SERVER_ADDR = "localhost";
   final static int SERVER_PORT = 8000;

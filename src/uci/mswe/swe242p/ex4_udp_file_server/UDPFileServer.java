@@ -31,11 +31,9 @@ public class UDPFileServer {
     private DatagramPacket clientPacket;
     private String clientAddressAndPort;
 
-
     ResponseTask(DatagramPacket packet) {
       this.clientPacket = packet;
-      this.clientAddressAndPort =
-          clientPacket.getAddress().getHostAddress() + ":" + clientPacket.getPort();
+      this.clientAddressAndPort = packet.getAddress().getHostAddress() + ":" + packet.getPort();
     }
 
     public void sendResponseString(StringWriter str) throws IOException {
@@ -48,14 +46,12 @@ public class UDPFileServer {
 
     @Override
     public Void call() throws Exception {
+      var resString = new StringWriter();
+      var toResString = new PrintWriter(new BufferedWriter(resString), true);
       try {
         // data size = IN_BUFFER_SIZE
         var command = new String(clientPacket.getData()).replace("\0", "");
-        logi("received command \"" + command + "\" from " + //
-            clientPacket.getAddress() + ":" + clientPacket.getPort());
-
-        var resString = new StringWriter();
-        var toResString = new PrintWriter(new BufferedWriter(resString), true);
+        logi("received command \"" + command + "\" from " + clientAddressAndPort);
         switch (command) {
           case "index": {
             try {
@@ -111,12 +107,6 @@ public class UDPFileServer {
 
     folderPathString = args[0];
     folderPath = Path.of(folderPathString);
-    /**
-     * API Note:
-     *
-     * It is recommended to obtain a Path via the Path.of methods instead of via the get methods
-     * defined in this class as this class may be deprecated in a future release.
-     */
 
     if (!Files.isDirectory(folderPath)) {
       System.err.println("Path is not valid.");
@@ -127,7 +117,7 @@ public class UDPFileServer {
 
     var pool = Executors.newFixedThreadPool(50);
     try {
-      // server socket has to be exposed to threads
+      // UDP server socket has to be exposed to threads
       serverSocket = new DatagramSocket(PORT);
       logi("server listening on port " + PORT);
 

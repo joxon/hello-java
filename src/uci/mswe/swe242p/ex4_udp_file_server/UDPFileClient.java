@@ -5,6 +5,7 @@ import java.net.ConnectException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketTimeoutException;
 
 public class UDPFileClient {
   final static String SERVER_ADDR = "localhost";
@@ -18,7 +19,16 @@ public class UDPFileClient {
   static DatagramSocket clientSocket = null;
 
   public static void printResponse(DatagramPacket serverPacket) {
-    System.out.println(new String(serverPacket.getData()).replace("\0", ""));
+    // clear buffer
+    serverPacket.setData(new byte[IN_BUFFER_SIZE], 0, IN_BUFFER_SIZE);
+    try {
+      clientSocket.receive(serverPacket);
+      System.out.println(new String(serverPacket.getData()).replace("\0", ""));
+    } catch (SocketTimeoutException e) {
+      // ignore
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public static void sendRequestString(String req) throws IOException {
@@ -33,8 +43,9 @@ public class UDPFileClient {
       clientSocket = new DatagramSocket(0);
       System.out.println("Socket opened at port " + clientSocket.getLocalPort());
 
-      SERVER_IADDR = InetAddress.getByName(SERVER_ADDR);
       clientSocket.setSoTimeout(READ_TIMEOUT);
+
+      SERVER_IADDR = InetAddress.getByName(SERVER_ADDR);
 
       var serverPacket = new DatagramPacket(new byte[0], 0);
 
@@ -60,14 +71,7 @@ public class UDPFileClient {
             // send the command "index" to server
             sendRequestString("index");
             // print response from server
-            try {
-              // clear buffer
-              serverPacket.setData(new byte[IN_BUFFER_SIZE], 0, IN_BUFFER_SIZE);
-              clientSocket.receive(serverPacket);
-              printResponse(serverPacket);
-            } catch (Exception e) {
-              // ignore
-            }
+            printResponse(serverPacket);
           }
             break;
 
@@ -84,13 +88,7 @@ public class UDPFileClient {
             if (command.matches("^get\\s+([^\\s]+)\\s*$")) {
               var filename = command.split("\\s+")[1];
               sendRequestString("get " + filename);
-              try {
-                serverPacket.setData(new byte[IN_BUFFER_SIZE], 0, IN_BUFFER_SIZE);
-                clientSocket.receive(serverPacket);
-                printResponse(serverPacket);
-              } catch (Exception e) {
-                // ignore
-              }
+              printResponse(serverPacket);
             } else {
               System.out.println("Unknown command.");
             }

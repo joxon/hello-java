@@ -14,9 +14,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-/**
- * TCPFileServer
- */
 public class TCPFileServer {
 
   private static final int PORT = 8000;
@@ -157,7 +154,9 @@ public class TCPFileServer {
 
     var pool = Executors.newFixedThreadPool(50);
     try (var serverSocket = new ServerSocket(PORT)) {
+      // TCP server socket do NOT need to be exposed to threads
       logi("server listening on port " + PORT);
+
       while (true) {
         try {
           var clientSocket = serverSocket.accept(); // blocking IO
