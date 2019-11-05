@@ -26,12 +26,12 @@ public class TCPFileServer {
 
   private static class ResponseTask implements Callable<Void> {
 
-    private Socket connection;
-    private String remoteAddressAndPort;
+    private Socket clientSocket;
+    private String clientAddressAndPort;
 
-    ResponseTask(Socket connection, String addr) {
-      this.connection = connection;
-      this.remoteAddressAndPort = addr;
+    ResponseTask(Socket socket) {
+      this.clientSocket = socket;
+      this.clientAddressAndPort = socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
     }
 
     public static void sendEndOfResponse(PrintWriter out) {
@@ -42,18 +42,18 @@ public class TCPFileServer {
     @Override
     public Void call() throws Exception {
       try {
-        var is = connection.getInputStream();
+        var is = clientSocket.getInputStream();
         var isr = new InputStreamReader(is);
         var fromClient = new BufferedReader(isr);
 
-        var os = connection.getOutputStream();
+        var os = clientSocket.getOutputStream();
         var toClient = new PrintWriter(os, true);
 
         // Wait for user input
         // in.readLine() will do the listening job
         var command = "";
         while ((command = fromClient.readLine()) != null) {
-          logi("received command \"" + command + "\" from " + remoteAddressAndPort);
+          logi("received command \"" + command + "\" from " + clientAddressAndPort);
           switch (command) {
             case "index": {
               try {
@@ -123,8 +123,8 @@ public class TCPFileServer {
         e.printStackTrace();
       } finally {
         try {
-          connection.close();
-          logi("socket disconnected from " + remoteAddressAndPort);
+          clientSocket.close();
+          logi("socket disconnected from " + clientAddressAndPort);
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -156,18 +156,16 @@ public class TCPFileServer {
     logi("server monitoring folder " + folderPathString);
 
     var pool = Executors.newFixedThreadPool(50);
-    try (var server = new ServerSocket(PORT)) {
+    try (var serverSocket = new ServerSocket(PORT)) {
       logi("server listening on port " + PORT);
       while (true) {
         try {
-          var connection = server.accept(); // blocking IO
+          var clientSocket = serverSocket.accept(); // blocking IO
 
-          var remoteAddress = connection.getInetAddress().getHostAddress();
-          var remotePort = connection.getPort();
-          var remoteAddressAndPort = remoteAddress + ":" + remotePort;
-          logi("socket connected from " + remoteAddressAndPort);
+          logi("socket connected from " + //
+              clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort());
 
-          pool.submit(new ResponseTask(connection, remoteAddressAndPort));
+          pool.submit(new ResponseTask(clientSocket));
         } catch (Exception e) {
           loge("failed to accept a connection.");
           e.printStackTrace();

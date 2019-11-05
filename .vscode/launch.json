@@ -2,6 +2,29 @@
   "configurations": [
     {
       "type": "java",
+      "name": "UDPFileClient",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileClient",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "UDPFileServer with custom path",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
+      "args": "${command:SpecifyProgramArgs}",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "UDPFileServer with preset path",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
+      "args": "./data/in/",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "TCPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
