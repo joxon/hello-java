@@ -2,21 +2,30 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - TCPFileClient",
+      "name": "TCPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - TCPFileServer",
+      "name": "TCPFileServer with custom path",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
+      "args": "${command:SpecifyProgramArgs}",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe242p.ex2_line_counts.LineCounts with custom args",
+      "name": "TCPFileServer with preset path",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
+      "args": "./data/in/",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "LineCounts with custom args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "${command:SpecifyProgramArgs}",
@@ -24,7 +33,7 @@
     },
     {
       "type": "java",
-      "name": "swe242p.ex2_line_counts.LineCounts with preset args",
+      "name": "LineCounts with preset args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
@@ -32,42 +41,42 @@
     },
     {
       "type": "java",
-      "name": "swe242p.ex2_line_counts.LineCountsMethods demo",
+      "name": "LineCountsMethods demo",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCountsMethods",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe243p.ex51_jdbc_mysql.SchoolManager",
+      "name": "SchoolManager",
       "request": "launch",
       "mainClass": "uci.mswe.swe243p.ex51_jdbc_mysql.SchoolManager",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe241p.ex1_set_implementations.RunSets",
+      "name": "RunSets",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1_set_implementations.RunSets",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe241p.ex2_sorting_algorithms.RunSortings",
+      "name": "RunSortings",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex2_sorting_algorithms.RunSortings",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe241p.ex3_graph_conversion.GraphConversion",
+      "name": "GraphConversion",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3_graph_conversion.GraphConversion",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "swe241p.ex4_graph_traversal.GraphTraversal",
+      "name": "GraphTraversal",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
       "projectName": "hello-java_e0c21e7a"

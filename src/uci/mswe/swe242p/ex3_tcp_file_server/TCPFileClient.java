@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 /**
  * TCPFileClient
@@ -25,10 +26,10 @@ public class TCPFileClient {
 
       var is = socket.getInputStream();
       var isr = new InputStreamReader(is);
-      var in = new BufferedReader(isr);
+      var fromServer = new BufferedReader(isr);
 
       var os = socket.getOutputStream();
-      var out = new PrintWriter(os, true);
+      var toServer = new PrintWriter(os, true);
 
       var console = System.console();
       final String PROMPT = String.join("\n", //
@@ -50,11 +51,22 @@ public class TCPFileClient {
 
           case "index": {
             // send the command "index" to server
-            out.println("index");
+            toServer.println("index");
             // we have as much time as READ_TIMEOUT to read from server
-            var response = in.readLine();
-            // then print it out
-            System.out.println(response);
+            var response = "";
+            try {
+              while ((response = fromServer.readLine()) != null) {
+                if (response.equals("EOR")) {
+                  break;
+                }
+                // then print it out
+                System.out.println(response);
+
+              }
+            } catch (SocketTimeoutException e) {
+              // ignore
+            }
+
           }
             break;
 
@@ -81,9 +93,9 @@ public class TCPFileClient {
             if (command.matches("^get\\s+([^\\s]+)\\s*$")) {
               var filename = command.split("\\s+")[1];
               // send the request to server
-              out.println("get " + filename);
+              toServer.println("get " + filename);
 
-              var response = in.readLine();
+              var response = fromServer.readLine();
               System.out.println(response);
 
               if (response.equals("OK")) {
