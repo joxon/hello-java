@@ -3,9 +3,9 @@ package uci.mswe.swe242p.ex3_tcp_file_server;
 import java.time.LocalDateTime;
 
 /**
- * LogUtils
+ * Logger
  */
-public class LogUtils {
+public class Logger {
 
   public static String dateTime() {
     // yyyy-mm-ddTHH:mm:ss
@@ -19,5 +19,4 @@ public class LogUtils {
   public static void loge(String s) {
     System.err.println(dateTime() + " ERROR: " + s);
   }
-
 }
