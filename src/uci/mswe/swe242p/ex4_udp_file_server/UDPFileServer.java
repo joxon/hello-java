@@ -18,8 +18,15 @@ import java.util.stream.Collectors;
 public class UDPFileServer {
 
   private static final int PORT = 8000;
-  private static final int IN_BUFFER_SIZE = 1024;
-  // private static final int OUT_BUFFER_SIZE = 8192; // see page 402-403 on Java
+  private static final int IN_BUFFER_SIZE = 1024; // That is the longest size of a command
+  private static final int OUT_BUFFER_SIZE = 8192;
+  // see page 402-403 on Java Network Programming
+  /**
+   * https://stackoverflow.com/questions/3396813/message-too-long-for-udp-socket-after-setting-sendbuffersize
+   *
+   * The limit on a UDP datagram payload in IPv4 is 65535-28=65507 bytes, and the practical limit is
+   * the MTU of the path which is more like 1460 bytes if you're lucky.
+   */
 
   private static String folderPathString = "";
   private static Path folderPath = null;
@@ -30,24 +37,32 @@ public class UDPFileServer {
 
     private DatagramPacket clientPacket;
     private String clientAddressAndPort;
+    private StringWriter responseWriter;
 
     ResponseTask(DatagramPacket packet) {
       this.clientPacket = packet;
       this.clientAddressAndPort = packet.getAddress().getHostAddress() + ":" + packet.getPort();
+      this.responseWriter = new StringWriter();
     }
 
-    public void sendResponseString(StringWriter str) throws IOException {
-      var bytes = str.toString().getBytes();
+    public void sendResponseString() throws IOException {
+      // We do not need EOR here
+      var bytes = responseWriter.toString().getBytes();
       serverSocket.send(new DatagramPacket(bytes, bytes.length, //
           clientPacket.getAddress(), clientPacket.getPort()));
       logi("response packet sent to " + clientAddressAndPort);
     }
 
+    public void sendResponseString(String s) throws IOException {
+      var bytes = s.getBytes();
+      serverSocket.send(new DatagramPacket(bytes, bytes.length, //
+          clientPacket.getAddress(), clientPacket.getPort()));
+      logi("response packet sent to " + clientAddressAndPort);
+    }
 
     @Override
     public Void call() throws Exception {
-      var resString = new StringWriter();
-      var toResString = new PrintWriter(new BufferedWriter(resString), true);
+      var toResString = new PrintWriter(new BufferedWriter(responseWriter), true);
       try {
         // data size = IN_BUFFER_SIZE
         var command = new String(clientPacket.getData()).replace("\0", "");
@@ -56,15 +71,13 @@ public class UDPFileServer {
           case "index": {
             try {
               toResString.println("Index of " + folderPath.toAbsolutePath().toString());
-
               Files.walk(folderPath, 1) // depth = 1
                   .filter(Files::isRegularFile) // ignore folders
                   .map(Path::getFileName) //
                   .map(Path::toString) //
                   .collect(Collectors.toList()) //
                   .forEach(toResString::println);
-
-              sendResponseString(resString);
+              sendResponseString();
             } catch (IOException e) {
               e.printStackTrace();
             }
@@ -80,12 +93,31 @@ public class UDPFileServer {
               if (Files.notExists(filePath)) {
                 toResString.println(Messages.ERROR.toString());
                 toResString.println("File not found.");
-                sendResponseString(resString);
+                sendResponseString();
               } else {
                 toResString.println(Messages.OK.toString());
-                // TODO: large file splitting
-                Files.lines(filePath).forEach(toResString::println); // read file and send to client
-                sendResponseString(resString);
+                Files.lines(filePath).forEach(toResString::println);
+                // Now we have a string that has all content of the file
+                // But the size of the string may exceed UDP limit
+                // So we have to split the string into packets
+                var data = responseWriter.toString();
+                var len = data.length();
+                if (len <= OUT_BUFFER_SIZE) {
+                  sendResponseString();
+                } else {
+                  // Split the string here
+                  var splitCounts = len / OUT_BUFFER_SIZE;
+                  var beginIndex = 0;
+                  var endIndex = OUT_BUFFER_SIZE;
+                  for (var i = 0; i < splitCounts; ++i) {
+                    sendResponseString(data.substring(beginIndex, endIndex));
+                    beginIndex += OUT_BUFFER_SIZE;
+                    endIndex += OUT_BUFFER_SIZE;
+                  }
+                  if (beginIndex < len) {
+                    sendResponseString(data.substring(beginIndex, len));
+                  }
+                }
               }
             }
           }
@@ -141,7 +173,9 @@ public class UDPFileServer {
       e.printStackTrace();
     } finally {
       try {
-        serverSocket.close();
+        if (serverSocket != null) {
+          serverSocket.close();
+        }
       } catch (Exception e) {
         e.printStackTrace();
       }
