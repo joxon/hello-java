@@ -1,11 +1,12 @@
 package uci.mswe.swe244p.ex21_display;
 
-// public class JDisplay2 implements HighLevelDisplay
 /**
+ * public class JDisplay2 implements HighLevelDisplay
+ *
  * In fact, the class JDisplay2 is not thread safe; it does not guarantee correct behaviour when its
  * methods are accessed by concurrent threads.
  *
- * Your task: make JDisplay2 thread safe, so that those glitches are eliminated.
+ * TODO: make JDisplay2 thread safe, so that those glitches are eliminated.
  */
 public class HighLevelDisplay implements HighLevelInterface {
 
@@ -38,9 +39,9 @@ public class HighLevelDisplay implements HighLevelInterface {
     try {
       for (int i = 0; i * 200 < millisecs; i++) {
         updateRow(rowId, "");
-        Thread.sleep(70);
+        Thread.sleep(50);
         updateRow(rowId, row);
-        Thread.sleep(130);
+        Thread.sleep(100); // make it faster
       }
     } catch (Exception e) {
       System.err.println(e.getMessage());
@@ -54,13 +55,18 @@ public class HighLevelDisplay implements HighLevelInterface {
     usedRowCounts = 0;
   }
 
+  // TODO: make it thread-safe
   public void addRow(String newRow) {
     updateRow(usedRowCounts, newRow);
-    flashRow(usedRowCounts, 1000);
+    flashRow(usedRowCounts, 100); // make it faster
+
+    // ! usedRowCounts is accessed by addRow and deleteRow
     usedRowCounts++;
   }
 
+  // TODO: make it thread-safe
   public void deleteRow(int rowId) {
+    // ! usedRowCounts is accessed by addRow and deleteRow
     if (rowId < usedRowCounts) {
       // move rows backwards
       for (int i = rowId + 1; i < usedRowCounts; i++) {
@@ -71,7 +77,7 @@ public class HighLevelDisplay implements HighLevelInterface {
       updateRow(usedRowCounts, "");
       // if there are too many rows, then flash the last row
       if (usedRowCounts >= hardware.getRowCounts()) {
-        flashRow(hardware.getRowCounts() - 1, 1000);
+        flashRow(hardware.getRowCounts() - 1, 100); // make it faster
       }
     }
   }
