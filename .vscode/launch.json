@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MultiThreadedHelloWorld",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "UDPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileClient",

@@ -47,6 +47,7 @@ public class UDPFileServer {
 
     public void sendResponseString() throws IOException {
       // We do not need EOR here
+      // TODO: Make it reliable like TCP, by adding ACK and SEQ
       var bytes = responseWriter.toString().getBytes();
       serverSocket.send(new DatagramPacket(bytes, bytes.length, //
           clientPacket.getAddress(), clientPacket.getPort()));

@@ -42,7 +42,16 @@ public class UDPFileClient {
     try {
       // in case of those files that are splitted
       // we have to keep listening from server
-      // TODO packet ordering?
+      // TODO: Make it reliable like TCP, by adding ACK and SEQ
+      /**
+       * https://stackoverflow.com/questions/36728722/reliable-udp-in-java
+       *
+       * https://stackoverflow.com/questions/22889264/udp-with-sequence-numbers/22889574#22889574
+       *
+       * UDP does not have option header, meaning there is not room to add sequence number, buffer
+       * and window support on client and server side, and those three headers are the main factors
+       * to make TCP reliable.
+       */
       while (true) {
         clientSocket.receive(serverPacket); // it sets data and *length* so no need to clear buffer
         response.append(new String(serverPacket.getData(), 0, serverPacket.getLength()));
