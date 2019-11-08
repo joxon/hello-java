@@ -6,7 +6,7 @@ package uci.mswe.swe244p.ex21_display;
  * In fact, the class JDisplay2 is not thread safe; it does not guarantee correct behaviour when its
  * methods are accessed by concurrent threads.
  *
- * TODO: make JDisplay2 thread safe, so that those glitches are eliminated.
+ * make JDisplay2 thread safe, so that those glitches are eliminated.
  */
 public class HighLevelDisplay implements HighLevelInterface {
 
@@ -55,17 +55,16 @@ public class HighLevelDisplay implements HighLevelInterface {
     usedRowCounts = 0;
   }
 
-  // TODO: make it thread-safe
-  public void addRow(String newRow) {
+  // private Object lock = new Object();
+
+  public synchronized void addRow(String newRow) {
     updateRow(usedRowCounts, newRow);
     flashRow(usedRowCounts, 100); // make it faster
-
     // ! usedRowCounts is accessed by addRow and deleteRow
     usedRowCounts++;
   }
 
-  // TODO: make it thread-safe
-  public void deleteRow(int rowId) {
+  public synchronized void deleteRow(int rowId) {
     // ! usedRowCounts is accessed by addRow and deleteRow
     if (rowId < usedRowCounts) {
       // move rows backwards

@@ -16,7 +16,7 @@ public class Main3 {
     // Add a sequence of addRow operations with short random naps.
     for (int i = 0; i < 100; ++i) {
       d.addRow("row " + i);
-      nap(new Random().nextInt(1000));
+      nap(new Random().nextInt(100));
     }
   }
 
@@ -24,7 +24,7 @@ public class Main3 {
     // Add a sequence of deletions of row 0 with short random naps.
     for (int i = 0; i < 100; ++i) {
       d.deleteRow(0);
-      nap(new Random().nextInt(1000));
+      nap(new Random().nextInt(500));
     }
   }
 
