@@ -2,6 +2,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Main3",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex21_display.Main3",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main2",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex21_display.Main2",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main1",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex21_display.Main1",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "MultiThreadedHelloWorld",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
