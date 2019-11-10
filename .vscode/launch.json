@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex22_bridge.Main",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex21_display.Main3",
