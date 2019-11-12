@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - VectorTest",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex32_vector.VectorTest",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - HashMapTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
