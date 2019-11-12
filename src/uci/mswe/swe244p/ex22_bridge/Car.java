@@ -37,14 +37,15 @@ public class Car implements Runnable {
     ypos = initY[carType];
   }
 
-
+  // ! modify this function
   public void move() {
     int xposOld = xpos;
     if (carType == REDCAR) {
+      // Red cars come from the left to the right
       if (inFront.getX() - xpos > 100) {
         xpos += 4;
-        if (xpos >= bridgeXLeft & xposOld < bridgeXLeft)
-          controller.enterLeft();
+        if (xpos >= bridgeXLeft && xposOld < bridgeXLeft)
+          controller.enterLeft(); // ! lock the bridge
         else if (xpos > bridgeXLeft && xpos < bridgeXMid) {
           if (ypos > bridgeY)
             ypos -= 2;
@@ -52,13 +53,14 @@ public class Car implements Runnable {
           if (ypos < initY[REDCAR])
             ypos += 2;
         } else if (xpos >= bridgeXRight && xposOld < bridgeXRight)
-          controller.leaveRight();
+          controller.leaveRight(); // ! release the bridge
       }
     } else {
+      // Blue cars come from the right to the left
       if (xpos - inFront.getX() > 100) {
         xpos -= 4;
         if (xpos <= bridgeXRight && xposOld > bridgeXRight)
-          controller.enterRight();
+          controller.enterRight(); // ! lock the bridge
         else if (xpos < bridgeXRight && xpos > bridgeXMid) {
           if (ypos < bridgeY)
             ypos += 2;
@@ -66,7 +68,7 @@ public class Car implements Runnable {
           if (ypos > initY[BLUECAR])
             ypos -= 2;
         } else if (xpos <= bridgeXLeft && xposOld > bridgeXLeft)
-          controller.leaveLeft();
+          controller.leaveLeft(); // ! release the bridge
       }
     }
   }
