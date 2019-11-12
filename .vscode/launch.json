@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - HashMapTest",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "ex22_bridge.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex22_bridge.Main",

@@ -1,30 +1,38 @@
 package uci.mswe.swe244p.ex22_bridge;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TrafficController {
   // TODO: use the simple monitor mechanisms in class Object?
+  private Queue<Integer> queue = new LinkedList<Integer>();
 
   private boolean bridgeIsBusy = false;
 
   // Red cars enter the bridge from left
   public void enterLeft() {
-    while (bridgeIsBusy) {
+    queue.add(Car.REDCAR);
+    while (bridgeIsBusy || queue.peek() == Car.BLUECAR) {
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
       }
     }
     bridgeIsBusy = true;
+    queue.poll();
   }
 
   // Blue cars enter the bridge from right
   public void enterRight() {
-    while (bridgeIsBusy) {
+    queue.add(Car.BLUECAR);
+    while (bridgeIsBusy || queue.peek() == Car.REDCAR) {
       try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
       }
     }
     bridgeIsBusy = true;
+    queue.poll();
   }
 
   // Blue cars leave the bridge from left
