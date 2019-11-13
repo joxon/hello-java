@@ -2,14 +2,31 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - VectorTest",
+      "name": "MessageQueue 3 2",
+      "args": "3 2",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "MessageQueue 1 1",
+      "args": "1 1",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "projectName": "hello-java_e0c21e7a"
+    },
+
+    {
+      "type": "java",
+      "name": "VectorTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex32_vector.VectorTest",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "CodeLens (Launch) - HashMapTest",
+      "name": "HashMapTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
       "projectName": "hello-java_e0c21e7a"
