@@ -5,7 +5,22 @@ import java.util.Random;
 
 public class Main3 {
 
-    // solve the synchronization problems with a semaphore outside JDisplay2.
+    /**
+     * solve the synchronization problems with a semaphore outside JDisplay2.
+     *
+     * Page 63 - 5.5.3. Semaphores
+     *
+     * Counting semaphores are used to control the number of activities that can access a certain
+     * resource or perform a given action at the same time [CPJ 3.4.1]. Counting semaphores can be
+     * used to implement resource pools or to impose a bound on a collection. A Semaphore manages a
+     * set of virtual permits; the initial number of permits is passed to the Semaphore constructor.
+     * Activities can acquire permits (as long as some remain) and release permits when they are
+     * done with them. If no permit is available, acquire blocks until one is (or until interrupted
+     * or the operation times out). The release method returns a permit to the semaphore. [4] A
+     * degenerate case of a counting semaphore is a binary semaphore, a Semaphore with an initial
+     * count of one. A binary semaphore can be used as a mutex with non-reentrant locking semantics;
+     * whoever holds the sole permit holds the mutex.
+     */
     private static final Semaphore semaphore = new Semaphore(1);
 
     private static void nap(int millisecs) {
