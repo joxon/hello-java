@@ -48,10 +48,10 @@ public class HashMapTest {
 	private synchronized void printPeople() {
 		// ! Exception in thread "Printer" java.util.ConcurrentModificationException
 		// https://www.journaldev.com/378/java-util-concurrentmodificationexception
-		System.out.println("People size = " + people.size());
 		for (HashMap.Entry<String, Integer> entry : people.entrySet()) {
 			System.out.println(entry.getKey() + ": " + entry.getValue());
 		}
+		System.out.println("People size = " + people.size());
 		System.out.println("-----------------------------------------");
 	}
 

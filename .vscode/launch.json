@@ -2,15 +2,39 @@
   "configurations": [
     {
       "type": "java",
-      "name": "MessageQueue 3 2",
-      "args": "3 2",
+      "name": "MessageQueue p=1 c=3",
+      "args": "1 3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java_e0c21e7a"
     },
     {
       "type": "java",
-      "name": "MessageQueue 1 1",
+      "name": "MessageQueue p=2 c=2",
+      "args": "2 2",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "MessageQueue p=1 c=2",
+      "args": "1 2",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "MessageQueue p=2 c=1",
+      "args": "2 1",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "MessageQueue p=1 c=1",
       "args": "1 1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",

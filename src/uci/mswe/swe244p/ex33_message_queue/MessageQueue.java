@@ -15,10 +15,11 @@ public class MessageQueue {
 		try {
 			producerCount = Integer.valueOf(args[0]);
 			consumerCount = Integer.valueOf(args[1]);
+		} catch (Exception e) {
+			System.err.println("Invalid arguments or no arguments.");
+		} finally {
 			System.out
 					.println("Using producerCount=" + producerCount + ", consumerCount=" + consumerCount);
-		} catch (Exception e) {
-			System.err.println("Invalid arguments. Using default.");
 		}
 
 		BlockingQueue<Message> queue = new ArrayBlockingQueue<Message>(10);
@@ -46,5 +47,18 @@ public class MessageQueue {
 		for (var producer : producers) {
 			producer.stop();
 		}
+
+		// ! make sure all consumers stop when there are fewer producers
+		if (producerCount < consumerCount) {
+			int extraStopsNeeded = consumerCount - producerCount;
+			for (int i = 0; i < extraStopsNeeded; ++i) {
+				try {
+					queue.put(new Message("stop"));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 	}
 }
