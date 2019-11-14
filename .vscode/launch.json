@@ -2,7 +2,14 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Main3",
+      "name": "BankAccounts",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex35_bank_account.BankAccounts",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "ex34_display_v2.Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex34_display_v2.Main3",
       "projectName": "hello-java_e0c21e7a"
