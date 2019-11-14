@@ -20,11 +20,10 @@ import java.util.concurrent.Executors;
 // Each Client Connection will be managed in a dedicated Thread
 public class WebServer {
 
-	static final File WEB_ROOT = new File(".");
-	static final String DEFAULT_FILE = "src/uci/mswe/swe244p/ex41_web_server/index.html";
-	static final String FILE_NOT_FOUND = "src/uci/mswe/swe244p/ex41_web_server/404.html";
-	static final String METHOD_NOT_SUPPORTED =
-			"src/uci/mswe/swe244p/ex41_web_server/not_supported.html";
+	static final File WEB_ROOT = new File("./src/uci/mswe/swe244p/ex41_web_server");
+	static final String DEFAULT_FILE = "index.html";
+	static final String FILE_NOT_FOUND = "404.html";
+	static final String METHOD_NOT_SUPPORTED = "not_supported.html";
 
 	// port to listen connection
 	static final int PORT = 80;
