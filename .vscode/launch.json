@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Multithreaded WebServer",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex41_web_server.WebServer",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "BankAccounts",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex35_bank_account.BankAccounts",
