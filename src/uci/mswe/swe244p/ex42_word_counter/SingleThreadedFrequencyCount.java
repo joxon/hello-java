@@ -81,10 +81,11 @@ public class SingleThreadedFrequencyCount {
 			StringBuilder result = new StringBuilder("---------- Word counts (top 40) -----------\n");
 			int i = 1;
 			for (Map.Entry<String, Integer> e : sortedMap) {
-				result.append("[" + i + "] \"" + e.getKey() + "\": " + e.getValue() + "\n");
+				result.append("[" + i + "] \"" + e.getKey() + "\": " + e.getValue());
 				if (i == 40) {
 					break;
 				} else {
+					result.append("\n");
 					++i;
 				}
 			}

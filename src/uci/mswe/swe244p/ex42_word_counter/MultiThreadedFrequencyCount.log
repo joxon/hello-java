@@ -1,11 +1,11 @@
-Started data\in\244p-ex42\anonymit.txt
-Ended data\in\244p-ex42\anonymit.txt
-Started data\in\244p-ex42\cDc-0200.txt
-Ended data\in\244p-ex42\cDc-0200.txt
-Started data\in\244p-ex42\crossbow.txt
-Ended data\in\244p-ex42\crossbow.txt
-Started data\in\244p-ex42\gems.txt
-Ended data\in\244p-ex42\gems.txt
+pool-1-thread-1: Started counting data\in\244p-ex42\anonymit.txt
+pool-1-thread-3: Started counting data\in\244p-ex42\crossbow.txt
+pool-1-thread-4: Started counting data\in\244p-ex42\gems.txt
+pool-1-thread-2: Started counting data\in\244p-ex42\cDc-0200.txt
+pool-1-thread-3: Ended counting data\in\244p-ex42\crossbow.txt
+pool-1-thread-1: Ended counting data\in\244p-ex42\anonymit.txt
+pool-1-thread-4: Ended counting data\in\244p-ex42\gems.txt
+pool-1-thread-2: Ended counting data\in\244p-ex42\cDc-0200.txt
 ---------- Word counts (top 40) -----------
 [1] "stone": 183
 [2] "one": 166
@@ -47,5 +47,4 @@ Ended data\in\244p-ex42\gems.txt
 [38] "ratte": 38
 [39] "down": 38
 [40] "light": 38
-
-STFC Elapsed time: 222.4733ms
+MTFC Elapsed time: 191.9332ms

@@ -20,7 +20,6 @@
       "isActive": true,
       "isConnected": true,
       "name": "sys",
-      "password": "ilrt8384",
       "port": 3306,
       "server": "localhost",
       "username": "root"
@@ -32,7 +31,6 @@
       "isActive": true,
       "isConnected": true,
       "name": "ap",
-      "password": "ilrt8384",
       "port": 3306,
       "server": "localhost",
       "username": "root"

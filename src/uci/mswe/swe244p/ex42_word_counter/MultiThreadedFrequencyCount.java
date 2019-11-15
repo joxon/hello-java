@@ -95,10 +95,11 @@ public class MultiThreadedFrequencyCount {
 			StringBuilder result = new StringBuilder("---------- Word counts (top 40) -----------\n");
 			int i = 1;
 			for (Map.Entry<String, Integer> entry : sortedEntries) {
-				result.append("[" + i + "] \"" + entry.getKey() + "\": " + entry.getValue() + "\n");
+				result.append("[" + i + "] \"" + entry.getKey() + "\": " + entry.getValue());
 				if (i == 40) {
 					break;
 				} else {
+					result.append("\n");
 					++i;
 				}
 			}
