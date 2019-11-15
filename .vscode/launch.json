@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MultiThreadedFrequencyCount",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex42_word_counter.MultiThreadedFrequencyCount",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
+      "name": "SingleThreadedFrequencyCount",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe244p.ex42_word_counter.SingleThreadedFrequencyCount",
+      "projectName": "hello-java_e0c21e7a"
+    },
+    {
+      "type": "java",
       "name": "Multithreaded WebServer",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex41_web_server.WebServer",
