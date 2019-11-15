@@ -2,3 +2,5 @@
 /bin/
 *.class
 .project
+/lib/javafx-sdk-13.0.1/lib
+/lib/javafx-sdk-13.0.1/bin
