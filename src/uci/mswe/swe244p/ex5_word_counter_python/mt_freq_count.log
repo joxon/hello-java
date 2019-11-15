@@ -1,0 +1,50 @@
+ThreadPoolExecutor-0_0: Started reading data/in/244p-ex42/anonymit.txt
+ThreadPoolExecutor-0_1: Started reading data/in/244p-ex42/cDc-0200.txt
+ThreadPoolExecutor-0_0: Ended reading data/in/244p-ex42/anonymit.txt
+ThreadPoolExecutor-0_2: Started reading data/in/244p-ex42/crossbow.txt
+ThreadPoolExecutor-0_0: Started reading data/in/244p-ex42/gems.txt
+ThreadPoolExecutor-0_1: Ended reading data/in/244p-ex42/cDc-0200.txt
+ThreadPoolExecutor-0_2: Ended reading data/in/244p-ex42/crossbow.txt
+ThreadPoolExecutor-0_0: Ended reading data/in/244p-ex42/gems.txt
+---------- Word counts (top 40) -----------
+[1] "stone": 183
+[2] "one": 166
+[3] "diamond": 102
+[4] "stones": 100
+[5] "more": 98
+[6] "out": 89
+[7] "___": 78
+[8] "such": 71
+[9] "cut": 71
+[10] "diamonds": 70
+[11] "even": 69
+[12] "new": 69
+[13] "now": 69
+[14] "time": 63
+[15] "over": 61
+[16] "people": 60
+[17] "very": 59
+[18] "color": 59
+[19] "cdc": 56
+[20] "make": 50
+[21] "computer": 49
+[22] "take": 49
+[23] "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": 49
+[24] "don": 48
+[25] "carat": 48
+[26] "government": 45
+[27] "emeralds": 43
+[28] "well": 42
+[29] "name": 40
+[30] "number": 40
+[31] "file": 40
+[32] "know": 40
+[33] "those": 40
+[34] "see": 40
+[35] "kkkkk": 40
+[36] "first": 39
+[37] "much": 39
+[38] "down": 38
+[39] "ratte": 38
+[40] "light": 38
+MTFC Elapsed time: 72.7207 ms
