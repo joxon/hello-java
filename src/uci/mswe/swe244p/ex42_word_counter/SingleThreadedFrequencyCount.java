@@ -1,10 +1,6 @@
 package uci.mswe.swe244p.ex42_word_counter;
 
-/*
- * @author Crista Lopes
- *
- * Simple word frequency program
- */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +15,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ *
+ * Simple word frequency program, single-threaded
+ *
+ * @author Crista Lopes
+ *
+ */
 public class SingleThreadedFrequencyCount {
 	private static final String DATA_DIR = "data/in/244p-ex42/";
 
@@ -78,7 +81,7 @@ public class SingleThreadedFrequencyCount {
 			StringBuilder result = new StringBuilder("---------- Word counts (top 40) -----------\n");
 			int i = 1;
 			for (Map.Entry<String, Integer> e : sortedMap) {
-				result.append(e.getKey() + ":" + e.getValue() + "\n");
+				result.append("[" + i + "] \"" + e.getKey() + "\": " + e.getValue() + "\n");
 				if (i == 40) {
 					break;
 				} else {
@@ -127,7 +130,7 @@ public class SingleThreadedFrequencyCount {
 		long elapsed = end - start;
 
 		System.out.println(c);
-		System.out.println("Elapsed time: " + elapsed / 1000000 + "ms");
+		System.out.println("STFC Elapsed time: " + elapsed / 1e6 + "ms");
 
 	}
 }

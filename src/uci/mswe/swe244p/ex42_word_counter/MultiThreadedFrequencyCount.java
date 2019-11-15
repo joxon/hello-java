@@ -1,10 +1,6 @@
 package uci.mswe.swe244p.ex42_word_counter;
 
-/*
- * @author Crista Lopes
- *
- * Simple word frequency program
- */
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +9,6 @@ import java.util.stream.Stream;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.Arrays;
@@ -21,6 +16,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
+/**
+ *
+ * Simple word frequency program, multi-threaded
+ *
+ * @author Crista Lopes
+ * @author Junxian Chen
+ *
+ */
 public class MultiThreadedFrequencyCount {
 	private static final int CPU_COUNT = 4;
 
@@ -63,8 +66,7 @@ public class MultiThreadedFrequencyCount {
 		}
 
 		private List<Map.Entry<String, Integer>> sort() {
-			Set<Map.Entry<String, Integer>> set = frequencies.entrySet();
-			List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(set);
+			var list = new ArrayList<Map.Entry<String, Integer>>(frequencies.entrySet());
 			Collections.sort(list, // (a, b) -> a.getValue().compareTo(b.getValue())
 					new Comparator<Map.Entry<String, Integer>>() {
 						public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
@@ -157,7 +159,7 @@ public class MultiThreadedFrequencyCount {
 		long elapsed = end - start;
 
 		System.out.println(mainCounter);
-		System.out.println("Elapsed time: " + elapsed / 10e6 + "ms");
+		System.out.println("MTFC Elapsed time: " + elapsed / 1e6 + "ms"); // 1000000 == 1e6 != 10e6
 	}
 }
 

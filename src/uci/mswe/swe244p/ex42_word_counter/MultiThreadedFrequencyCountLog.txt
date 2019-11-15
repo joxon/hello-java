@@ -1,0 +1,51 @@
+pool-1-thread-3: Started counting data\in\244p-ex42\crossbow.txt
+pool-1-thread-2: Started counting data\in\244p-ex42\cDc-0200.txt
+pool-1-thread-4: Started counting data\in\244p-ex42\gems.txt
+pool-1-thread-1: Started counting data\in\244p-ex42\anonymit.txt
+pool-1-thread-3: Ended counting data\in\244p-ex42\crossbow.txt
+pool-1-thread-2: Ended counting data\in\244p-ex42\cDc-0200.txt
+pool-1-thread-4: Ended counting data\in\244p-ex42\gems.txt
+pool-1-thread-1: Ended counting data\in\244p-ex42\anonymit.txt
+---------- Word counts (top 40) -----------
+[1] "stone": 183
+[2] "one": 166
+[3] "diamond": 102
+[4] "stones": 100
+[5] "more": 98
+[6] "out": 89
+[7] "___": 78
+[8] "cut": 71
+[9] "such": 71
+[10] "diamonds": 70
+[11] "new": 69
+[12] "now": 69
+[13] "even": 69
+[14] "time": 63
+[15] "over": 61
+[16] "people": 60
+[17] "color": 59
+[18] "very": 59
+[19] "cdc": 56
+[20] "make": 50
+[21] "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": 49
+[22] "computer": 49
+[23] "take": 49
+[24] "don": 48
+[25] "carat": 48
+[26] "government": 45
+[27] "emeralds": 43
+[28] "well": 42
+[29] "know": 40
+[30] "kkkkk": 40
+[31] "number": 40
+[32] "those": 40
+[33] "file": 40
+[34] "name": 40
+[35] "see": 40
+[36] "much": 39
+[37] "first": 39
+[38] "ratte": 38
+[39] "down": 38
+[40] "light": 38
+
+MTFC Elapsed time: 166.248ms
