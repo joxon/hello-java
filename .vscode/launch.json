@@ -6,7 +6,7 @@
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "mainClass": "uci.mswe.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -14,7 +14,7 @@
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "mainClass": "uci.mswe.swe245p_gui.HelloFX",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "name": "Python: Current File",
@@ -28,35 +28,35 @@
       "name": "MultiThreadedFrequencyCount",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex42_word_counter.MultiThreadedFrequencyCount",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "SingleThreadedFrequencyCount",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex42_word_counter.SingleThreadedFrequencyCount",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "Multithreaded WebServer",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex41_web_server.WebServer",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "BankAccounts",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex35_bank_account.BankAccounts",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "ex34_display_v2.Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex34_display_v2.Main3",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -64,7 +64,7 @@
       "args": "1 3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -72,7 +72,7 @@
       "args": "2 2",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -80,7 +80,7 @@
       "args": "1 2",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -88,7 +88,7 @@
       "args": "2 1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -96,63 +96,63 @@
       "args": "1 1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "VectorTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex32_vector.VectorTest",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "HashMapTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "ex22_bridge.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex22_bridge.Main",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "ex21_display.Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex21_display.Main3",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "ex21_display.Main2",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex21_display.Main2",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "ex21_display.Main1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex21_display.Main1",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "MultiThreadedHelloWorld",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "UDPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileClient",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -160,7 +160,7 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "${command:SpecifyProgramArgs}",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -168,14 +168,14 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "./data/in/",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "TCPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -183,7 +183,7 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "${command:SpecifyProgramArgs}",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -191,7 +191,7 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "./data/in/",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -199,7 +199,7 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "${command:SpecifyProgramArgs}",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
@@ -207,49 +207,49 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "LineCountsMethods demo",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCountsMethods",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "SchoolManager",
       "request": "launch",
       "mainClass": "uci.mswe.swe243p.ex51_jdbc_mysql.SchoolManager",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "RunSets",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1_set_implementations.RunSets",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "RunSortings",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex2_sorting_algorithms.RunSortings",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "GraphConversion",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3_graph_conversion.GraphConversion",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "GraphTraversal",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
-      "projectName": "hello-java_e0c21e7a"
+      "projectName": "hello-java"
     },
     {
       "type": "java",

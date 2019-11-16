@@ -3,12 +3,19 @@ package uci.mswe.swe245p_gui;
 import java.util.Date;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -58,22 +65,38 @@ public class HelloFX extends Application {
    */
   @Override
   public void start(Stage stage) {
-    // StackPane positions nodes in its center.
-    StackPane root = new StackPane();
-    VBox textBox = new VBox();
 
     // get label and rect ready
-    String javaVersion = System.getProperty("java.version");
-    String javafxVersion = System.getProperty("javafx.version");
-    Label label =
-        new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-    Rectangle rectIvory = new Rectangle(300, 200, Color.IVORY);
-    Rectangle rectBlack = new Rectangle(400, 300, Color.BLACK);
+    var rectBlack = new Rectangle(500, 400, Color.BLACK);
+    var rectIvory = new Rectangle(400, 300, Color.IVORY);
+
+    var javaVersion = System.getProperty("java.version");
+    var javafxVersion = System.getProperty("javafx.version");
+    var label = new Label("JavaFX " + javafxVersion + " running on Java " + javaVersion);
+
+    final var fontSize = 14.0;
+    final var font = Font.font("Hack", FontWeight.NORMAL, fontSize);
+    label.setFont(font);
+    timerText.setFont(font);
+
+    VBox textBox = new VBox(); // the box takes all the space on the top, but it is transparent
+    textBox.setAlignment(Pos.CENTER); // !important
+    textBox.getChildren().addAll(label, timerText);
+
+    // StackPane positions nodes in its center.
+
+    var root = new StackPane();
+    root.setBackground(
+        new Background(new BackgroundFill(Color.DARKCYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.getChildren().addAll(rectBlack, rectIvory, textBox);
 
     // add them to the pane in the order from left to right
     // the right most item will be on the top
-    textBox.getChildren().addAll(label, timerText);
-    root.getChildren().addAll(rectBlack, rectIvory, textBox);
+
+    // var root = new BorderPane();
+    // root.setCenter(rectBlack);
+    // root.setCenter(rectIvory);
+    // root.setCenter(textBox);
 
     // bring label to the top
     // label.toFront();
