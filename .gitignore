@@ -1,6 +1,4 @@
-/data/out/*
 /bin/
-*.class
-.project
-/lib/javafx-sdk-13.0.1/lib
-/lib/javafx-sdk-13.0.1/bin
+/data/out/*
+/docs/javafx-13
+/lib/javafx-sdk-13.0.1
