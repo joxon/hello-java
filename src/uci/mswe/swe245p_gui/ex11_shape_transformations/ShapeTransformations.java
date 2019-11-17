@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -32,13 +33,50 @@ import javafx.stage.Stage;
  */
 public class ShapeTransformations extends Application {
 
-  static final int MIN_WINDOW_WIDTH = 640;
-  static final int MIN_WINDOW_HEIGHT = 480;
-  static final int CIRCLE_RADIUS = 150;
+  private static final int MIN_WINDOW_WIDTH = 640;
+  private static final int MIN_WINDOW_HEIGHT = 480;
+  private static final int SQUARE_EDGE = 300;
 
-  static Background getBackground(Color color) {
+  private static Background getBackground(Color color) {
     return new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY));
   }
+
+  private static void rotateLeft(Node node) {
+    var newRotate = node.getRotate() - 10;
+    if (newRotate < 0) {
+      newRotate += 360.0;
+    } else if (newRotate > 360.0) {
+      newRotate -= 360.0;
+    }
+    node.setRotate(newRotate);
+  }
+
+  private static void rotateRight(Node node) {
+    var newRotate = node.getRotate() + 10;
+    if (newRotate < 0) {
+      newRotate += 360.0;
+    } else if (newRotate > 360.0) {
+      newRotate -= 360.0;
+    }
+    node.setRotate(newRotate);
+  }
+
+  private static void moveUp(Node node) {
+    node.setTranslateY(node.getTranslateY() - 10);
+  }
+
+  private static void moveDown(Node node) {
+    node.setTranslateY(node.getTranslateY() + 10);
+  }
+
+  private static void moveLeft(Node node) {
+    node.setTranslateX(node.getTranslateX() - 10);
+  }
+
+  private static void moveRight(Node node) {
+    node.setTranslateX(node.getTranslateX() + 10);
+  }
+
 
   /**
    * Overriding this method allows you to run code before the window is created. Usually, this
@@ -65,13 +103,16 @@ public class ShapeTransformations extends Application {
      */
     // var peterUrl = "https://cnlm.uci.edu/files/bb-plugin/cache/JHvxrQa-circle.png";
     // var peter = new ImagePattern(new Image(peterUrl));
-    var circle = new Circle(CIRCLE_RADIUS, Color.WHITE);
+    var square = new Rectangle(SQUARE_EDGE, SQUARE_EDGE, Color.WHITE);
     var nameLabel = new Label("Junxian Chen");
     nameLabel.setFont(Font.font("Segoe Script", FontWeight.EXTRA_BOLD, 30.0));
     nameLabel.setTextFill(Color.GRAY);
     var container = new StackPane(); // TODO If you click on the shape, it will "return to normal"
-    container.getChildren().addAll(circle, nameLabel);
-    container.setPrefSize(CIRCLE_RADIUS, CIRCLE_RADIUS);
+    container.getChildren().addAll(square, nameLabel);
+    container.setMaxSize(SQUARE_EDGE, SQUARE_EDGE);
+    container.setOnMouseClicked(event -> {
+      System.out.println(event);
+    });
     var canvasPane = new StackPane(); // StackPane positions nodes in its center.
     canvasPane.setBackground(getBackground(Color.GRAY));
     canvasPane.getChildren().add(container);
@@ -92,28 +133,12 @@ public class ShapeTransformations extends Application {
      * rotate
      */
     var rotateLabel = new Label("Rotate");
-    var rotateLeft = new Button("(L)"); // TODO listen to keyboard
-    rotateLeft.setOnAction(event -> {
-      var newRotate = container.getRotate() - 10;
-      if (newRotate < 0) {
-        newRotate += 360.0;
-      } else if (newRotate > 360.0) {
-        newRotate -= 360.0;
-      }
-      container.setRotate(newRotate);
-    });
-    var rotateRight = new Button("(R)");
-    rotateRight.setOnAction(event -> {
-      var newRotate = container.getRotate() + 10;
-      if (newRotate < 0) {
-        newRotate += 360.0;
-      } else if (newRotate > 360.0) {
-        newRotate -= 360.0;
-      }
-      container.setRotate(newRotate);
-    });
+    var rotateLeftButton = new Button("(L)");
+    rotateLeftButton.setOnAction(event -> rotateLeft(container));
+    var rotateRightButton = new Button("(R)");
+    rotateRightButton.setOnAction(event -> rotateRight(container));
     var rotateButtonBox = new HBox();
-    rotateButtonBox.getChildren().addAll(rotateLeft, rotateRight);
+    rotateButtonBox.getChildren().addAll(rotateLeftButton, rotateRightButton);
     var rotateBox = new VBox();
     rotateBox.getChildren().addAll(rotateLabel, rotateButtonBox);
 
@@ -129,46 +154,45 @@ public class ShapeTransformations extends Application {
      * 2
      */
     var moveLabel = new Label("Move");
-    var moveUp = new Button("(↑)");
-    moveUp.setOnAction(event -> container.setTranslateY(container.getTranslateY() - 10));
-    var moveDown = new Button("(↓)");
-    moveDown.setOnAction(event -> container.setTranslateY(container.getTranslateY() + 10));
-    var moveLeft = new Button("(←)");
-    moveLeft.setOnAction(event -> container.setTranslateX(container.getTranslateX() - 10));
-    var moveRight = new Button("(→)");
-    moveRight.setOnAction(event -> container.setTranslateX(container.getTranslateX() + 10));
+    var moveUpButton = new Button("(↑)");
+    moveUpButton.setOnAction(event -> moveUp(container));
+    var moveDownButton = new Button("(↓)");
+    moveDownButton.setOnAction(event -> moveDown(container));
+    var moveLeftButton = new Button("(←)");
+    moveLeftButton.setOnAction(event -> moveLeft(container));
+    var moveRightButton = new Button("(→)");
+    moveRightButton.setOnAction(event -> moveRight(container));
     var moveButtonPane = new GridPane();
     // col, then row
-    GridPane.setConstraints(moveUp, 1, 0);
-    GridPane.setConstraints(moveDown, 1, 2);
-    GridPane.setConstraints(moveLeft, 0, 1);
-    GridPane.setConstraints(moveRight, 2, 1);
-    moveButtonPane.getChildren().addAll(moveUp, moveDown, moveLeft, moveRight);
+    GridPane.setConstraints(moveUpButton, 1, 0);
+    GridPane.setConstraints(moveDownButton, 1, 2);
+    GridPane.setConstraints(moveLeftButton, 0, 1);
+    GridPane.setConstraints(moveRightButton, 2, 1);
+    moveButtonPane.getChildren().addAll(moveUpButton, moveDownButton, moveLeftButton,
+        moveRightButton);
     var moveBox = new VBox();
     moveBox.getChildren().addAll(moveLabel, moveButtonPane);
 
     /**
      * scale
      */
-    var scaleLabel = new Label("Scaling");
+    var scaleLabel = new Label("Scaling (50-200%)");
     var scaleSlider = new Slider(50, 200, 100);
-    var scaleText = new TextField("100");
+    var scaleText = new TextField("100%");
+    scaleText.setAlignment(Pos.CENTER);
+
     EventHandler<MouseEvent> handleSliderEvent = event -> {
-      var factor = scaleSlider.getValue();
-      // TODO: how to scale??
+      var factor = scaleSlider.getValue(); // 50-200
+      var newScale = factor / 100;
       /**
        * setScaleX(double scale), setScaleY(double scale): Increases (or decreases) the Node by
        * multiplying its horizontal or vertical dimensions by scale
        */
-      container.setScaleX(container.getScaleX() * factor / 100);
-      container.setScaleY(container.getScaleY() * factor / 100);
+      // ! getScaleX getScaleY are default to 1.0
+      container.setScaleX(newScale);
+      container.setScaleY(newScale);
 
-      // var length = CIRCLE_RADIUS * factor / 100;
-      // container.setPrefSize(length, length);
-      // container.setLayoutX(length);
-      // container.setLayoutY(length);
-
-      scaleText.setText(String.valueOf(factor).split("[.]")[0]);
+      scaleText.setText(String.valueOf(factor).split("[.]")[0] + "%");
     };
     scaleSlider.setOnMouseDragged(handleSliderEvent);
     scaleSlider.setOnMouseClicked(handleSliderEvent);
@@ -177,16 +201,20 @@ public class ShapeTransformations extends Application {
 
     scaleText.setOnAction(event -> {
       try {
-        var factor = Double.parseDouble(scaleText.getText());
-        container.setScaleX(container.getScaleX() * factor / 100);
-        container.setScaleY(container.getScaleY() * factor / 100);
+        // ? 2%00% -> 200, not important
+        var text = scaleText.getText().replaceAll("[%]", "");
+        var factor = Double.parseDouble(text);
+        if (factor < 50 || factor > 200) {
+          throw new NumberFormatException();
+        }
+        var newScale = factor / 100;
+        container.setScaleX(newScale);
+        container.setScaleY(newScale);
 
-        // var length = CIRCLE_RADIUS * factor / 100;
-        // container.setLayoutX(length);
-        // container.setLayoutY(length);
         scaleSlider.setValue(factor);
+        scaleText.setText(text + "%");
       } catch (NumberFormatException e) {
-        scaleText.setText("100");
+        scaleText.setText("100%");
       }
     });
     var scaleControlBox = new VBox();
@@ -205,7 +233,7 @@ public class ShapeTransformations extends Application {
     var makeBlue = new RadioButton("Blue");
     makeRed.setOnAction(event -> {
       if (makeRed.isSelected()) {
-        circle.setFill(Color.RED);
+        square.setFill(Color.RED);
         makeGreen.setSelected(false);
         makeBlue.setSelected(false);
         makeBlack.setSelected(false);
@@ -216,7 +244,7 @@ public class ShapeTransformations extends Application {
     });
     makeGreen.setOnAction(event -> {
       if (makeGreen.isSelected()) {
-        circle.setFill(Color.GREEN);
+        square.setFill(Color.GREEN);
         makeRed.setSelected(false);
         makeBlue.setSelected(false);
         makeBlack.setSelected(false);
@@ -227,7 +255,7 @@ public class ShapeTransformations extends Application {
     });
     makeBlue.setOnAction(event -> {
       if (makeBlue.isSelected()) {
-        circle.setFill(Color.BLUE);
+        square.setFill(Color.BLUE);
         makeGreen.setSelected(false);
         makeRed.setSelected(false);
         makeBlack.setSelected(false);
@@ -238,7 +266,7 @@ public class ShapeTransformations extends Application {
     });
     makeBlack.setOnAction(event -> {
       if (makeBlack.isSelected()) {
-        circle.setFill(Color.BLACK);
+        square.setFill(Color.BLACK);
         makeGreen.setSelected(false);
         makeBlue.setSelected(false);
         makeRed.setSelected(false);
@@ -249,7 +277,7 @@ public class ShapeTransformations extends Application {
     });
     makeWhite.setOnAction(event -> {
       if (makeWhite.isSelected()) {
-        circle.setFill(Color.WHITE);
+        square.setFill(Color.WHITE);
         makeGreen.setSelected(false);
         makeBlue.setSelected(false);
         makeBlack.setSelected(false);
@@ -286,7 +314,39 @@ public class ShapeTransformations extends Application {
 
     // Scene: This is the place for the window's content
     var scene = new Scene(root, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
+    scene.setOnKeyPressed(event -> {
+      // JEP 325: Switch Expressions (Preview): https://openjdk.java.net/jeps/325
+      // JEP 354: Switch Expressions (Preview): https://openjdk.java.net/jeps/354
+      switch (event.getCode()) {
+        case L:
+          rotateLeft(container);
+          break;
 
+        case R:
+          rotateRight(container);
+          break;
+
+        // TODO listen to keyboard, arrow keys not working
+        case UP:
+          moveUp(container);
+          break;
+
+        case DOWN:
+          moveDown(container);
+          break;
+
+        case LEFT:
+          moveLeft(container);
+          break;
+
+        case RIGHT:
+          moveRight(container);
+          break;
+
+        default:
+          break;
+      }
+    });
     // Stage : The JavaFX term for the window
     stage.setScene(scene);
     stage.setTitle("Shape Transformations");
