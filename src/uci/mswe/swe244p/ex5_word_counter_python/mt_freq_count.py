@@ -3,6 +3,7 @@ import re  # regular expression
 import sys  # system
 import time
 import os  # operating system
+from os.path import abspath, dirname
 # ! ThreadPoolExecutor is NOT in concurrent.futures
 from concurrent.futures.thread import ThreadPoolExecutor
 import threading
@@ -16,7 +17,7 @@ def read_file_task(path, file_words):
 
 
 if __name__ == "__main__":
-    data_dir = "data/in/244p-ex42/"
+    data_dir = dirname(abspath(__file__)) + "\\data\\"
     stop_words = set(open(data_dir + "stop_words").read().split(","))
 
     start_time = time.perf_counter_ns()

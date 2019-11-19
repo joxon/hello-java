@@ -2,7 +2,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "ShapeTransformations",
+      "name": "swe245p.ex11 ShapeTransformations",
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "mainClass": "uci.mswe.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
@@ -10,57 +10,57 @@
     },
     {
       "type": "java",
-      "name": "HelloFX",
+      "name": "swe245p HelloFX",
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "mainClass": "uci.mswe.swe245p_gui.HelloFX",
       "projectName": "hello-java"
     },
     {
-      "name": "Python: Current File",
+      "name": "swe244p.ex5 pythonMultiThreadedFrequencyCount",
       "type": "python",
       "request": "launch",
-      "program": "${file}",
+      "program": "${workspaceFolder}/src/uci/mswe/swe244p/ex5_word_counter_python/mt_freq_count.py",
       "console": "integratedTerminal"
     },
     {
       "type": "java",
-      "name": "MultiThreadedFrequencyCount",
+      "name": "swe244p.ex42 javaMultiThreadedFrequencyCount",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex42_word_counter.MultiThreadedFrequencyCount",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "SingleThreadedFrequencyCount",
+      "name": "swe244p.ex42 SingleThreadedFrequencyCount",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex42_word_counter.SingleThreadedFrequencyCount",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "Multithreaded WebServer",
+      "name": "swe244p.ex41 Multithreaded WebServer",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex41_web_server.WebServer",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "BankAccounts",
+      "name": "swe244p.ex35 BankAccounts",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex35_bank_account.BankAccounts",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "ex34_display_v2.Main3",
+      "name": "swe244p.ex34_display_v2.Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex34_display_v2.Main3",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "MessageQueue p=1 c=3",
+      "name": "swe244p.ex33 MessageQueue p=1 c=3",
       "args": "1 3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
@@ -68,7 +68,7 @@
     },
     {
       "type": "java",
-      "name": "MessageQueue p=2 c=2",
+      "name": "swe244p.ex33 MessageQueue p=2 c=2",
       "args": "2 2",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
@@ -76,7 +76,7 @@
     },
     {
       "type": "java",
-      "name": "MessageQueue p=1 c=2",
+      "name": "swe244p.ex33 MessageQueue p=1 c=2",
       "args": "1 2",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
@@ -84,7 +84,7 @@
     },
     {
       "type": "java",
-      "name": "MessageQueue p=2 c=1",
+      "name": "swe244p.ex33 MessageQueue p=2 c=1",
       "args": "2 1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
@@ -92,7 +92,7 @@
     },
     {
       "type": "java",
-      "name": "MessageQueue p=1 c=1",
+      "name": "swe244p.ex33 MessageQueue p=1 c=1",
       "args": "1 1",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
@@ -100,63 +100,49 @@
     },
     {
       "type": "java",
-      "name": "VectorTest",
+      "name": "swe244p.ex32 VectorTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex32_vector.VectorTest",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "HashMapTest",
+      "name": "swe244p.ex31 HashMapTest",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "ex22_bridge.Main",
+      "name": "swe244p.ex22_bridge.Main",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex22_bridge.Main",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "ex21_display.Main3",
+      "name": "swe244p.ex21_display.Main3",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex21_display.Main3",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "ex21_display.Main2",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex21_display.Main2",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "ex21_display.Main1",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex21_display.Main1",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "MultiThreadedHelloWorld",
+      "name": "swe244p.ex1 MultiThreadedHelloWorld",
       "request": "launch",
       "mainClass": "uci.mswe.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "UDPFileClient",
+      "name": "swe242p.ex4 UDPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileClient",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "UDPFileServer with custom path",
+      "name": "swe242p.ex4 UDPFileServer with custom path",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "${command:SpecifyProgramArgs}",
@@ -164,7 +150,7 @@
     },
     {
       "type": "java",
-      "name": "UDPFileServer with preset path",
+      "name": "swe242p.ex4 UDPFileServer with preset path",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "./data/in/",
@@ -172,14 +158,14 @@
     },
     {
       "type": "java",
-      "name": "TCPFileClient",
+      "name": "swe242p.ex3 TCPFileClient",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "TCPFileServer with custom path",
+      "name": "swe242p.ex3 TCPFileServer with custom path",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "${command:SpecifyProgramArgs}",
@@ -187,7 +173,7 @@
     },
     {
       "type": "java",
-      "name": "TCPFileServer with preset path",
+      "name": "swe242p.ex3 TCPFileServer with preset path",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "./data/in/",
@@ -195,7 +181,7 @@
     },
     {
       "type": "java",
-      "name": "LineCounts with custom args",
+      "name": "swe242p.ex2 LineCounts with custom args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "${command:SpecifyProgramArgs}",
@@ -203,7 +189,7 @@
     },
     {
       "type": "java",
-      "name": "LineCounts with preset args",
+      "name": "swe242p.ex2 LineCounts with preset args",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
@@ -211,42 +197,42 @@
     },
     {
       "type": "java",
-      "name": "LineCountsMethods demo",
+      "name": "swe242p.ex2 LineCountsMethods demo",
       "request": "launch",
       "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCountsMethods",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "SchoolManager",
+      "name": "swe243p.ex51 SchoolManager",
       "request": "launch",
       "mainClass": "uci.mswe.swe243p.ex51_jdbc_mysql.SchoolManager",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "RunSets",
+      "name": "swe241p.ex1 RunSets",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex1_set_implementations.RunSets",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "RunSortings",
+      "name": "swe241p.ex2 RunSortings",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex2_sorting_algorithms.RunSortings",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "GraphConversion",
+      "name": "swe241p.ex3 GraphConversion",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex3_graph_conversion.GraphConversion",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "GraphTraversal",
+      "name": "swe241p.ex4 GraphTraversal",
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
       "projectName": "hello-java"
