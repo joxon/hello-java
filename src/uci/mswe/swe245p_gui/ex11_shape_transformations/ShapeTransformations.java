@@ -2,7 +2,7 @@ package uci.mswe.swe245p_gui.ex11_shape_transformations;
 
 import java.util.Date;
 import javafx.application.Application;
-import javafx.event.EventHandler;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -107,12 +106,15 @@ public class ShapeTransformations extends Application {
     var nameLabel = new Label("Junxian Chen");
     nameLabel.setFont(Font.font("Segoe Script", FontWeight.EXTRA_BOLD, 30.0));
     nameLabel.setTextFill(Color.GRAY);
-    var container = new StackPane(); // TODO If you click on the shape, it will "return to normal"
+
+    var container = new StackPane();
     container.getChildren().addAll(square, nameLabel);
     container.setMaxSize(SQUARE_EDGE, SQUARE_EDGE);
     container.setOnMouseClicked(event -> {
+      // TODO If you click on the shape, it will "return to normal"
       System.out.println(event);
     });
+
     var canvasPane = new StackPane(); // StackPane positions nodes in its center.
     canvasPane.setBackground(getBackground(Color.GRAY));
     canvasPane.getChildren().add(container);
@@ -178,26 +180,39 @@ public class ShapeTransformations extends Application {
      */
     var scaleLabel = new Label("Scaling (50-200%)");
     var scaleSlider = new Slider(50, 200, 100);
+    scaleSlider.setShowTickLabels(true);
+    scaleSlider.setShowTickMarks(true);
+    scaleSlider.setMajorTickUnit(50);
+    scaleSlider.setMinorTickCount(1);
+    scaleSlider.setBlockIncrement(10);
     var scaleText = new TextField("100%");
     scaleText.setAlignment(Pos.CENTER);
 
-    EventHandler<MouseEvent> handleSliderEvent = event -> {
-      var factor = scaleSlider.getValue(); // 50-200
-      var newScale = factor / 100;
-      /**
-       * setScaleX(double scale), setScaleY(double scale): Increases (or decreases) the Node by
-       * multiplying its horizontal or vertical dimensions by scale
-       */
-      // ! getScaleX getScaleY are default to 1.0
+    ChangeListener<Number> onChange = (obVal, oldVal, newVal) -> {
+      var factor = newVal.doubleValue(); // 50-200
+      var newScale = factor / 100.0;
       container.setScaleX(newScale);
       container.setScaleY(newScale);
-
       scaleText.setText(String.valueOf(factor).split("[.]")[0] + "%");
     };
-    scaleSlider.setOnMouseDragged(handleSliderEvent);
-    scaleSlider.setOnMouseClicked(handleSliderEvent);
+    scaleSlider.valueProperty().addListener(onChange);
+
+    // EventHandler<MouseEvent> onMouseEvent = event -> {
+    // var factor = scaleSlider.getValue(); // 50-200
+    // var newScale = factor / 100;
+    // /**
+    // * setScaleX(double scale), setScaleY(double scale): Increases (or decreases) the Node by
+    // * multiplying its horizontal or vertical dimensions by scale
+    // */
+    // // ! getScaleX getScaleY are default to 1.0
+    // container.setScaleX(newScale);
+    // container.setScaleY(newScale);
+    // scaleText.setText(String.valueOf(factor).split("[.]")[0] + "%");
+    // };
+    // scaleSlider.setOnMouseDragged(onMouseEvent);
+    // scaleSlider.setOnMouseClicked(onMouseEvent);
+    // scaleSlider.setOnDragDetected(handleSliderEvent);
     // no effects: DragExited DragOver DragDropped DragDone DragEntered
-    // setOnDragDetected works badly
 
     scaleText.setOnAction(event -> {
       try {
@@ -289,7 +304,7 @@ public class ShapeTransformations extends Application {
     makeWhite.setSelected(true);
 
     var colorRadioBox = new VBox();
-    colorRadioBox.getChildren().addAll(makeRed, makeGreen, makeBlue, makeBlack, makeWhite);
+    colorRadioBox.getChildren().addAll(makeWhite, makeBlack, makeRed, makeGreen, makeBlue);
     var colorBox = new VBox();
     colorBox.getChildren().addAll(colorLabel, colorRadioBox);
 
@@ -326,7 +341,7 @@ public class ShapeTransformations extends Application {
           rotateRight(container);
           break;
 
-        // TODO listen to keyboard, arrow keys not working
+        // Hold 'Alt' key
         case UP:
           moveUp(container);
           break;
