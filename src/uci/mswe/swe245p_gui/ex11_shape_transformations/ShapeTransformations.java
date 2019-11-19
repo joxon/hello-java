@@ -104,19 +104,29 @@ public class ShapeTransformations extends Application {
       // page 217
       final var colorTransition = new FillTransition(ONE_SECOND, square);
       colorTransition.setToValue(Color.WHITE);
-      colorRadioButtons.get(0).setSelected(true);
-      for (var i = 1; i < colorRadioButtons.size(); ++i) {
-        colorRadioButtons.get(i).setSelected(false);
-      }
 
-      final var allTransition = new ParallelTransition(returnTransition, rotateTransition,
-          scaleTransition, colorTransition);
-      controlBox.setDisable(true);
+
+      final var allTransition = //
+          new ParallelTransition(//
+              returnTransition, //
+              rotateTransition, //
+              scaleTransition, //
+              colorTransition);
+
       allTransition.setOnFinished(event -> {
+
         scaleSlider.setValue(100);
         scaleText.setText("100%");
+
+        colorRadioButtons.get(0).setSelected(true);
+        for (var i = 1; i < colorRadioButtons.size(); ++i) {
+          colorRadioButtons.get(i).setSelected(false);
+        }
+
         controlBox.setDisable(false);
       });
+
+      controlBox.setDisable(true);
       allTransition.play();
     }
 
@@ -282,23 +292,6 @@ public class ShapeTransformations extends Application {
     };
     scaleSlider.valueProperty().addListener(onChange);
 
-    // EventHandler<MouseEvent> onMouseEvent = event -> {
-    // var factor = scaleSlider.getValue(); // 50-200
-    // var newScale = factor / 100;
-    // /**
-    // * setScaleX(double scale), setScaleY(double scale): Increases (or decreases) the this by
-    // * multiplying its horizontal or vertical dimensions by scale
-    // */
-    // // ! getScaleX getScaleY are default to 1.0
-    // container.setScaleX(newScale);
-    // container.setScaleY(newScale);
-    // scaleText.setText(String.valueOf(factor).split("[.]")[0] + "%");
-    // };
-    // scaleSlider.setOnMouseDragged(onMouseEvent);
-    // scaleSlider.setOnMouseClicked(onMouseEvent);
-    // scaleSlider.setOnDragDetected(handleSliderEvent);
-    // no effects: DragExited DragOver DragDropped DragDone DragEntered
-
     scaleText.setOnAction(event -> {
       try {
         // ? 2%00% -> 200, not important
@@ -317,8 +310,11 @@ public class ShapeTransformations extends Application {
         scaleText.setText("100%");
       }
     });
+    // scaleText.textProperty().bind(scaleSlider.valueProperty().asString().concat("%"));
+
     final var scaleControlBox = new VBox();
     scaleControlBox.getChildren().addAll(scaleSlider, scaleText);
+
     final var scaleBox = new VBox();
     scaleBox.getChildren().addAll(scaleLabel, scaleControlBox);
 
