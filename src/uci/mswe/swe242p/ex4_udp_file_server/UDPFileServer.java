@@ -35,38 +35,46 @@ public class UDPFileServer {
 
   private static class ResponseTask implements Callable<Void> {
 
-    private DatagramPacket clientPacket;
+    private DatagramPacket packetFromClient;
     private String clientAddressAndPort;
     private StringWriter responseWriter;
+    private DatagramPacket packetToClient;
 
     ResponseTask(DatagramPacket packet) {
-      this.clientPacket = packet;
-      this.clientAddressAndPort = packet.getAddress().getHostAddress() + ":" + packet.getPort();
+      this.packetFromClient = packet;
+
+      final var address = packet.getAddress();
+      final var port = packet.getPort();
+      this.clientAddressAndPort = address.getHostAddress() + ":" + port;
+
       this.responseWriter = new StringWriter();
+
+      this.packetToClient = new DatagramPacket(new byte[0], 0, address, port);
     }
 
     public void sendResponseString() throws IOException {
       // We do not need EOR here
       // TODO: Make it reliable like TCP, by adding ACK and SEQ
       var bytes = responseWriter.toString().getBytes();
-      serverSocket.send(new DatagramPacket(bytes, bytes.length, //
-          clientPacket.getAddress(), clientPacket.getPort()));
+      packetToClient.setData(bytes, 0, bytes.length);
+      serverSocket.send(packetToClient);
       logi("response packet sent to " + clientAddressAndPort);
     }
 
     public void sendResponseString(String s) throws IOException {
       var bytes = s.getBytes();
-      serverSocket.send(new DatagramPacket(bytes, bytes.length, //
-          clientPacket.getAddress(), clientPacket.getPort()));
+      packetToClient.setData(bytes, 0, bytes.length);
+      serverSocket.send(packetToClient);
       logi("response packet sent to " + clientAddressAndPort);
     }
 
     @Override
     public Void call() throws Exception {
+      logi("=== ResponseTask.call() starts ===");
       var toResString = new PrintWriter(new BufferedWriter(responseWriter), true);
       try {
         // data size = IN_BUFFER_SIZE
-        var command = new String(clientPacket.getData()).replace("\0", "");
+        var command = new String(packetFromClient.getData()).replace("\0", "");
         logi("received command \"" + command + "\" from " + clientAddressAndPort);
         switch (command) {
           case "index": {
@@ -91,11 +99,18 @@ public class UDPFileServer {
             } else {
               var fileName = command.split(" ")[1];
               var filePath = Path.of(folderPathString + fileName);
+
               if (Files.notExists(filePath)) {
+
+                loge(filePath.toString() + " does not exist.");
+
                 toResString.println(Messages.ERROR.toString());
                 toResString.println("File not found.");
                 sendResponseString();
+
               } else {
+                logi("processing " + filePath);
+
                 toResString.println(Messages.OK.toString());
                 Files.lines(filePath).forEach(toResString::println);
                 // Now we have a string that has all content of the file
@@ -104,18 +119,30 @@ public class UDPFileServer {
                 var data = responseWriter.toString();
                 var len = data.length();
                 if (len <= OUT_BUFFER_SIZE) {
+
+                  logi("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
+                      "), sending " + filePath + " directly");
                   sendResponseString();
+
                 } else {
+
+                  logi("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
+                      "), splitting " + filePath);
+
                   // Split the string here
                   var splitCounts = len / OUT_BUFFER_SIZE;
                   var beginIndex = 0;
                   var endIndex = OUT_BUFFER_SIZE;
+
                   for (var i = 0; i < splitCounts; ++i) {
+                    logi("sending " + filePath + ": " + i + "/" + splitCounts);
                     sendResponseString(data.substring(beginIndex, endIndex));
                     beginIndex += OUT_BUFFER_SIZE;
                     endIndex += OUT_BUFFER_SIZE;
                   }
+
                   if (beginIndex < len) {
+                    logi("sending " + filePath + ": " + splitCounts + "/" + splitCounts);
                     sendResponseString(data.substring(beginIndex, len));
                   }
                 }
@@ -128,6 +155,8 @@ public class UDPFileServer {
         loge("an exception occured when running ResponseTask.");
         e.printStackTrace();
       }
+      logi("=== ResponseTask.call() ends ===");
+
       return null;
     }
   }
@@ -138,7 +167,12 @@ public class UDPFileServer {
       return;
     }
 
-    folderPathString = args[0];
+    // make sure there is a '/' at the end of the path
+    // and replace all "./" or ".\"
+    folderPathString = (args[0] + '/')//
+        .replaceAll("\\\\", "/")//
+        .replaceAll("[/]+", "/")//
+        .replaceAll("\\./", "");
     folderPath = Path.of(folderPathString);
 
     if (!Files.isDirectory(folderPath)) {
