@@ -158,9 +158,7 @@ public class TCPFileServer {
       logi("server listening on port " + PORT);
 
       while (true) {
-        try {
-          var clientSocket = serverSocket.accept(); // blocking IO
-
+        try (var clientSocket = serverSocket.accept() /* blocking IO */) {
           logi("socket connected from " + //
               clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort());
 

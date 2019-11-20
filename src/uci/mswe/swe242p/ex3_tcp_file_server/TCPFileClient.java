@@ -35,17 +35,16 @@ public class TCPFileClient {
     System.out.println("TCPFileClient v1.0 by Junxian Chen");
     System.out.println("Trying to connect " + SERVER_ADDR + ":" + SERVER_PORT + " ...");
 
-    try (var socket = new Socket(SERVER_ADDR, SERVER_PORT)) {
+    try (var socket = new Socket(SERVER_ADDR, SERVER_PORT);
+        var is = socket.getInputStream();
+        var isr = new InputStreamReader(is);
+        var fromServer = new BufferedReader(isr);
+        var os = socket.getOutputStream();
+        var toServer = new PrintWriter(os, true);) {
+
       System.out.println("Socket connected to " + SERVER_ADDR + ":" + SERVER_PORT);
 
       socket.setSoTimeout(READ_TIMEOUT);
-
-      var is = socket.getInputStream();
-      var isr = new InputStreamReader(is);
-      var fromServer = new BufferedReader(isr);
-
-      var os = socket.getOutputStream();
-      var toServer = new PrintWriter(os, true);
 
       var console = System.console();
       final String PROMPT = String.join("\n", //

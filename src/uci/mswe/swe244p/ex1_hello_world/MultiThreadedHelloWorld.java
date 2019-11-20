@@ -110,7 +110,7 @@ public class MultiThreadedHelloWorld {
 
     while (true) {
       // https://stackoverflow.com/questions/1066318/how-to-read-a-single-char-from-the-console-in-java-as-the-user-types-it
-      // TODO: Input is being cleared every time... But it is in the buffer that cannot be fetched
+      // ? Input is being cleared every time... But it is in the buffer that cannot be fetched
       var command = System.console().readLine();
       switch (command) {
         case "a": {
