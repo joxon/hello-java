@@ -16,7 +16,15 @@ public class Logger {
     System.out.println(dateTime() + " INFO: " + s);
   }
 
+  public static void logit(String s) {
+    System.out.println(dateTime() + " INFO: " + Thread.currentThread().getName() + ": " + s);
+  }
+
   public static void loge(String s) {
     System.err.println(dateTime() + " ERROR: " + s);
+  }
+
+  public static void loget(String s) {
+    System.err.println(dateTime() + " ERROR: " + Thread.currentThread().getName() + ": " + s);
   }
 }

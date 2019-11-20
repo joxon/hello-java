@@ -58,24 +58,24 @@ public class UDPFileServer {
       var bytes = responseWriter.toString().getBytes();
       packetToClient.setData(bytes, 0, bytes.length);
       serverSocket.send(packetToClient);
-      logi("response packet sent to " + clientAddressAndPort);
+      logit("response packet sent to " + clientAddressAndPort);
     }
 
     public void sendResponseString(String s) throws IOException {
       var bytes = s.getBytes();
       packetToClient.setData(bytes, 0, bytes.length);
       serverSocket.send(packetToClient);
-      logi("response packet sent to " + clientAddressAndPort);
+      logit("response packet sent to " + clientAddressAndPort);
     }
 
     @Override
     public Void call() throws Exception {
-      logi("=== ResponseTask.call() starts ===");
+      logit("=== ResponseTask.call() starts ===");
       var toResString = new PrintWriter(new BufferedWriter(responseWriter), true);
       try {
         // data size = IN_BUFFER_SIZE
         var command = new String(packetFromClient.getData()).replace("\0", "");
-        logi("received command \"" + command + "\" from " + clientAddressAndPort);
+        logit("received command \"" + command + "\" from " + clientAddressAndPort);
         switch (command) {
           case "index": {
             try {
@@ -95,21 +95,21 @@ public class UDPFileServer {
 
           default: {
             if (!command.startsWith("get ")) {
-              loge("unknown command received.");
+              loget("unknown command received.");
             } else {
               var fileName = command.split(" ")[1];
               var filePath = Path.of(folderPathString + fileName);
 
               if (Files.notExists(filePath)) {
 
-                loge(filePath.toString() + " does not exist.");
+                loget(filePath.toString() + " does not exist.");
 
                 toResString.println(Messages.ERROR.toString());
                 toResString.println("File not found.");
                 sendResponseString();
 
               } else {
-                logi("processing " + filePath);
+                logit("processing " + filePath);
 
                 toResString.println(Messages.OK.toString());
                 Files.lines(filePath).forEach(toResString::println);
@@ -120,13 +120,13 @@ public class UDPFileServer {
                 var len = data.length();
                 if (len <= OUT_BUFFER_SIZE) {
 
-                  logi("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
+                  logit("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
                       "), sending " + filePath + " directly");
                   sendResponseString();
 
                 } else {
 
-                  logi("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
+                  logit("len(" + len + ") <= OUT_BUFFER_SIZE(" + OUT_BUFFER_SIZE + //
                       "), splitting " + filePath);
 
                   // Split the string here
@@ -135,14 +135,14 @@ public class UDPFileServer {
                   var endIndex = OUT_BUFFER_SIZE;
 
                   for (var i = 0; i < splitCounts; ++i) {
-                    logi("sending " + filePath + ": " + i + "/" + splitCounts);
+                    logit("sending " + filePath + ": " + i + "/" + splitCounts);
                     sendResponseString(data.substring(beginIndex, endIndex));
                     beginIndex += OUT_BUFFER_SIZE;
                     endIndex += OUT_BUFFER_SIZE;
                   }
 
                   if (beginIndex < len) {
-                    logi("sending " + filePath + ": " + splitCounts + "/" + splitCounts);
+                    logit("sending " + filePath + ": " + splitCounts + "/" + splitCounts);
                     sendResponseString(data.substring(beginIndex, len));
                   }
                 }
@@ -152,10 +152,10 @@ public class UDPFileServer {
             break;
         }
       } catch (Exception e) {
-        loge("an exception occured when running ResponseTask.");
+        loget("an exception occured when running ResponseTask.");
         e.printStackTrace();
       }
-      logi("=== ResponseTask.call() ends ===");
+      logit("=== ResponseTask.call() ends ===");
 
       return null;
     }
@@ -180,13 +180,13 @@ public class UDPFileServer {
       return;
     }
 
-    logi("server monitoring folder " + folderPathString);
+    logit("server monitoring folder " + folderPathString);
 
-    var pool = Executors.newFixedThreadPool(50);
+    var pool = Executors.newFixedThreadPool(2);
     try {
       // UDP server socket has to be exposed to threads
       serverSocket = new DatagramSocket(PORT);
-      logi("server listening on port " + PORT);
+      logit("server listening on port " + PORT);
 
       while (true) {
         try {
@@ -194,17 +194,17 @@ public class UDPFileServer {
           var clientPacket = new DatagramPacket(new byte[IN_BUFFER_SIZE], IN_BUFFER_SIZE);
           serverSocket.receive(clientPacket); // blocking IO
 
-          logi("packet received from " + //
+          logit("packet received from " + //
               clientPacket.getAddress().getHostAddress() + ":" + clientPacket.getPort());
 
           pool.submit(new ResponseTask(clientPacket));
         } catch (Exception e) {
-          loge("failed to accept a connection.");
+          loget("failed to accept a connection.");
           e.printStackTrace();
         }
       }
     } catch (Exception e) {
-      loge("failed to start a server.");
+      loget("failed to start a server.");
       e.printStackTrace();
     } finally {
       try {
