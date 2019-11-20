@@ -3,19 +3,18 @@ package uci.mswe.swe244p.ex22_bridge;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class TrafficController {
+public class TrafficControllerNoSync {
   private Queue<Integer> queue = new LinkedList<Integer>();
 
   private boolean bridgeIsBusy = false;
 
   // Red cars enter the bridge from left
-  public synchronized void enterLeft() {
+  public void enterLeft() {
     queue.add(Car.REDCAR);
     while (bridgeIsBusy || queue.peek() == Car.BLUECAR) {
       try {
-        wait(); // pause the thread until notified
+        Thread.sleep(1000);
       } catch (InterruptedException e) {
-        e.printStackTrace();
       }
     }
     bridgeIsBusy = true;
@@ -23,13 +22,12 @@ public class TrafficController {
   }
 
   // Blue cars enter the bridge from right
-  public synchronized void enterRight() {
+  public void enterRight() {
     queue.add(Car.BLUECAR);
     while (bridgeIsBusy || queue.peek() == Car.REDCAR) {
       try {
-        wait();
+        Thread.sleep(1000);
       } catch (InterruptedException e) {
-        e.printStackTrace();
       }
     }
     bridgeIsBusy = true;
@@ -37,14 +35,13 @@ public class TrafficController {
   }
 
   // Blue cars leave the bridge from left
-  public synchronized void leaveLeft() {
+  public void leaveLeft() {
     bridgeIsBusy = false;
-    notifyAll();
   }
 
   // Red cars leave the bridge from right
-  public synchronized void leaveRight() {
+  public void leaveRight() {
     bridgeIsBusy = false;
-    notifyAll();
   }
+
 }
