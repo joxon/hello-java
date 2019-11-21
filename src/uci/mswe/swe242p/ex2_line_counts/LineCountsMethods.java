@@ -30,30 +30,30 @@ public class LineCountsMethods {
     // javac LineCountsMethods.java && java -classpath ./src
     // uci.mswe.swe242p.ex2_line_counts.LineCountsMethods
     try {
-      println(countLinesWithNIOFiles("./data/in/one-line-0.txt")); // 0
-      println(countLinesWithNIOFiles("./data/in/one-line-1.txt")); // 1
-      println(countLinesWithNIOFiles("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithNIOFiles("./data/in/0")); // 0
+      println(countLinesWithNIOFiles("./data/in/1")); // 1
+      println(countLinesWithNIOFiles("./data/in/2")); // 1
       println(countLinesWithNIOFiles("./data/in/pride-and-prejudice.txt")); // 13426
       println(countLinesWithNIOFiles("./data/in/words-shuffled.txt")); // 6744
       println();
 
-      println(countLinesWithLineNumberReader("./data/in/one-line-0.txt")); // 0
-      println(countLinesWithLineNumberReader("./data/in/one-line-1.txt")); // ! 1
-      println(countLinesWithLineNumberReader("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithLineNumberReader("./data/in/0")); // 0
+      println(countLinesWithLineNumberReader("./data/in/1")); // ! 1
+      println(countLinesWithLineNumberReader("./data/in/2")); // 1
       println(countLinesWithLineNumberReader("./data/in/pride-and-prejudice.txt")); // 13426
       println(countLinesWithLineNumberReader("./data/in/words-shuffled.txt")); // 6744
       println();
 
-      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-0.txt")); // 0
-      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-1.txt")); // 1
-      println(countLinesWithBufferedInputStreamBetter("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithBufferedInputStreamBetter("./data/in/0")); // 0
+      println(countLinesWithBufferedInputStreamBetter("./data/in/1")); // 1
+      println(countLinesWithBufferedInputStreamBetter("./data/in/2")); // 1
       println(countLinesWithBufferedInputStreamBetter("./data/in/pride-and-prejudice.txt")); // 13426
       println(countLinesWithBufferedInputStreamBetter("./data/in/words-shuffled.txt")); // 6744
       println();
 
-      println(countLinesWithBufferedInputStream("./data/in/one-line-0.txt")); // 0
-      println(countLinesWithBufferedInputStream("./data/in/one-line-1.txt")); // 1
-      println(countLinesWithBufferedInputStream("./data/in/one-line-2.txt")); // 1
+      println(countLinesWithBufferedInputStream("./data/in/0")); // 0
+      println(countLinesWithBufferedInputStream("./data/in/1")); // 1
+      println(countLinesWithBufferedInputStream("./data/in/2")); // 1
       println(countLinesWithBufferedInputStream("./data/in/pride-and-prejudice.txt")); // 13426
       println(countLinesWithBufferedInputStream("./data/in/words-shuffled.txt")); // 6744
     } catch (Exception e) {
