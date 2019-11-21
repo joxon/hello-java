@@ -19,7 +19,12 @@ public class TCPFileServer {
       return;
     }
 
-    folderPathString = args[0];
+    // make sure there is a '/' at the end of the path
+    // and replace all "./" or ".\"
+    folderPathString = (args[0] + '/')//
+        .replaceAll("\\\\", "/")//
+        .replaceAll("[/]+", "/")//
+        .replaceAll("\\./", "");
     folderPath = Path.of(folderPathString);
     /**
      * API Note:
