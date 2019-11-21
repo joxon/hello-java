@@ -81,7 +81,9 @@ class ResponseTask implements Callable<Void> {
               loge("unknown command received.");
             } else {
               var fileName = command.split(" ")[1];
-              var filePath = Path.of(TCPFileServer.folderPathString + fileName);
+              var filePath =
+                  Path.of(TCPFileServer.folderPath.toAbsolutePath().toString() + "\\" + fileName);
+              System.out.println(filePath);
               /**
                * Files.notExists
                *
