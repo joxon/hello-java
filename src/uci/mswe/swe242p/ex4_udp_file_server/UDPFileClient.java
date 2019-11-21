@@ -46,7 +46,6 @@ public class UDPFileClient {
     try {
       // in case of those files that are splitted
       // we have to keep listening from server
-      // TODO: Make it reliable like TCP, by adding ACK and SEQ
       /**
        * https://stackoverflow.com/questions/36728722/reliable-udp-in-java
        *
