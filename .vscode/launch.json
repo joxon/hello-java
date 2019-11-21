@@ -2,10 +2,26 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe245p.ex21 StudentRoster",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe245p_gui.ex21_student_roster.StudentRoster",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe245p.ex11 ShapeTransformations",
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "mainClass": "uci.mswe.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe245p ApplicationTemplate",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe245p_gui.ApplicationTemplate",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "projectName": "hello-java"
     },
     {
