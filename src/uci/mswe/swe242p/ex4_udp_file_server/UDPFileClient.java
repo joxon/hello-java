@@ -14,7 +14,8 @@ public class UDPFileClient {
   final static int READ_TIMEOUT = 1000;
 
   private static final int IN_BUFFER_SIZE = 8192;
-  // private static final int OUT_BUFFER_SIZE = 1024; //
+  // private static final int OUT_BUFFER_SIZE = 1024;
+
   /**
    * see page 401-403 on Java Network Pragramming, 4th edition
    *
@@ -35,10 +36,13 @@ public class UDPFileClient {
    */
   static DatagramSocket clientSocket = null;
 
-  public static void printResponse(DatagramPacket serverPacket) {
+  public static void printResponse(DatagramPacket packetFromServer) {
     // clear buffer? NOT NEEDED
     // serverPacket.setData(new byte[IN_BUFFER_SIZE], 0, IN_BUFFER_SIZE);
     var response = new StringBuilder();
+    final var ackBytes = "ACK".getBytes();
+    final var ackPacketToServer =
+        new DatagramPacket(ackBytes, ackBytes.length, SERVER_IADDR, SERVER_PORT);
     try {
       // in case of those files that are splitted
       // we have to keep listening from server
@@ -53,8 +57,10 @@ public class UDPFileClient {
        * to make TCP reliable.
        */
       while (true) {
-        clientSocket.receive(serverPacket); // it sets data and *length* so no need to clear buffer
-        response.append(new String(serverPacket.getData(), 0, serverPacket.getLength()));
+        clientSocket.receive(packetFromServer); // it sets data and *length* so no need to clear
+                                                // buffer
+        clientSocket.send(ackPacketToServer);
+        response.append(new String(packetFromServer.getData(), 0, packetFromServer.getLength()));
       }
     } catch (SocketTimeoutException e) {
       // expected
@@ -81,7 +87,8 @@ public class UDPFileClient {
 
       SERVER_IADDR = InetAddress.getByName(SERVER_ADDR);
 
-      var serverPacket = new DatagramPacket(new byte[IN_BUFFER_SIZE], IN_BUFFER_SIZE);
+      var packetFromServer =
+          new DatagramPacket(new byte[IN_BUFFER_SIZE], IN_BUFFER_SIZE, SERVER_IADDR, SERVER_PORT);
 
       var console = System.console();
       final String PROMPT = String.join("\n", //
@@ -105,7 +112,7 @@ public class UDPFileClient {
             // send the command "index" to server
             sendRequestString("index");
             // print response from server
-            printResponse(serverPacket);
+            printResponse(packetFromServer);
           }
             break;
 
@@ -122,7 +129,7 @@ public class UDPFileClient {
             if (command.matches("^get\\s+([^\\s]+)\\s*$")) {
               var filename = command.split("\\s+")[1];
               sendRequestString("get " + filename);
-              printResponse(serverPacket);
+              printResponse(packetFromServer);
             } else {
               System.out.println("Unknown command.");
             }

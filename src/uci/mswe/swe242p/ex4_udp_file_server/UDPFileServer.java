@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketTimeoutException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 public class UDPFileServer {
 
   private static final int PORT = 8000;
+  final static int READ_TIMEOUT = 1000;
+
   private static final int IN_BUFFER_SIZE = 1024; // That is the longest size of a command
   private static final int OUT_BUFFER_SIZE = 8192;
   // see page 402-403 on Java Network Programming
@@ -52,20 +55,70 @@ public class UDPFileServer {
       this.packetToClient = new DatagramPacket(new byte[0], 0, address, port);
     }
 
+
     public void sendResponseString() throws IOException {
-      // We do not need EOR here
       // TODO: Make it reliable like TCP, by adding ACK and SEQ
+      // Solution 1: stop-and-wait protocol (easier)
+      // Solution 2: sliding window protocol (complex)
+      // https://www.geeksforgeeks.org/stop-and-wait-arq/
+
+      // We do not need EOR here
+      // get the data ready
       var bytes = responseWriter.toString().getBytes();
       packetToClient.setData(bytes, 0, bytes.length);
-      serverSocket.send(packetToClient);
-      logit("response packet sent to " + clientAddressAndPort);
+
+      sendPacketReliably();
     }
 
     public void sendResponseString(String s) throws IOException {
       var bytes = s.getBytes();
       packetToClient.setData(bytes, 0, bytes.length);
+
+      sendPacketReliably();
+    }
+
+    public void sendPacketReliably() throws IOException {
+      // send the packet
       serverSocket.send(packetToClient);
       logit("response packet sent to " + clientAddressAndPort);
+
+      // get ready for receiving ACK from client
+      var inBytes = new byte[IN_BUFFER_SIZE];
+      packetFromClient.setData(inBytes, 0, IN_BUFFER_SIZE);
+
+      // and wait for ACK from client
+      final var MAX_RETRY = 3;
+      var currentTry = 0;
+      serverSocket.setSoTimeout(READ_TIMEOUT); // wait for up to 3 sec
+      while (currentTry < MAX_RETRY) {
+        try {
+          logit("Try count: " + currentTry + "/" + MAX_RETRY);
+          serverSocket.receive(packetFromClient);
+          // Blocking: Timeout OR Proceed
+          var msgFromClient = new String(inBytes).replace("\0", "");
+          logit("received message from client: " + msgFromClient);
+          if (msgFromClient.equals("ACK")) {
+            break;
+          } else {
+            continue; // ? is it possible that client sends other things ?
+          }
+        } catch (SocketTimeoutException e) {
+          loget("ACK timeout.");
+
+          serverSocket.send(packetToClient);
+          logit("response packet sent to " + clientAddressAndPort);
+        }
+        ++currentTry;
+      }
+
+      serverSocket.setSoTimeout(0);
+      if (currentTry == MAX_RETRY) {
+        loget("NO response from client. This can be due to\n"
+            + "1. Packet failed to arrive at the client;\n"
+            + "2. Packet delivered to the client but the ACK was lost.");
+      } else {
+        logit("Client successfully received the packet.");
+      }
     }
 
     @Override
@@ -159,6 +212,7 @@ public class UDPFileServer {
 
       return null;
     }
+
   }
 
   public static void main(String[] args) {
@@ -198,6 +252,8 @@ public class UDPFileServer {
               clientPacket.getAddress().getHostAddress() + ":" + clientPacket.getPort());
 
           pool.submit(new ResponseTask(clientPacket));
+
+          Thread.sleep(2000); // let the sub-thread receive ACK
         } catch (Exception e) {
           loget("failed to accept a connection.");
           e.printStackTrace();
