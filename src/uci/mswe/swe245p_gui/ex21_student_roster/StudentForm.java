@@ -1,6 +1,7 @@
 package uci.mswe.swe245p_gui.ex21_student_roster;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
@@ -20,8 +21,9 @@ import javafx.scene.layout.HBox;
  */
 public class StudentForm extends GridPane {
 
-  static final Image DEFAULT_IMAGE =
+  private static final Image DEFAULT_IMAGE =
       new Image("file:data/245p-ex21/peter.png", 100, 100, true, true);
+
   // ! new Image("file:/data/245p-ex21/peter.png") IS NOT WORKING
 
   // ! The image is located in default package of the classpath
@@ -35,6 +37,34 @@ public class StudentForm extends GridPane {
 
   // ! The image is located in the current working directory
   // Image image4 = new Image("file:flower.png", 0, 100, false, false);
+
+  private static final ObservableList<String> letterList = FXCollections.observableArrayList(//
+      "A+", "A", "A-", //
+      "B+", "B", "B-", //
+      "C+", "C", "C-", //
+      "D+", "D", "D-", //
+      "F");
+
+  private static final ObservableList<String> passNotPassList =
+      FXCollections.observableArrayList("P", "NP");
+
+  private TextField idTextField = new TextField();
+
+  private TextField lastNameTextField = new TextField();
+
+  private TextField firstNameTextField = new TextField();
+
+  private TextField majorTextField = new TextField();
+
+  private CheckBox honorCheckBox = new CheckBox();
+
+  private RadioButton letterGradeRadio = new RadioButton("Letter Grade");
+
+  private RadioButton passNotPassRadio = new RadioButton("Pass / Not pass");
+
+  private TextArea notesTextArea = new TextArea();
+
+  private ImageView imageView = new ImageView(DEFAULT_IMAGE);
 
   StudentForm() {
     this.setAlignment(Pos.CENTER);
@@ -53,22 +83,22 @@ public class StudentForm extends GridPane {
 
     // ○ ID number
     this.add(new Label("ID"), 0, row);
-    this.add(new TextField(), 1, row);
+    this.add(idTextField, 1, row);
     ++row;
 
     // ○ Last name
     this.add(new Label("Last Name"), 0, row);
-    this.add(new TextField(), 1, row);
+    this.add(lastNameTextField, 1, row);
     ++row;
 
     // ○ First name
     this.add(new Label("First Name"), 0, row);
-    this.add(new TextField(), 1, row);
+    this.add(firstNameTextField, 1, row);
     ++row;
 
     // ○ Major
     this.add(new Label("Major"), 0, row);
-    this.add(new TextField(), 1, row);
+    this.add(majorTextField, 1, row);
     ++row;
 
     // ○ Current grade
@@ -81,22 +111,27 @@ public class StudentForm extends GridPane {
      * choices **only**.
      */
     this.add(new Label("Current Grade"), 0, row);
-    final var letterList = FXCollections.observableArrayList(//
-        "A+", "A", "A-", //
-        "B+", "B", "B-", //
-        "C+", "C", "C-", //
-        "D+", "D", "D-", //
-        "F");
-    final var passNotPassList = FXCollections.observableArrayList("P", "NP");
-    var gradeBox = new ChoiceBox<>(letterList);
+    var gradeBox = new ChoiceBox<String>();
+    gradeBox.setItems(letterList);
     gradeBox.getSelectionModel().selectFirst();
     this.add(gradeBox, 1, row);
     ++row;
 
     // ○ Grade option (Letter grade or Pass/not pass)
     this.add(new Label("Grade Option"), 0, row);
-    var letterGradeRadio = new RadioButton("Letter Grade");
-    var passNotPassRadio = new RadioButton("Pass / Not pass");
+    letterGradeRadio.setOnAction(e -> {
+      letterGradeRadio.setSelected(true);
+      passNotPassRadio.setSelected(false);
+      gradeBox.setItems(letterList);
+      gradeBox.getSelectionModel().selectFirst();
+    });
+    passNotPassRadio.setOnAction(e -> {
+      passNotPassRadio.setSelected(true);
+      letterGradeRadio.setSelected(false);
+      gradeBox.setItems(passNotPassList);
+      gradeBox.getSelectionModel().selectFirst();
+    });
+    letterGradeRadio.setSelected(true);
     var gradeOptionBox = new HBox(letterGradeRadio, passNotPassRadio);
     gradeOptionBox.setSpacing(10.0);
     this.add(gradeOptionBox, 1, row);
@@ -104,19 +139,41 @@ public class StudentForm extends GridPane {
 
     // ○ Honor student status
     this.add(new Label("Honor Student"), 0, row);
-    this.add(new CheckBox(), 1, row);
+    this.add(honorCheckBox, 1, row);
     ++row;
 
     // ○ Notes
     this.add(new Label("Notes"), 0, row);
-    this.add(new TextArea(), 1, row);
+    this.add(notesTextArea, 1, row);
     ++row;
 
     // Photo (allow uploading of an image file, and display the image)
     this.add(new Label("Photo"), 0, row);
     // new Image path starts at /src
-    this.add(new ImageView(DEFAULT_IMAGE), 1, row);
+    this.add(imageView, 1, row);
     ++row;
 
+  }
+
+  StudentForm(Student student) {
+    this();
+    this.setFormData(student);
+  }
+
+  public void setFormData(Student student) {
+    idTextField.setText(student.id);
+    lastNameTextField.setText(student.lastName);
+    firstNameTextField.setText(student.firstName);
+    majorTextField.setText(student.major);
+    honorCheckBox.setSelected(student.honor);
+    letterGradeRadio.setSelected(student.gradeOption.equals("LG"));
+    passNotPassRadio.setSelected(student.gradeOption.equals("PNP"));
+    notesTextArea.setText(student.notes);
+    try {
+      imageView.setImage(
+          new Image("file:" + StudentRoster.DATA_PATH + student.id, 100, 100, true, true));
+    } catch (Exception e) {
+      System.err.println("Student " + student.id + " has no image.");
+    }
   }
 }

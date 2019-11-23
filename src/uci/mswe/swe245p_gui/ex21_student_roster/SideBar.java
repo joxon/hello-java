@@ -12,15 +12,13 @@ public class SideBar extends VBox {
 
   public static final double MAX_WIDTH = 150.0;
 
-
-
   SideBar() {
     var logo = new SideBarLogo();
     var newStudentButton = new SideBarButton("➕ New Student");
     var deleteStudentButton = new SideBarButton("❌ Delete Student");
     var saveChangesButton = new SideBarButton("💾 Save Changes");
-    var nextStudentButton = new SideBarButton("⏭️ Next Student");
-    var prevStudentButton = new SideBarButton("⏮️ Previous Student");
+    var nextStudentButton = new SideBarButton("Next Student >>"); // ⏭️
+    var prevStudentButton = new SideBarButton("<< Previous Student"); // ⏮️
 
     this.getChildren().addAll(logo, newStudentButton, deleteStudentButton, saveChangesButton,
         nextStudentButton, prevStudentButton);
