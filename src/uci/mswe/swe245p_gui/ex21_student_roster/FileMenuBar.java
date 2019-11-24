@@ -5,9 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleListProperty;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -18,7 +17,7 @@ import javafx.stage.FileChooser;
  */
 public class FileMenuBar extends MenuBar {
 
-  StudentRoster app;
+  private StudentRoster app;
   private FileChooser fileChooser;
 
   FileMenuBar(StudentRoster app) {
@@ -63,7 +62,7 @@ public class FileMenuBar extends MenuBar {
   }
 
   private void create() {
-    app.setStudentList(new ArrayList<Student>());
+    app.setStudentList(new SimpleListProperty<Student>());
     app.setCurrentFileName(StudentRoster.DEFAULT_FILE_NAME);
   }
 
@@ -75,7 +74,7 @@ public class FileMenuBar extends MenuBar {
         return;
       }
       var oos = new ObjectInputStream(new FileInputStream(fin));
-      app.setStudentList((List<Student>) oos.readObject());
+      app.setStudentList((SimpleListProperty<Student>) oos.readObject());
       oos.close();
 
       var filename = fin.getName();
@@ -86,9 +85,9 @@ public class FileMenuBar extends MenuBar {
     }
   }
 
-  private void save() {
+  public void save() {
     var filename = app.getCurrentFileName();
-    if (filename.equals(StudentRoster.DEFAULT_FILE_NAME)) {
+    if (filename.get().equals(StudentRoster.DEFAULT_FILE_NAME)) {
       saveAs();
     } else {
       try {
@@ -107,15 +106,21 @@ public class FileMenuBar extends MenuBar {
   private void saveAs() {
     try {
       var fout = fileChooser.showSaveDialog(app.getStage());
+      if (fout == null) {
+        return;
+      }
+
       var filename = fout.getName();
       if (fout.createNewFile()) {
         System.out.println(filename + " created.");
       } else {
         System.out.println(filename + " already exists and will be overwritten.");
       }
+
       var oos = new ObjectOutputStream(new FileOutputStream(fout));
       oos.writeObject(app.getStudentList());
       oos.close();
+
       // make sure it is done before changing the UI
       app.setCurrentFileName(filename);
     } catch (Exception e) {
@@ -125,7 +130,7 @@ public class FileMenuBar extends MenuBar {
 
   private void close() {
     app.setCurrentFileName(StudentRoster.DEFAULT_FILE_NAME);
-    app.setStudentList(new ArrayList<Student>());
+    app.setStudentList(new SimpleListProperty<Student>());
   }
 
   private void exit() {

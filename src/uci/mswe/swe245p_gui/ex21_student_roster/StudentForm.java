@@ -82,7 +82,7 @@ public class StudentForm extends GridPane {
     var row = 0;
 
     // ○ ID number
-    this.add(new Label("ID"), 0, row);
+    this.add(new Label("ID"), 0, row); // TODO: unique id
     this.add(idTextField, 1, row);
     ++row;
 
@@ -149,6 +149,7 @@ public class StudentForm extends GridPane {
 
     // Photo (allow uploading of an image file, and display the image)
     this.add(new Label("Photo"), 0, row);
+    // TODO: load photos
     // new Image path starts at /src
     this.add(imageView, 1, row);
     ++row;
@@ -160,6 +161,10 @@ public class StudentForm extends GridPane {
     this.setFormData(student);
   }
 
+  public void resetForm() {
+    this.setFormData(new Student());
+  }
+
   public void setFormData(Student student) {
     idTextField.setText(student.id);
     lastNameTextField.setText(student.lastName);
@@ -169,11 +174,75 @@ public class StudentForm extends GridPane {
     letterGradeRadio.setSelected(student.gradeOption.equals("LG"));
     passNotPassRadio.setSelected(student.gradeOption.equals("PNP"));
     notesTextArea.setText(student.notes);
-    try {
-      imageView.setImage(
-          new Image("file:" + StudentRoster.DATA_PATH + student.id, 100, 100, true, true));
-    } catch (Exception e) {
-      System.err.println("Student " + student.id + " has no image.");
+    var image = new Image("file:" + StudentRoster.DATA_PATH + student.id, 100, 100, true, true);
+    if (image.isError()) {
+      imageView.setImage(DEFAULT_IMAGE);
+    } else {
+      imageView.setImage(image);
     }
+  }
+
+  public TextField getIdTextField() {
+    return idTextField;
+  }
+
+  public void setIdTextField(TextField idTextField) {
+    this.idTextField = idTextField;
+  }
+
+  public TextField getLastNameTextField() {
+    return lastNameTextField;
+  }
+
+  public void setLastNameTextField(TextField lastNameTextField) {
+    this.lastNameTextField = lastNameTextField;
+  }
+
+  public TextField getFirstNameTextField() {
+    return firstNameTextField;
+  }
+
+  public void setFirstNameTextField(TextField firstNameTextField) {
+    this.firstNameTextField = firstNameTextField;
+  }
+
+  public TextField getMajorTextField() {
+    return majorTextField;
+  }
+
+  public void setMajorTextField(TextField majorTextField) {
+    this.majorTextField = majorTextField;
+  }
+
+  public CheckBox getHonorCheckBox() {
+    return honorCheckBox;
+  }
+
+  public void setHonorCheckBox(CheckBox honorCheckBox) {
+    this.honorCheckBox = honorCheckBox;
+  }
+
+  public RadioButton getLetterGradeRadio() {
+    return letterGradeRadio;
+  }
+
+  public void setLetterGradeRadio(RadioButton letterGradeRadio) {
+    this.letterGradeRadio = letterGradeRadio;
+  }
+
+  public RadioButton getPassNotPassRadio() {
+    return passNotPassRadio;
+  }
+
+  public void setPassNotPassRadio(RadioButton passNotPassRadio) {
+    this.passNotPassRadio = passNotPassRadio;
+  }
+
+  public TextArea getNotesTextArea() {
+    return notesTextArea;
+  }
+
+  public void setNotesTextArea(TextArea notesTextArea) {
+    this.notesTextArea = notesTextArea;
   }
 }

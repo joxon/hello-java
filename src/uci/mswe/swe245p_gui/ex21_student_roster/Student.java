@@ -10,19 +10,19 @@ public class Student implements Serializable {
   private static final long serialVersionUID = 1L;
 
   // ○ ID number
-  String id = "111";
+  String id = "";
 
   // ○ Last name
-  String lastName = "111";
+  String lastName = "";
 
   // ○ First name
-  String firstName = "111";
+  String firstName = "";
 
   // ○ Major
   String major = "";
 
   // ○ Current grade
-  String grade = "";
+  String grade = "A+";
 
   // ○ Grade option (Letter grade or Pass/not pass)
   // "LG" or "PNP"
@@ -38,5 +38,23 @@ public class Student implements Serializable {
 
   Student() {
 
+  }
+
+  Student(StudentForm form) {
+    this.setFormData(form);
+  }
+
+  public void setFormData(StudentForm form) {
+    this.id = form.getIdTextField().getText();
+    this.lastName = form.getLastNameTextField().getText();
+    this.firstName = form.getFirstNameTextField().getText();
+    this.major = form.getMajorTextField().getText();
+    this.honor = form.getHonorCheckBox().isSelected();
+    if (form.getLetterGradeRadio().isSelected()) {
+      this.gradeOption = "LG";
+    } else if (form.getPassNotPassRadio().isSelected()) {
+      this.gradeOption = "PNP";
+    }
+    this.notes = form.getNotesTextArea().getText();
   }
 }
