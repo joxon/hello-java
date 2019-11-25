@@ -35,6 +35,8 @@ public class StudentRoster extends Application {
 
   private Stage stage;
 
+  private BorderPane root = new BorderPane();
+
   private FileMenuBar fileMenuBar = new FileMenuBar(this);
   private SideBar sideBar = new SideBar(this);
   private StudentForm studentForm = new StudentForm(this);
@@ -63,7 +65,6 @@ public class StudentRoster extends Application {
   public void start(Stage stage) throws Exception {
     this.stage = stage;
 
-    var root = new BorderPane();
     root.setTop(fileMenuBar);
     root.setLeft(sideBar);
     root.setCenter(studentForm);
@@ -78,7 +79,10 @@ public class StudentRoster extends Application {
     stage.setWidth(MIN_WINDOW_WIDTH);
     stage.setTitle(currentFileName.getValue() + " - " + APP_NAME);
     currentFileName.addListener(e -> stage.setTitle(currentFileName.getValue() + " - " + APP_NAME));
-    stage.show();
+
+    if (getClass().getSimpleName().equals("StudentRoster")) {
+      stage.show();
+    }
   }
 
   @Override
@@ -152,6 +156,14 @@ public class StudentRoster extends Application {
 
   public void setStatusBar(StatusBar statusBar) {
     this.statusBar = statusBar;
+  }
+
+  public BorderPane getRoot() {
+    return root;
+  }
+
+  public void setRoot(BorderPane root) {
+    this.root = root;
   }
 
 }
