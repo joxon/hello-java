@@ -46,10 +46,55 @@ public class SideBar extends VBox {
     this.setBackground(Utils.getBackground(Color.DARKGRAY));
   }
 
+  private boolean isFormValid() {
+    var form = app.getStudentForm();
+
+    // non empty id
+    if (!form.getIdTextField().getText().matches("\\d+")) {
+      new Alert(AlertType.ERROR, "Invalid student ID. Please retry.", ButtonType.OK).showAndWait();
+      return false;
+    }
+
+    if (!form.getFirstNameTextField().getText().matches("[\\w\\s]+")) {
+      new Alert(AlertType.ERROR, "Invalid first name. Please retry.", ButtonType.OK).showAndWait();
+      return false;
+    }
+
+    if (!form.getLastNameTextField().getText().matches("[\\w\\s]+")) {
+      new Alert(AlertType.ERROR, "Invalid last name. Please retry.", ButtonType.OK).showAndWait();
+      return false;
+    }
+
+    if (!form.getMajorTextField().getText().matches("[\\w\\s]+")) {
+      new Alert(AlertType.ERROR, "Invalid major. Please retry.", ButtonType.OK).showAndWait();
+      return false;
+    }
+
+    return true;
+  }
+
+  private boolean isIdUniqueWhenAdding() {
+    var list = app.getStudentList();
+    var form = app.getStudentForm();
+    var dupeList = list.filtered(stu -> stu.getId().equals(form.getIdTextField().getText()));
+    if (!dupeList.isEmpty()) {
+      new Alert(AlertType.ERROR, "Duplicate student ID: " + dupeList.get(0).getId(), ButtonType.OK)
+          .showAndWait();
+      return false;
+    }
+    return true;
+  }
+
   private void newStudent() {
-    app.getStudentList().add(new Student(app.getStudentForm()));
+    if (!isFormValid() || !isIdUniqueWhenAdding()) {
+      return;
+    }
+    var stu = new Student(app.getStudentForm());
+    app.getStudentList().add(stu);
     app.getStudentIndex().set(app.getStudentList().getSize() - 1);
     // app.getStudentForm().resetForm();
+    new Alert(AlertType.INFORMATION, "Added student(ID=" + stu.getId() + ") ", ButtonType.OK)
+        .showAndWait();
   }
 
   private void deleteStudent() {
@@ -60,32 +105,58 @@ public class SideBar extends VBox {
       return;
     }
 
-    app.getStudentList().remove(idx--);
+    var stu = app.getStudentList().remove(idx--);
 
     size = app.getStudentList().getSize();
     if (size == 0) {
       idx = -1;
       app.getStudentIndex().set(idx);
+      app.getStudentForm().resetForm();
+      new Alert(AlertType.INFORMATION, "Deleted student(ID=" + stu.getId() + ") ", ButtonType.OK)
+          .showAndWait();
       return;
     } else if (idx < 0 && size > 0) {
       idx = 0;
     }
+
     app.getStudentIndex().set(idx);
     app.getStudentForm().setFormData(app.getStudentList().get(idx));
+    new Alert(AlertType.INFORMATION, "Deleted student(ID=" + stu.getId() + ") ", ButtonType.OK)
+        .showAndWait();
+  }
+
+  private boolean isIdUniqueWhenSavingChanges() {
+    var list = app.getStudentList();
+    var form = app.getStudentForm();
+    var curr = app.getStudentIndex().get();
+    var size = list.getSize();
+    for (var i = 0; i < size; ++i) {
+      if (i == curr) {
+        continue;
+      } else {
+        var stu = list.get(i);
+        if (stu.getId().equals(form.getIdTextField().getText())) {
+          new Alert(AlertType.ERROR, "Duplicate student ID=" + stu.getId(), ButtonType.OK)
+              .showAndWait();
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   private void saveChanges() {
-    var size = app.getStudentList().getSize();
-    if (size == 0) {
+    if (!isFormValid() || !isIdUniqueWhenSavingChanges() || app.getStudentList().getSize() == 0) {
       return;
     }
+
     app.getStudentList().set(app.getStudentIndex().get(), new Student(app.getStudentForm()));
     // app.getFileMenuBar().save();
   }
 
   private void nextStudent() {
     var size = app.getStudentList().getSize();
-    if (size == 0) {
+    if (size == 0 || size == 1) {
       return;
     }
     saveChanges();
@@ -95,7 +166,7 @@ public class SideBar extends VBox {
 
   private void prevStudent() {
     var size = app.getStudentList().getSize();
-    if (size == 0) {
+    if (size == 0 || size == 1) {
       return;
     }
     saveChanges();

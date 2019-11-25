@@ -1,5 +1,8 @@
 package uci.mswe.swe245p_gui.ex21_student_roster;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -15,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 
 /**
  * StudentForm
@@ -22,7 +26,7 @@ import javafx.scene.layout.HBox;
 public class StudentForm extends GridPane {
 
   private static final Image DEFAULT_IMAGE =
-      new Image("file:data/245p-ex21/peter.png", 100, 100, true, true);
+      new Image("file:" + StudentRoster.DATA_PATH + "peter.png", 100, 100, true, true);
 
   // ! new Image("file:/data/245p-ex21/peter.png") IS NOT WORKING
 
@@ -58,6 +62,8 @@ public class StudentForm extends GridPane {
 
   private CheckBox honorCheckBox = new CheckBox();
 
+  private ChoiceBox<String> gradeBox = new ChoiceBox<String>();
+
   private RadioButton letterGradeRadio = new RadioButton("Letter Grade");
 
   private RadioButton passNotPassRadio = new RadioButton("Pass / Not pass");
@@ -66,7 +72,11 @@ public class StudentForm extends GridPane {
 
   private ImageView imageView = new ImageView(DEFAULT_IMAGE);
 
-  StudentForm() {
+  private StudentRoster app;
+
+  StudentForm(StudentRoster app) {
+    this.app = app;
+
     this.setAlignment(Pos.CENTER);
     this.setHgap(10);
     this.setVgap(10);
@@ -82,7 +92,8 @@ public class StudentForm extends GridPane {
     var row = 0;
 
     // ○ ID number
-    this.add(new Label("ID"), 0, row); // TODO: unique id
+    this.add(new Label("ID"), 0, row);
+    this.idTextField.setText(String.valueOf(this.app.getStudentList().getSize() + 1));
     this.add(idTextField, 1, row);
     ++row;
 
@@ -111,7 +122,6 @@ public class StudentForm extends GridPane {
      * choices **only**.
      */
     this.add(new Label("Current Grade"), 0, row);
-    var gradeBox = new ChoiceBox<String>();
     gradeBox.setItems(letterList);
     gradeBox.getSelectionModel().selectFirst();
     this.add(gradeBox, 1, row);
@@ -149,16 +159,35 @@ public class StudentForm extends GridPane {
 
     // Photo (allow uploading of an image file, and display the image)
     this.add(new Label("Photo"), 0, row);
-    // TODO: load photos
+    imageView.setOnMouseClicked(e -> setImage());
     // new Image path starts at /src
     this.add(imageView, 1, row);
     ++row;
 
   }
 
-  StudentForm(Student student) {
-    this();
+  StudentForm(StudentRoster app, Student student) {
+    this(app);
     this.setFormData(student);
+  }
+
+  private void setImage() {
+    var picChooser = new FileChooser();
+    picChooser.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("Photos", "*.jpg", "*.jpeg", "*.png", "*.bmp"));
+    var photoFile = picChooser.showOpenDialog(this.app.getStage());
+    if (photoFile == null) {
+      return;
+    }
+    var id = this.getIdTextField().getText();
+    var photoPathString = StudentRoster.DATA_PATH + id;
+    var photoFileNew = new File(photoPathString);
+    try {
+      Files.copy(photoFile.toPath(), photoFileNew.toPath(), StandardCopyOption.REPLACE_EXISTING);
+      this.imageView.setImage(new Image("file:" + photoPathString, 100, 100, true, true));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public void resetForm() {
@@ -166,15 +195,30 @@ public class StudentForm extends GridPane {
   }
 
   public void setFormData(Student student) {
-    idTextField.setText(student.id);
-    lastNameTextField.setText(student.lastName);
-    firstNameTextField.setText(student.firstName);
-    majorTextField.setText(student.major);
-    honorCheckBox.setSelected(student.honor);
-    letterGradeRadio.setSelected(student.gradeOption.equals("LG"));
-    passNotPassRadio.setSelected(student.gradeOption.equals("PNP"));
-    notesTextArea.setText(student.notes);
-    var image = new Image("file:" + StudentRoster.DATA_PATH + student.id, 100, 100, true, true);
+    idTextField.setText(student.getId());
+
+    lastNameTextField.setText(student.getLastName());
+    firstNameTextField.setText(student.getFirstName());
+
+    majorTextField.setText(student.getMajor());
+
+    if (student.getGradeOption().equals("LG")) {
+      gradeBox.setItems(letterList);
+      letterGradeRadio.setSelected(true);
+      passNotPassRadio.setSelected(false);
+    } else if (student.getGradeOption().equals("PNP")) {
+      gradeBox.setItems(passNotPassList);
+      letterGradeRadio.setSelected(false);
+      passNotPassRadio.setSelected(true);
+    }
+    gradeBox.getSelectionModel().select(student.getGrade());
+
+    honorCheckBox.setSelected(student.isHonor());
+
+    notesTextArea.setText(student.getNotes());
+
+    var image =
+        new Image("file:" + StudentRoster.DATA_PATH + student.getId(), 100, 100, true, true);
     if (image.isError()) {
       imageView.setImage(DEFAULT_IMAGE);
     } else {
@@ -244,5 +288,13 @@ public class StudentForm extends GridPane {
 
   public void setNotesTextArea(TextArea notesTextArea) {
     this.notesTextArea = notesTextArea;
+  }
+
+  public ChoiceBox<String> getGradeBox() {
+    return gradeBox;
+  }
+
+  public void setGradeBox(ChoiceBox<String> gradeBox) {
+    this.gradeBox = gradeBox;
   }
 }

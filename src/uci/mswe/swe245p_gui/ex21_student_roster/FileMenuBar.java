@@ -5,8 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -62,8 +63,10 @@ public class FileMenuBar extends MenuBar {
   }
 
   private void create() {
-    app.setStudentList(new SimpleListProperty<Student>());
+    app.getStudentList().set(FXCollections.observableArrayList());
+    app.setStudentIndex(-1);
     app.setCurrentFileName(StudentRoster.DEFAULT_FILE_NAME);
+    app.getStudentForm().resetForm();
   }
 
   @SuppressWarnings("unchecked")
@@ -74,8 +77,11 @@ public class FileMenuBar extends MenuBar {
         return;
       }
       var oos = new ObjectInputStream(new FileInputStream(fin));
-      app.setStudentList((SimpleListProperty<Student>) oos.readObject());
+      var list = FXCollections.observableArrayList((ArrayList<Student>) oos.readObject());
       oos.close();
+
+      app.getStudentList().set(list);
+      app.setStudentIndex(list.size() > 0 ? 0 : -1);
 
       var filename = fin.getName();
       System.out.println(filename + " opened.");
@@ -86,14 +92,14 @@ public class FileMenuBar extends MenuBar {
   }
 
   public void save() {
-    var filename = app.getCurrentFileName();
-    if (filename.get().equals(StudentRoster.DEFAULT_FILE_NAME)) {
+    var filename = app.getCurrentFileName().get();
+    if (filename.equals(StudentRoster.DEFAULT_FILE_NAME)) {
       saveAs();
     } else {
       try {
         var fout = new File(StudentRoster.DATA_PATH + filename);
         var oos = new ObjectOutputStream(new FileOutputStream(fout));
-        oos.writeObject(app.getStudentList());
+        oos.writeObject(new ArrayList<Student>(app.getStudentList().get()));
         oos.close();
         System.out.println(filename + " saved.");
       } catch (Exception e) {
@@ -118,7 +124,8 @@ public class FileMenuBar extends MenuBar {
       }
 
       var oos = new ObjectOutputStream(new FileOutputStream(fout));
-      oos.writeObject(app.getStudentList());
+      // ListProperty cannot be serialized
+      oos.writeObject(new ArrayList<Student>(app.getStudentList().get()));
       oos.close();
 
       // make sure it is done before changing the UI
@@ -129,8 +136,7 @@ public class FileMenuBar extends MenuBar {
   }
 
   private void close() {
-    app.setCurrentFileName(StudentRoster.DEFAULT_FILE_NAME);
-    app.setStudentList(new SimpleListProperty<Student>());
+    create();
   }
 
   private void exit() {

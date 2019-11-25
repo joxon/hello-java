@@ -37,7 +37,7 @@ public class StudentRoster extends Application {
 
   private FileMenuBar fileMenuBar = new FileMenuBar(this);
   private SideBar sideBar = new SideBar(this);
-  private StudentForm studentForm = new StudentForm();
+  private StudentForm studentForm = new StudentForm(this);
   private StatusBar statusBar = new StatusBar(this);
 
   public static void main(final String[] args) {
