@@ -1,5 +1,6 @@
 package uci.mswe.swe245p_gui.ex21_student_roster;
 
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -27,15 +28,22 @@ public class SideBar extends VBox {
 
     var deleteStudentButton = new SideBarButton("❌ Delete Student");
     deleteStudentButton.setOnAction(e -> deleteStudent());
+    deleteStudentButton.disableProperty().bind(this.app.getStudentList().emptyProperty());
 
     var saveChangesButton = new SideBarButton("💾 Save Changes");
     saveChangesButton.setOnAction(e -> saveChanges());
 
     var nextStudentButton = new SideBarButton("Next Student >>"); // ⏭️
     nextStudentButton.setOnAction(e -> nextStudent());
+    nextStudentButton.disableProperty().bind(Bindings.or(//
+        this.app.getStudentList().emptyProperty(), //
+        this.app.getStudentList().sizeProperty().isEqualTo(1)));
 
     var prevStudentButton = new SideBarButton("<< Previous Student"); // ⏮️
     prevStudentButton.setOnAction(e -> prevStudent());
+    prevStudentButton.disableProperty().bind(Bindings.or(//
+        this.app.getStudentList().emptyProperty(), //
+        this.app.getStudentList().sizeProperty().isEqualTo(1)));
 
     this.getChildren().addAll(logo, newStudentButton, deleteStudentButton, saveChangesButton,
         nextStudentButton, prevStudentButton);
