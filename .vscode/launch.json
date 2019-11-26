@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe245p.ex23 - StudentRosterWithTabs",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe245p_gui.ex23_tabs_and_stats.StudentRosterWithTabs",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe245p.ex22 StudentRosterWithTable",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex22_adding_a_table.StudentRosterWithTable",
