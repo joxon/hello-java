@@ -42,14 +42,21 @@ public class StudentForm extends GridPane {
   // ! The image is located in the current working directory
   // Image image4 = new Image("file:flower.png", 0, 100, false, false);
 
-  private static final ObservableList<String> letterList = FXCollections.observableArrayList(//
+  public static final ObservableList<String> GRADE_ALL_LIST = FXCollections.observableArrayList(//
+      "A+", "A", "A-", //
+      "B+", "B", "B-", //
+      "C+", "C", "C-", //
+      "D+", "D", "D-", //
+      "F", "P", "NP");
+
+  public static final ObservableList<String> GRADE_LETTER_LIST = FXCollections.observableArrayList(//
       "A+", "A", "A-", //
       "B+", "B", "B-", //
       "C+", "C", "C-", //
       "D+", "D", "D-", //
       "F");
 
-  private static final ObservableList<String> passNotPassList =
+  public static final ObservableList<String> GRADE_PNP_LIST =
       FXCollections.observableArrayList("P", "NP");
 
   private TextField idTextField = new TextField();
@@ -122,7 +129,7 @@ public class StudentForm extends GridPane {
      * choices **only**.
      */
     this.add(new Label("Current Grade"), 0, row);
-    gradeBox.setItems(letterList);
+    gradeBox.setItems(GRADE_LETTER_LIST);
     gradeBox.getSelectionModel().selectFirst();
     this.add(gradeBox, 1, row);
     ++row;
@@ -132,13 +139,13 @@ public class StudentForm extends GridPane {
     letterGradeRadio.setOnAction(e -> {
       letterGradeRadio.setSelected(true);
       passNotPassRadio.setSelected(false);
-      gradeBox.setItems(letterList);
+      gradeBox.setItems(GRADE_LETTER_LIST);
       gradeBox.getSelectionModel().selectFirst();
     });
     passNotPassRadio.setOnAction(e -> {
       passNotPassRadio.setSelected(true);
       letterGradeRadio.setSelected(false);
-      gradeBox.setItems(passNotPassList);
+      gradeBox.setItems(GRADE_PNP_LIST);
       gradeBox.getSelectionModel().selectFirst();
     });
     letterGradeRadio.setSelected(true);
@@ -203,11 +210,11 @@ public class StudentForm extends GridPane {
     majorTextField.setText(student.getMajor());
 
     if (student.getGradeOption().equals("LG")) {
-      gradeBox.setItems(letterList);
+      gradeBox.setItems(GRADE_LETTER_LIST);
       letterGradeRadio.setSelected(true);
       passNotPassRadio.setSelected(false);
     } else if (student.getGradeOption().equals("PNP")) {
-      gradeBox.setItems(passNotPassList);
+      gradeBox.setItems(GRADE_PNP_LIST);
       letterGradeRadio.setSelected(false);
       passNotPassRadio.setSelected(true);
     }

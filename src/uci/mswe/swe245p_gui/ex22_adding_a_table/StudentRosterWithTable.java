@@ -1,9 +1,7 @@
 package uci.mswe.swe245p_gui.ex22_adding_a_table;
 
-import javafx.collections.ListChangeListener;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import uci.mswe.swe245p_gui.ex21_student_roster.Student;
 import uci.mswe.swe245p_gui.ex21_student_roster.StudentRoster;
 
 /**
@@ -26,8 +24,8 @@ public class StudentRosterWithTable extends StudentRoster {
   public void init() throws Exception {
     super.init();
 
-    this.getStudentList().addListener((ListChangeListener<Student>) e -> System.out.println(e));
-    this.getStudentList().addListener((a, b, c) -> System.out.println(a));
+    // this.getStudentList().addListener((ListChangeListener<Student>) e -> System.out.println(e));
+    // this.getStudentList().addListener((a, b, c) -> System.out.println(a));
     // this.getStudentList().get()
     // .addListener((ListChangeListener<Student>) e -> System.out.println(e));
   }
