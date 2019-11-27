@@ -1,8 +1,6 @@
 package uci.mswe.swe245p_gui.ex23_tabs_and_stats;
 
 import java.util.HashMap;
-import java.util.HashSet;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -60,47 +58,54 @@ public class StatsTab extends Tab {
 
   private void refreshCharts() {
 
-    pieData.clear();
+    // pieData.clear();
+    pieData = FXCollections.observableArrayList();
     barData.getData().clear();
 
     var list = app.getStudentList();
     var listSize = list.getSize();
-    var set = new HashSet<String>();
-    var map = new HashMap<String, Integer>();
+    var majorMap = new HashMap<String, Integer>();
+    var gradeMap = new HashMap<String, Integer>();
     list.forEach(stu -> {
       var major = stu.getMajor();
-      set.add(major);
+      if (majorMap.containsKey(major)) {
+        majorMap.put(major, majorMap.get(major) + 1);
+      } else {
+        majorMap.put(major, 1);
+      }
 
       var grade = stu.getGrade();
-      if (map.containsKey(grade)) {
-        map.put(grade, map.get(grade) + 1);
+      if (gradeMap.containsKey(grade)) {
+        gradeMap.put(grade, gradeMap.get(grade) + 1);
       } else {
-        map.put(grade, 1);
+        gradeMap.put(grade, 1);
       }
     });
 
-    if (set.isEmpty()) {
+    if (majorMap.isEmpty()) {
       pieData.add(new PieChart.Data("N/A", 1.0));
     } else {
-      set.forEach(major -> {
-        var majorSize = list.filtered(stu -> stu.getMajor().equals(major)).size();
-        var percentage = String.valueOf((double) majorSize / listSize * 100).split("[.]")[0] + "%";
-        var label = major + ", " + majorSize + ", " + percentage;
-        pieData.add(new PieChart.Data(label, majorSize));
+      majorMap.forEach((major, count) -> {
+        var percentage = String.valueOf((double) count / listSize * 100).split("[.]")[0] + "%";
+        var label = major + ", " + count + ", " + percentage;
+        pieData.add(new PieChart.Data(label, count));
       });
     }
 
-    if (map.isEmpty()) {
+    if (gradeMap.isEmpty()) {
       barData.getData().add(new XYChart.Data<>("N/A", 1));
     } else {
-      map.forEach((grade, count) -> {
+      gradeMap.forEach((grade, count) -> {
         barData.getData().add(new XYChart.Data<>(grade, count));
       });
     }
 
     // ! PieChart has some bugs so we need to re-create it every time
     pie = new PieChart(pieData);
-    hBox.getChildren().clear();
-    hBox.getChildren().addAll(pie, bar);
+    pie.setTitle("Major Distribution");
+    hBox.getChildren().set(0, pie);
+
+    // hBox.getChildren().clear();
+    // hBox.getChildren().addAll(pie, bar);
   }
 }

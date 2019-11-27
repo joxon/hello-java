@@ -27,11 +27,11 @@ public class SideBarLogo extends StackPane {
     // shadow
     var shadow = new InnerShadow(15, Color.BLACK);
 
-    var rect = new Circle(80);
-    rect.setFill(Color.WHITE);
-    rect.setStroke(Color.BLACK);
-    rect.setStrokeWidth(4);
-    rect.setEffect(shadow);
+    var circle = new Circle(80);
+    circle.setFill(Color.WHITE);
+    circle.setStroke(Color.BLACK);
+    circle.setStrokeWidth(4);
+    circle.setEffect(shadow);
 
     // light
     var light = new Light.Distant();
@@ -51,7 +51,7 @@ public class SideBarLogo extends StackPane {
     reflection.setFraction(0.05);
     this.setEffect(reflection);
 
-    this.getChildren().addAll(rect, text);
+    this.getChildren().addAll(circle, text);
     this.setMaxSize(0, 0); // compact
   }
 }
