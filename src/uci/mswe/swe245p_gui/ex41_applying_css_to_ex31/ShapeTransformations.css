@@ -1,0 +1,84 @@
+.root {
+    -fx-font-family: "Segoe Script";
+    -fx-font-size: 14;
+}
+
+#root {
+    -fx-min-height: 400;
+    -fx-min-width: 600;
+    -fx-pref-height: 400;
+    -fx-pref-width: 600;
+}
+
+#canvas {
+    -fx-background-color: gray;
+}
+
+#container {
+    -fx-max-height: 300;
+    -fx-max-width: 300;
+    -fx-pref-height: 300;
+    -fx-pref-width: 300;
+}
+
+#square {
+    /*size cannot be set in CSS*/
+    -fx-arc-height: 5;
+    -fx-arc-width: 5;
+    -fx-fill: white;
+    -fx-pref-height: 300;
+    -fx-pref-width: 300;
+    -fx-min-height: 300;
+    -fx-min-width: 300;
+}
+
+#name {
+    -fx-text-fill: gray;
+    -fx-font-family: "Segoe Script";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#controlBox {
+    -fx-min-height: 400;
+    -fx-min-width: 150;
+    -fx-pref-height: 400;
+    -fx-pref-width: 150;
+    -fx-background-color: lightgray;
+    -fx-alignment: center;
+}
+
+.subControlBox {
+    -fx-pref-height: 100;
+    -fx-pref-width: 150;
+    -fx-border-color: darkred;
+}
+
+ColumnConstraints {
+    -fx-min-width: 10.0;
+    -fx-pref-width: 100.0;
+}
+
+RowConstraints {
+    -fx-min-height: 10.0;
+    -fx-pref-height: 30.0;
+}
+
+Slider {
+    -fx-major-tick-unit: 50.0;
+    -fx-minor-tick-count: 1;
+    -fx-show-tick-labels: true;
+    -fx-show-tick-marks: true;
+}
+
+Button, RadioButton {
+    -fx-border-color: red;
+    -fx-border-radius: 10;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+    -fx-min-width: 20;
+}
+
+TextField {
+    -fx-alignment: center;
+}

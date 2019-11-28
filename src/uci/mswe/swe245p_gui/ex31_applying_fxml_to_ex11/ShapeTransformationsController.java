@@ -10,6 +10,7 @@ import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -28,6 +29,14 @@ public class ShapeTransformationsController implements Initializable {
   public Rectangle square;
 
   public VBox controlBox;
+
+  public Button rotateLeftButton;
+  public Button rotateRightButton;
+
+  public Button moveUpButton;
+  public Button moveLeftButton;
+  public Button moveDownButton;
+  public Button moveRightButton;
 
   public Slider scaleSlider;
   public TextField scaleText;

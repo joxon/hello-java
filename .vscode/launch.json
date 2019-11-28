@@ -2,6 +2,14 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe245p.ex41 ShapeTransformationsFXMLWithCSS",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe245p_gui.ex41_applying_css_to_ex31.ShapeTransformationsFXMLWithCSS",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe245p.ex31 ShapeTransformationsFXML",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex31_applying_fxml_to_ex11.ShapeTransformationsFXML",
