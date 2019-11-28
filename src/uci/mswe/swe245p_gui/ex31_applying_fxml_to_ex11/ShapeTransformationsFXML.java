@@ -18,8 +18,8 @@ public class ShapeTransformationsFXML extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    final var root = (BorderPane) FXMLLoader.load(getClass().getResource(FXML_NAME));
-    final var scene = new Scene(root, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
+    final var content = (BorderPane) FXMLLoader.load(getClass().getResource(FXML_NAME));
+    final var scene = new Scene(content, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
     stage.setScene(scene);
     stage.setTitle("Shape Transformations");
     stage.setMinHeight(MIN_WINDOW_HEIGHT);

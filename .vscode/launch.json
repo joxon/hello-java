@@ -2,10 +2,18 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe245p.ex31 ShapeTransformationsFXML",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe245p_gui.ex31_applying_fxml_to_ex11.ShapeTransformationsFXML",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe245p.ex23 StudentRosterWithTabs",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex23_tabs_and_stats.StudentRosterWithTabs",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
     {
@@ -13,7 +21,7 @@
       "name": "swe245p.ex22 StudentRosterWithTable",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex22_adding_a_table.StudentRosterWithTable",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
     {
@@ -21,14 +29,14 @@
       "name": "swe245p.ex21 StudentRoster",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex21_student_roster.StudentRoster",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe245p.ex11 ShapeTransformations",
       "request": "launch",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "mainClass": "uci.mswe.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
       "projectName": "hello-java"
     },
@@ -37,14 +45,14 @@
       "name": "swe245p ApplicationTemplate",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ApplicationTemplate",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe245p HelloFX",
       "request": "launch",
-      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
+      "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "mainClass": "uci.mswe.swe245p_gui.HelloFX",
       "projectName": "hello-java"
     },

@@ -13,7 +13,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javafx-sdk-13.0.1" level="project" />
-    <orderEntry type="library" name="javafx-docs-13" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.18" level="project" />
   </component>
 </module>

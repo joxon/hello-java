@@ -11,7 +11,15 @@
       <root url="jar://$PROJECT_DIR$/lib/javafx-sdk-13.0.1/lib/javafx.fxml.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javafx-sdk-13.0.1/lib/javafx.graphics.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="https://openjfx.io/javadoc/13/javafx.base" />
+      <root url="https://openjfx.io/javadoc/13/javafx.controls" />
+      <root url="https://openjfx.io/javadoc/13/javafx.graphics" />
+      <root url="https://openjfx.io/javadoc/13/javafx.fxml" />
+      <root url="https://openjfx.io/javadoc/13/javafx.media" />
+      <root url="https://openjfx.io/javadoc/13/javafx.swing" />
+      <root url="https://openjfx.io/javadoc/13/javafx.web" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
