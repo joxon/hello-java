@@ -33,9 +33,9 @@ public class StudentTable extends TableView<Student> implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-/**
- * Photo
- */
+    /**
+     * Photo
+     */
     final var columnPhotoWidth = 40.0;
     var columnPhoto = new TableColumn<Student, String>("Photo");
     columnPhoto.setCellValueFactory(new PropertyValueFactory<Student, String>("id"));

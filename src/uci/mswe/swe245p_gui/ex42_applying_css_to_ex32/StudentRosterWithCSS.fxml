@@ -3,7 +3,8 @@
 <?import javafx.scene.control.TabPane?><?import javafx.scene.layout.BorderPane?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.FileMenuBar?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.RosterTab?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.SideBar?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StatsTab?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StatusBar?>
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/10.0.2-internal"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRoster">
+    fx:controller="uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRoster"
+    stylesheets="@StudentRoster.css">
 
   <top>
     <FileMenuBar fx:id="fileMenuBar" />

@@ -10,7 +10,7 @@ public class StudentRosterFXML extends Application {
   private static final int MIN_WINDOW_WIDTH = 1280;
   private static final int MIN_WINDOW_HEIGHT = 720;
 
-  private String fxmlName = "StudentRoster.fxml";
+  private String fxmlName = "StudentRosterWithCSS.fxml";
   private Scene scene;
 
   public static void main(String[] args) {
@@ -33,5 +33,13 @@ public class StudentRosterFXML extends Application {
     if (getClass().getSimpleName().equals("StudentRosterFXML")) {
       stage.show();
     }
+  }
+
+  public String getFxmlName() {
+    return fxmlName;
+  }
+
+  public void setFxmlName(String fxmlName) {
+    this.fxmlName = fxmlName;
   }
 }

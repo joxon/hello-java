@@ -1,0 +1,24 @@
+.root {
+    -fx-font-family: "Segoe Script";
+    -fx-font-size: 12;
+}
+
+SideBar {
+    -fx-background-color: darkgray;
+}
+
+StudentTable, StudentForm {
+    -fx-background-color: lightgray;
+}
+
+Button, SideBarButton, RadioButton {
+    -fx-border-color: lightblue;
+    -fx-border-radius: 10;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+    -fx-min-width: 20;
+}
+
+TextField {
+    -fx-alignment: center;
+}
