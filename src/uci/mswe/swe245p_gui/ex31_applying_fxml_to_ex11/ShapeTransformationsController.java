@@ -24,7 +24,6 @@ import javafx.util.Duration;
 
 public class ShapeTransformationsController implements Initializable {
 
-
   public StackPane container;
   public Rectangle square;
 

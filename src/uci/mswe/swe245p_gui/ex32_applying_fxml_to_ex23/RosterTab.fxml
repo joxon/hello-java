@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?><?import javafx.scene.layout.VBox?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentForm?><?import uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentTable?>
+<fx:root type="javafx.scene.control.Tab" xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.RosterTab" text="Roster"
+    closable="false">
+  <VBox>
+    <StudentTable fx:id="table" />
+    <StudentForm fx:id="form" />
+  </VBox>
+</fx:root>

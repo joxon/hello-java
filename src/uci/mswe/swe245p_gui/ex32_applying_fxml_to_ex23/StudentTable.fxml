@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<fx:root type="javafx.scene.control.TableView" xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentTable">
+
+</fx:root>
