@@ -10,7 +10,7 @@ public class StudentRosterFXML extends Application {
   private static final int MIN_WINDOW_WIDTH = 1280;
   private static final int MIN_WINDOW_HEIGHT = 720;
 
-  private String fxmlName = "StudentRosterWithCSS.fxml";
+  private String fxmlName = "StudentRoster.fxml";
   private Scene scene;
 
   public static void main(String[] args) {
