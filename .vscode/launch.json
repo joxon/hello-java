@@ -2,6 +2,34 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Hello",
+      "request": "launch",
+      "mainClass": "misc.Hello",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - ArraysSort",
+      "request": "launch",
+      "mainClass": "misc.ArraysSort",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - ShortAndByte",
+      "request": "launch",
+      "mainClass": "misc.ShortAndByte",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - DoubleInterfaces",
+      "request": "launch",
+      "mainClass": "misc.DoubleInterfaces",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe245p.ex32 StudentRosterFXML",
       "request": "launch",
       "mainClass": "uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRosterFXML",
@@ -292,12 +320,6 @@
       "request": "launch",
       "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
       "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "Hello",
-      "request": "launch",
-      "mainClass": "Hello"
     }
   ]
 }
