@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - _0238ProductOfArrayExceptSelf",
+      "request": "launch",
+      "mainClass": "com.leetcode._0238ProductOfArrayExceptSelf",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - Hello",
       "request": "launch",
       "mainClass": "misc.Hello",
