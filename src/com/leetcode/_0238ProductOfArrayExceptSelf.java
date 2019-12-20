@@ -1,9 +1,13 @@
-// https://leetcode.com/problems/product-of-array-except-self/
-
 package com.leetcode;
 
 import java.util.Arrays;
 
+/**
+ * _0238ProductOfArrayExceptSelf
+ *
+ * https://leetcode.com/problems/product-of-array-except-self/
+ *
+ */
 public class _0238ProductOfArrayExceptSelf {
 
   public static void main(String[] args) {
