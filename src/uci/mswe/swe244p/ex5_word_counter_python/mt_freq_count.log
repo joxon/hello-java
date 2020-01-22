@@ -1,11 +1,11 @@
-ThreadPoolExecutor-0_0: Started reading data/in/244p-ex42/anonymit.txt
-ThreadPoolExecutor-0_1: Started reading data/in/244p-ex42/cDc-0200.txt
-ThreadPoolExecutor-0_0: Ended reading data/in/244p-ex42/anonymit.txt
-ThreadPoolExecutor-0_2: Started reading data/in/244p-ex42/crossbow.txt
-ThreadPoolExecutor-0_0: Started reading data/in/244p-ex42/gems.txt
-ThreadPoolExecutor-0_1: Ended reading data/in/244p-ex42/cDc-0200.txt
-ThreadPoolExecutor-0_2: Ended reading data/in/244p-ex42/crossbow.txt
-ThreadPoolExecutor-0_0: Ended reading data/in/244p-ex42/gems.txt
+ThreadPoolExecutor-0_0: Started reading data/swe244p_ex42/anonymit.txt
+ThreadPoolExecutor-0_1: Started reading data/swe244p_ex42/cDc-0200.txt
+ThreadPoolExecutor-0_0: Ended reading data/swe244p_ex42/anonymit.txt
+ThreadPoolExecutor-0_2: Started reading data/swe244p_ex42/crossbow.txt
+ThreadPoolExecutor-0_0: Started reading data/swe244p_ex42/gems.txt
+ThreadPoolExecutor-0_1: Ended reading data/swe244p_ex42/cDc-0200.txt
+ThreadPoolExecutor-0_2: Ended reading data/swe244p_ex42/crossbow.txt
+ThreadPoolExecutor-0_0: Ended reading data/swe244p_ex42/gems.txt
 ---------- Word counts (top 40) -----------
 [1] "stone": 183
 [2] "one": 166

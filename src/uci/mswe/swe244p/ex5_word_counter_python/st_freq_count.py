@@ -5,7 +5,7 @@ import time
 import os  # operating system
 
 if __name__ == "__main__":
-    data_dir = "data/in/244p-ex42/"
+    data_dir = "data/swe244p_ex42/"
     stop_words = set(open(data_dir + "stop_words").read().split(","))
     """
     https://docs.python.org/3/library/timeit.html

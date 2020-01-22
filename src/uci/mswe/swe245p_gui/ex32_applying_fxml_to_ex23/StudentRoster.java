@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class StudentRoster implements Initializable {
 
   public static final String APP_NAME = "Student Roster";
-  public static final String DATA_PATH = "data/245p-ex21/";
+  public static final String DATA_PATH = "data/swe245p_ex21/";
   public static final String DEFAULT_FILE_NAME = "untitled";
   public static final Student DEFAULT_STUDENT = new Student();
 

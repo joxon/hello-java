@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 public class StudentRoster extends Application {
 
   public static final String APP_NAME = "Student Roster";
-  public static final String DATA_PATH = "data/245p-ex21/";
-  // (System.getProperty("user.dir") + "/data/245p-ex21/").replace("\\", "/").replace("//", "/");
+  public static final String DATA_PATH = "data/swe245p_ex21/";
+  // (System.getProperty("user.dir") + "/data/swe245p_ex21/").replace("\\", "/").replace("//", "/");
 
   private static final int MIN_WINDOW_WIDTH = 800;
   private static final int MIN_WINDOW_HEIGHT = 600;

@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe264p_distsw.lab1.sample.Plumber",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe264p_distsw.lab1.sample.Plumber",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - _0001TwoSum",
       "request": "launch",
       "mainClass": "com.leetcode._0001TwoSum",
