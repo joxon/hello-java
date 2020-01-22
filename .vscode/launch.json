@@ -2,7 +2,14 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Plumber",
+      "name": "swe264p_distsw.lab1.system_b.Plumber",
+      "request": "launch",
+      "mainClass": "uci.mswe.swe264p_distsw.lab1.system_b.Plumber",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe264p_distsw.lab1.system_a.Plumber",
       "request": "launch",
       "mainClass": "uci.mswe.swe264p_distsw.lab1.system_a.Plumber",
       "projectName": "hello-java"

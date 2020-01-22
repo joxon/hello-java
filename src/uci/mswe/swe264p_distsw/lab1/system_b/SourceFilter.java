@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab1.sample;
+package uci.mswe.swe264p_distsw.lab1.system_b;
 
 /******************************************************************************************************************
 * File:SourceFilter.java
