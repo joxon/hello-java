@@ -23,25 +23,27 @@ public class SourceFilter extends FilterFramework {
 
   public void run() {
     String fileName = "data/swe264p_lab1/FlightData.dat"; // Input data file.
-    int bytesread = 0; // Number of bytes read from the input file.
-    int byteswritten = 0; // Number of bytes written to the stream.
     DataInputStream in = null; // File stream reference.
-    byte databyte = 0; // The byte of data read from the file
+
+    int readCount = 0; // Number of bytes read from the input file.
+    int writeCount = 0; // Number of bytes written to the stream.
+    byte dataByte = 0; // The byte of data read from the file
 
     try {
       // Here we open the file and write a message to the terminal.
       in = new DataInputStream(new FileInputStream(fileName));
-      System.out.println("\n" + this.getName() + "::Source reading file...");
+      System.out.println(this.getName() + "::Source reading...");
 
       /***********************************************************************************
       *	Here we read the data from the file and send it out the filter's output port one
       * 	byte at a time. The loop stops when it encounters an EOFException.
       ***********************************************************************************/
       while (true) {
-        databyte = in.readByte();
-        bytesread++;
-        WriteFilterOutputPort(databyte);
-        byteswritten++;
+        dataByte = in.readByte();
+        ++readCount;
+
+        writeFilterOutputPort(dataByte);
+        ++writeCount;
       }
     }
     /***********************************************************************************
@@ -49,25 +51,25 @@ public class SourceFilter extends FilterFramework {
     * 	reach this point, we close the input file, close the filter ports and exit.
     ***********************************************************************************/
     catch (EOFException eoferr) {
-      System.out.println("\n" + this.getName() + "::End of file reached...");
+      System.out.println(this.getName() + "::End of file reached...");
       try {
         in.close();
-        ClosePorts();
-        System.out.println("\n" + this.getName() + "::Read file complete, bytes read::" + bytesread + " bytes written: "
-            + byteswritten);
+        closePorts();
+        System.out.println(
+            this.getName() + "::Read file complete; bytes read:" + readCount + "; bytes written: " + writeCount);
       }
       /***********************************************************************************
       *	The following exception is raised should we have a problem closing the file.
       ***********************************************************************************/
       catch (Exception closeerr) {
-        System.out.println("\n" + this.getName() + "::Problem closing input data file::" + closeerr);
+        System.out.println(this.getName() + "::Problem closing input data file::" + closeerr);
       }
     }
     /***********************************************************************************
     *	The following exception is raised should we have a problem opening the file.
     ***********************************************************************************/
     catch (IOException iox) {
-      System.out.println("\n" + this.getName() + "::Problem reading input data file::" + iox);
+      System.out.println(this.getName() + "::Problem reading input data file::" + iox);
     }
   } // run
 } // SourceFilter

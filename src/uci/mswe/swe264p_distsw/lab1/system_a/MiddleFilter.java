@@ -20,24 +20,25 @@ package uci.mswe.swe264p_distsw.lab1.system_a;
 
 public class MiddleFilter extends FilterFramework {
   public void run() {
-    int bytesread = 0; // Number of bytes read from the input file.
-    int byteswritten = 0; // Number of bytes written to the stream.
-    byte databyte = 0; // The byte of data read from the file
+    int readCount = 0; // Number of bytes read from the input file.
+    int writeCount = 0; // Number of bytes written to the stream.
+    byte dataByte = 0; // The byte of data read from the file
 
     // Next we write a message to the terminal to let the world know we are alive...
-    System.out.print("\n" + this.getName() + "::Middle Reading ");
+    System.out.println(this.getName() + "::Middle Reading... ");
 
     while (true) {
       // Here we read a byte and write a byte
       try {
-        databyte = ReadFilterInputPort();
-        bytesread++;
-        WriteFilterOutputPort(databyte);
-        byteswritten++;
+        dataByte = readFilterInputPort();
+        ++readCount;
+
+        writeFilterOutputPort(dataByte);
+        ++writeCount;
       } catch (EndOfStreamException e) {
-        ClosePorts();
-        System.out.print(
-            "\n" + this.getName() + "::Middle Exiting; bytes read: " + bytesread + " bytes written: " + byteswritten);
+        closePorts();
+        System.out
+            .println(this.getName() + "::Middle Exiting; bytes read: " + readCount + "; bytes written: " + writeCount);
         break;
       }
     }

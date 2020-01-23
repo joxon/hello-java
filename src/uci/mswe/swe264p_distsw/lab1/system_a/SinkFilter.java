@@ -22,28 +22,49 @@ package uci.mswe.swe264p_distsw.lab1.system_a;
 ******************************************************************************************************************/
 
 import java.util.*; // This class is used to interpret time words
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat; // This class is used to format and write time in a string format.
 
 public class SinkFilter extends FilterFramework {
+
   public void run() {
+
+    final int ID_TIME = 0;
+    final int ID_VELOCITY = 1;
+    final int ID_ALTITUDE = 2;
+    final int ID_PRESSURE = 3;
+    final int ID_TEMPERATURE = 4;
+
+    double velocity = 0;
+    double altitude = 0;
+    double pressure = 0;
+    double temperature = 0;
+
+    final PrintWriter out = createPrintWriter("data/swe264p_lab1/OutputA.csv");
+    out.println("Time,Velocity,Altitude,Pressure,Temperature");
+
     /************************************************************************************
     *	TimeStamp is used to compute time using java.util's Calendar class.
     * 	TimeStampFormat is used to format the time value so that it can be easily printed
     *	to the terminal.
     *************************************************************************************/
-    Calendar TimeStamp = Calendar.getInstance();
-    SimpleDateFormat TimeStampFormat = new SimpleDateFormat("yyyy MM dd::hh:mm:ss:SSS");
+    Calendar timestamp = Calendar.getInstance();
+    SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy:dd:hh:mm:ss");
 
-    int MeasurementLength = 8; // This is the length of all measurements (including time) in bytes
-    int IdLength = 4; // This is the length of IDs in the byte stream
-    byte databyte = 0; // This is the data byte read from the stream
-    int bytesread = 0; // This is the number of bytes read from the stream
-    long measurement; // This is the word used to store all measurements - conversions are illustrated.
+    final int ID_LENGTH = 4; // This is the length of IDs in the byte stream
     int id; // This is the measurement id
-    int i; // This is a loop counter
+
+    final int MEASUREMENT_LENGTH = 8; // This is the length of all measurements (including time) in bytes
+    long measurement; // This is the word used to store all measurements - conversions are illustrated.
+
+    byte dataByte = 0; // This is the data byte read from the stream
+    int readCount = 0; // This is the number of bytes read from the stream
 
     // First we announce to the world that we are alive...
-    System.out.print("\n" + this.getName() + "::Sink Reading ");
+    System.out.println(this.getName() + "::Sink Reading...");
 
     while (true) {
       try {
@@ -52,14 +73,25 @@ public class SinkFilter extends FilterFramework {
         // that it is IdLength long. So we first get the ID bytes.
         ****************************************************************************/
         id = 0;
-        for (i = 0; i < IdLength; i++) {
-          databyte = ReadFilterInputPort(); // This is where we read the byte from the stream...
-          id = id | (databyte & 0xFF); // We append the byte on to ID...
-          if (i != IdLength - 1) // If this is not the last byte, then slide the
-          { // previously appended byte to the left by one byte
+        for (int i = 0; i < ID_LENGTH; i++) {
+          dataByte = readFilterInputPort(); // This is where we read the byte from the stream...
+          id = id | (dataByte & 0xFF); // We append the byte on to ID...
+          // 0xff == 1111 1111
+          // dataByte ==     ?
+          // &
+          // ==================
+          //         1111 111?
+          // id ==   ???? ????
+          // |
+          // ==================
+          //         ???? ????
+
+          if (i != ID_LENGTH - 1) {
+            // If this is not the last byte, then slide the
+            // previously appended byte to the left by one byte
             id = id << 8; // to make room for the next byte we append to the ID
           }
-          bytesread++; // Increment the byte count
+          readCount++; // Increment the byte count
         }
 
         /****************************************************************************
@@ -73,17 +105,22 @@ public class SinkFilter extends FilterFramework {
         // Double.longBitsToDouble(long val) to do the conversion which is illustrated below.
         *****************************************************************************/
         measurement = 0;
-        for (i = 0; i < MeasurementLength; i++) {
-          databyte = ReadFilterInputPort();
-          measurement = measurement | (databyte & 0xFF); // We append the byte on to measurement...
-          if (i != MeasurementLength - 1) // If this is not the last byte, then slide the
-          { // previously appended byte to the left by one byte
-            measurement = measurement << 8; // to make room for the next byte we append to the
-                                            // measurement
+        for (int i = 0; i < MEASUREMENT_LENGTH; i++) {
+          dataByte = readFilterInputPort();
+
+          measurement = measurement | (dataByte & 0xFF); // We append the byte on to measurement...
+
+          if (i != MEASUREMENT_LENGTH - 1) {
+            // If this is not the last byte, then slide the
+            // previously appended byte to the left by one byte
+            measurement = measurement << 8;
+            // to make room for the next byte we append to the
+            // measurement
           }
-          bytesread++; // Increment the byte count
+          readCount++; // Increment the byte count
         }
 
+        switch (id) {
         /****************************************************************************
         // Here we look for an ID of 0 which indicates this is a time measurement.
         // Every frame begins with an ID of 0, followed by a time stamp which correlates
@@ -94,9 +131,21 @@ public class SinkFilter extends FilterFramework {
         // dealing with time arithmetically or for string display purposes. This is
         // illustrated below.
         ****************************************************************************/
-        if (id == 0) {
-          TimeStamp.setTimeInMillis(measurement);
-        }
+        case ID_TIME:
+          timestamp.setTimeInMillis(measurement);
+          break;
+
+        case ID_VELOCITY:
+          velocity = Double.longBitsToDouble(measurement);
+          break;
+
+        case ID_ALTITUDE:
+          altitude = Double.longBitsToDouble(measurement);
+          break;
+
+        case ID_PRESSURE:
+          pressure = Double.longBitsToDouble(measurement);
+          break;
 
         /****************************************************************************
         // Here we pick up a measurement (ID = 4 in this case), but you can pick up
@@ -106,11 +155,23 @@ public class SinkFilter extends FilterFramework {
         // type. Its pretty simple using Double.longBitsToDouble(long value). So here
         // we print the time stamp and the data associated with the ID we are interested in.
         ****************************************************************************/
-        if (id == 4) {
-          System.out.print(
-              TimeStampFormat.format(TimeStamp.getTime()) + " ID = " + id + " " + Double.longBitsToDouble(measurement));
+        case ID_TEMPERATURE:
+          temperature = Double.longBitsToDouble(measurement);
+
+          String sTime = timestampFormat.format(timestamp.getTime());
+          String sVelo = String.format("%3.5f", velocity);
+          String sAlti = String.format("%3.5f", altitude);
+          String sPres = String.format("%3.5f", pressure);
+          String sTemp = String.format("%3.5f", temperature);
+
+          out.println(String.join(",", sTime, sVelo, sAlti, sPres, sTemp));
+
+          break;
+
+        default:
+          System.err.println(this.getName() + ":: Unknown measurement id=" + id);
+          break;
         }
-        System.out.print("\n");
       }
       /*******************************************************************************
       *	The EndOfStreamExeception below is thrown when you reach end of the input
@@ -118,10 +179,34 @@ public class SinkFilter extends FilterFramework {
       *	written letting the user know what is going on.
       ********************************************************************************/
       catch (EndOfStreamException e) {
-        ClosePorts();
-        System.out.print("\n" + this.getName() + "::Sink Exiting; bytes read: " + bytesread);
+        out.close();
+        closePorts();
+        System.out.println(this.getName() + "::Sink Exiting; bytes read: " + readCount);
         break;
       }
     } // while
   } // run
+
+  private PrintWriter createPrintWriter(String filePath) {
+    var fout = new File(filePath);
+    // Java does not create folder for us
+    fout.getParentFile().mkdirs();
+    try {
+      if (fout.createNewFile()) {
+        System.out.println(this.getName() + "::" + filePath + " is created!");
+      } else {
+        System.out.println(this.getName() + "::" + filePath + " already exists.");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+
+    try {
+      return new PrintWriter(new FileWriter(fout));
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
 }
