@@ -34,7 +34,7 @@ public class SourceFilter extends FilterFramework {
     try {
       // Here we open the file and write a message to the terminal.
       in = new DataInputStream(new FileInputStream(fileName));
-      System.out.println(this.getName() + "::Source reading...");
+      outPrintln("Source reading...");
 
       /***********************************************************************************
       *	Here we read the data from the file and send it out the filter's output port one
@@ -53,25 +53,24 @@ public class SourceFilter extends FilterFramework {
     * 	reach this point, we close the input file, close the filter ports and exit.
     ***********************************************************************************/
     catch (EOFException eoferr) {
-      System.out.println(this.getName() + "::End of file reached...");
+      outPrintln("End of file reached...");
       try {
         in.close();
         closePorts();
-        System.out.println(
-            this.getName() + "::Read file complete; bytes read:" + readCount + "; bytes written: " + writeCount);
+        outPrintln("Read file complete; bytes read:" + readCount + "; bytes written: " + writeCount);
       }
       /***********************************************************************************
       *	The following exception is raised should we have a problem closing the file.
       ***********************************************************************************/
       catch (Exception closeerr) {
-        System.out.println(this.getName() + "::Problem closing input data file::" + closeerr);
+        outPrintln("Problem closing input data file: " + closeerr);
       }
     }
     /***********************************************************************************
     *	The following exception is raised should we have a problem opening the file.
     ***********************************************************************************/
     catch (IOException iox) {
-      System.out.println(this.getName() + "::Problem reading input data file::" + iox);
+      outPrintln("Problem reading input data file: " + iox);
     }
   } // run
 } // SourceFilter

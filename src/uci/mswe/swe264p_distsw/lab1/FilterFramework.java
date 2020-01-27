@@ -203,4 +203,11 @@ public abstract class FilterFramework extends Thread {
   // The run method should be overridden by the subordinate class.
   // Please see the example applications provided for more details.
 
+  public void outPrintln(final String s) {
+    System.out.println(this.getName() + ": " + s);
+  }
+
+  public void errPrintln(final String s) {
+    System.err.println(this.getName() + ": " + s);
+  }
 }

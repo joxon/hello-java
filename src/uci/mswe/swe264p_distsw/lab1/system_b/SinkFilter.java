@@ -44,8 +44,8 @@ public class SinkFilter extends FilterFramework {
     double pressure = 0;
     double temperature = 0;
 
-    final PrintWriter out = createPrintWriter("data/swe264p_lab1/OutputB.csv");
-    out.println("Time,Velocity,Altitude,Pressure,Temperature");
+    final PrintWriter csv = createPrintWriter("data/swe264p_lab1/OutputB.csv");
+    csv.println("Time,Velocity,Altitude,Pressure,Temperature");
 
     /************************************************************************************
     *	TimeStamp is used to compute time using java.util's Calendar class.
@@ -82,7 +82,7 @@ public class SinkFilter extends FilterFramework {
     int readCount = 0; // This is the number of bytes read from the stream
 
     // First we announce to the world that we are alive...
-    System.out.println(this.getName() + "::Sink Reading...");
+    outPrintln("Sink Reading...");
 
     while (true) {
       try {
@@ -182,12 +182,12 @@ public class SinkFilter extends FilterFramework {
           String sPres = String.format("%3.5f", pressure);
           String sTemp = String.format("%3.5f", temperature);
 
-          out.println(String.join(",", sTime, sVelo, sAlti, sPres, sTemp));
+          csv.println(String.join(",", sTime, sVelo, sAlti, sPres, sTemp));
 
           break;
 
         default:
-          System.err.println(this.getName() + ":: Unknown measurement id=" + id);
+          errPrintln(" Unknown measurement id=" + id);
           break;
         }
       }
@@ -197,9 +197,9 @@ public class SinkFilter extends FilterFramework {
       *	written letting the user know what is going on.
       ********************************************************************************/
       catch (EndOfStreamException e) {
-        out.close();
+        csv.close();
         closePorts();
-        System.out.println(this.getName() + "::Sink Exiting; bytes read: " + readCount);
+        outPrintln("Sink Exiting; bytes read: " + readCount);
         break;
       }
     } // while
