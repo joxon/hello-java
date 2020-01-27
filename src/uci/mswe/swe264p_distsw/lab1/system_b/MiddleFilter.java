@@ -28,41 +28,41 @@ import static uci.mswe.swe264p_distsw.lab1.Utils.createPrintWriter;
 
 public class MiddleFilter extends FilterFramework {
 
-  final int ID_TIME = 0;
-  final int ID_VELOCITY = 1;
-  final int ID_ALTITUDE = 2;
-  final int ID_PRESSURE = 3;
-  final int ID_TEMPERATURE = 4;
-
-  Calendar timestamp = Calendar.getInstance();
-  SimpleDateFormat timestampFormat = new SimpleDateFormat("YYYY:MM:dd:HH:mm:ss:SSS");
-
-  double velocity = 0;
-
-  final double ALTITUDE_BASE = 10000.0;
-  final double ALTITUDE_WILD_JUMP = 100.0;
-  double altitude = 0;
-  double altitudeLast = ALTITUDE_BASE;
-  double altitudeLastLast = ALTITUDE_BASE;
-  int altitudeCount = 0;
-  boolean isWildJump = false;
-  int wildJumpCount = 0;
-
-  double pressure = 0;
-
-  double temperature = 0;
+  final int MEASUREMENT_LENGTH = 8; // This is the length of all measurements (including time) in bytes
 
   int readCount = 0; // Number of bytes read from the input file.
   int writeCount = 0; // Number of bytes written to the stream.
-  byte dataByte = 0; // The byte of data read from the file
-
-  final int ID_LENGTH = 4; // This is the length of IDs in the byte stream
-  int id; // This is the measurement id
-
-  final int MEASUREMENT_LENGTH = 8; // This is the length of all measurements (including time) in bytes
-  long measurement; // This is the word used to store all measurements - conversions are illustrated.
 
   public void run() {
+
+    final int ID_TIME = 0;
+    final int ID_VELOCITY = 1;
+    final int ID_ALTITUDE = 2;
+    final int ID_PRESSURE = 3;
+    final int ID_TEMPERATURE = 4;
+
+    Calendar timestamp = Calendar.getInstance();
+    SimpleDateFormat timestampFormat = new SimpleDateFormat("YYYY:MM:dd:HH:mm:ss:SSS");
+
+    double velocity = 0;
+
+    final double ALTITUDE_BASE = 10000.0;
+    final double ALTITUDE_WILD_JUMP = 100.0;
+    double altitude = 0;
+    double altitudeLast = ALTITUDE_BASE;
+    double altitudeLastLast = ALTITUDE_BASE;
+    int altitudeCount = 0;
+    boolean isWildJump = false;
+    int wildJumpCount = 0;
+
+    double pressure = 0;
+
+    double temperature = 0;
+
+    final int ID_LENGTH = 4; // This is the length of IDs in the byte stream
+    int id; // This is the measurement id
+
+    byte dataByte = 0; // The byte of data read from the file
 
     final PrintWriter csv = createPrintWriter("data/swe264p_lab1/WildPoints.csv");
     csv.println("Time,Velocity,Altitude,Pressure,Temperature");
@@ -74,7 +74,7 @@ public class MiddleFilter extends FilterFramework {
         id = 0;
         for (int i = 0; i < ID_LENGTH; i++) {
           dataByte = readFilterInputPort();
-          writeFilterOutputPort();
+          send(dataByte);
 
           id = id | (dataByte & 0xFF);
           if (i != ID_LENGTH - 1) {
@@ -134,7 +134,7 @@ public class MiddleFilter extends FilterFramework {
             byte[] altitudeBytes = altitudeByteBuffer.array();
             for (int i = 0; i < MEASUREMENT_LENGTH; i++) {
               dataByte = altitudeBytes[i];
-              writeFilterOutputPort();
+              send(dataByte);
             }
 
             //
@@ -171,6 +171,7 @@ public class MiddleFilter extends FilterFramework {
         }
 
       } catch (EndOfStreamException e) {
+        csv.close();
         closePorts();
         outPrintln("Middle Exiting; bytes read: " + readCount + "; bytes written: " + writeCount);
         break;
@@ -180,11 +181,11 @@ public class MiddleFilter extends FilterFramework {
   }
 
   private long getMeasurementNoSend() {
-    measurement = 0;
+    long measurement = 0;
 
     try {
       for (int i = 0; i < MEASUREMENT_LENGTH; i++) {
-        dataByte = readFilterInputPort();
+        byte dataByte = readFilterInputPort();
         // writeFilterOutputPort();
 
         measurement = measurement | (dataByte & 0xFF);
@@ -201,12 +202,12 @@ public class MiddleFilter extends FilterFramework {
   }
 
   private long getMeasurementAndSend() {
-    measurement = 0;
+    long measurement = 0;
 
     try {
       for (int i = 0; i < MEASUREMENT_LENGTH; i++) {
-        dataByte = readFilterInputPort();
-        writeFilterOutputPort();
+        byte dataByte = readFilterInputPort();
+        send(dataByte);
 
         measurement = measurement | (dataByte & 0xFF);
         if (i != MEASUREMENT_LENGTH - 1) {
@@ -221,14 +222,9 @@ public class MiddleFilter extends FilterFramework {
     return measurement;
   }
 
-  private void writeFilterOutputPort() {
-    writeFilterOutputPort(dataByte);
+  private void send(byte b) {
+    writeFilterOutputPort(b);
     ++writeCount;
   }
 
-  public byte[] longToBytes(long x) {
-    ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-    buffer.putLong(x);
-    return buffer.array();
-  }
 }

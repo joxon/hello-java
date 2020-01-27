@@ -44,9 +44,6 @@ public class SinkFilter extends FilterFramework {
     double pressure = 0;
     double temperature = 0;
 
-    final PrintWriter csv = createPrintWriter("data/swe264p_lab1/OutputB.csv");
-    csv.println("Time,Velocity,Altitude,Pressure,Temperature");
-
     /************************************************************************************
     *	TimeStamp is used to compute time using java.util's Calendar class.
     * 	TimeStampFormat is used to format the time value so that it can be easily printed
@@ -80,6 +77,9 @@ public class SinkFilter extends FilterFramework {
 
     byte dataByte = 0; // This is the data byte read from the stream
     int readCount = 0; // This is the number of bytes read from the stream
+
+    final PrintWriter csv = createPrintWriter("data/swe264p_lab1/OutputB.csv");
+    csv.println("Time,Velocity,Altitude,Pressure,Temperature");
 
     // First we announce to the world that we are alive...
     outPrintln("Sink Reading...");
