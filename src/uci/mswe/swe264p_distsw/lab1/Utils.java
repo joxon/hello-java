@@ -1,4 +1,4 @@
-package misc;
+package uci.mswe.swe264p_distsw.lab1;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 public class Utils {
 
-  public static PrintWriter createPrintWriter(String filePath) {
-    var fout = new File(filePath);
+  public static PrintWriter createPrintWriter(final String filePath) {
+    final var fout = new File(filePath);
     fout.getParentFile().mkdirs(); // Java does not create folder for us
 
     try {
@@ -19,14 +19,14 @@ public class Utils {
       } else {
         System.out.println(filePath + " already exists.");
       }
-    } catch (IOException e) {
+    } catch (final IOException e) {
       e.printStackTrace();
       return null;
     }
 
     try {
       return new PrintWriter(new FileWriter(fout));
-    } catch (IOException e) {
+    } catch (final IOException e) {
       e.printStackTrace();
       return null;
     }
@@ -39,19 +39,19 @@ public class Utils {
       return LocalDateTime.now().toString().split("[.]")[0];
     }
 
-    public static void logi(String s) {
+    public static void logi(final String s) {
       System.out.println(dateTime() + " INFO: " + s);
     }
 
-    public static void logit(String s) {
+    public static void logit(final String s) {
       System.out.println(dateTime() + " INFO: " + Thread.currentThread().getName() + ": " + s);
     }
 
-    public static void loge(String s) {
+    public static void loge(final String s) {
       System.err.println(dateTime() + " ERROR: " + s);
     }
 
-    public static void loget(String s) {
+    public static void loget(final String s) {
       System.err.println(dateTime() + " ERROR: " + Thread.currentThread().getName() + ": " + s);
     }
 

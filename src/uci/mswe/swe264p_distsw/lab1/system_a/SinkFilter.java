@@ -22,11 +22,10 @@ package uci.mswe.swe264p_distsw.lab1.system_a;
 ******************************************************************************************************************/
 
 import java.util.*; // This class is used to interpret time words
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat; // This class is used to format and write time in a string format.
+
+import static uci.mswe.swe264p_distsw.lab1.Utils.createPrintWriter;
 
 public class SinkFilter extends FilterFramework {
 
@@ -52,7 +51,21 @@ public class SinkFilter extends FilterFramework {
     *	to the terminal.
     *************************************************************************************/
     Calendar timestamp = Calendar.getInstance();
-    SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy:dd:hh:mm:ss");
+    SimpleDateFormat timestampFormat = new SimpleDateFormat("YYYY:DDD:HH:mm:ss:SSS");
+    /*
+    https://docs.oracle.com/javase/10/docs/api/java/text/SimpleDateFormat.html
+    
+    y 	Year 	Year 	1996; 96
+    Y 	Week year 	Year 	2009; 09
+    M 	Month in year (context sensitive) 	Month 	July; Jul; 07
+    D 	Day in year 	Number 	189
+    d 	Day in month 	Number 	10
+    H 	Hour in day (0-23) 	Number 	0
+    h 	Hour in am/pm (1-12) 	Number 	12
+    m 	Minute in hour 	Number 	30
+    s 	Second in minute 	Number 	55
+    S 	Millisecond 	Number 	978
+     */
 
     final int ID_LENGTH = 4; // This is the length of IDs in the byte stream
     int id; // This is the measurement id
@@ -187,26 +200,4 @@ public class SinkFilter extends FilterFramework {
     } // while
   } // run
 
-  private PrintWriter createPrintWriter(String filePath) {
-    var fout = new File(filePath);
-    // Java does not create folder for us
-    fout.getParentFile().mkdirs();
-    try {
-      if (fout.createNewFile()) {
-        System.out.println(this.getName() + "::" + filePath + " is created!");
-      } else {
-        System.out.println(this.getName() + "::" + filePath + " already exists.");
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-      return null;
-    }
-
-    try {
-      return new PrintWriter(new FileWriter(fout));
-    } catch (IOException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
 }
