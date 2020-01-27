@@ -51,7 +51,10 @@ public class SinkFilter extends FilterFramework {
     *	to the terminal.
     *************************************************************************************/
     Calendar timestamp = Calendar.getInstance();
-    SimpleDateFormat timestampFormat = new SimpleDateFormat("YYYY:DDD:HH:mm:ss:SSS");
+    SimpleDateFormat timestampFormat = new SimpleDateFormat("YYYY:MM:dd:HH:mm:ss:SSS");
+
+    // ? WHY YYYY:DD:HH:MM:SS
+
     /*
     https://docs.oracle.com/javase/10/docs/api/java/text/SimpleDateFormat.html
     
