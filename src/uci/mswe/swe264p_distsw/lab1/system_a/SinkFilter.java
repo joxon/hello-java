@@ -1,5 +1,7 @@
 package uci.mswe.swe264p_distsw.lab1.system_a;
 
+import uci.mswe.swe264p_distsw.lab1.FilterFramework;
+
 /******************************************************************************************************************
 * File:SinkFilter.java
 * Project: Lab 1

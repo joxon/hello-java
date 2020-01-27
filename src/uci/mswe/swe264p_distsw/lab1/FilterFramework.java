@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab1.system_a;
+package uci.mswe.swe264p_distsw.lab1;
 
 /******************************************************************************************************************
 * File:FilterFramework.java
@@ -45,7 +45,7 @@ public abstract class FilterFramework extends Thread {
   // output pipe and will send no more data.
   private FilterFramework inputFilter;
 
-  class EndOfStreamException extends Exception {
+  public class EndOfStreamException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,7 +69,7 @@ public abstract class FilterFramework extends Thread {
   * Returns: void
   * Exceptions: IOException
   ****************************************************************************/
-  void connect(FilterFramework filter) {
+  public void connect(FilterFramework filter) {
     try {
       // Connect this filter's input to the upstream pipe's output stream
       inputReadPort.connect(filter.outputWritePort);
@@ -86,7 +86,7 @@ public abstract class FilterFramework extends Thread {
   * Returns: byte of data read from the input port of the filter.
   * Exceptions: IOExecption, EndOfStreamException (rethrown)
   ****************************************************************************/
-  byte readFilterInputPort() throws EndOfStreamException {
+  public byte readFilterInputPort() throws EndOfStreamException {
     byte datum = 0;
 
     /***********************************************************************
@@ -136,7 +136,7 @@ public abstract class FilterFramework extends Thread {
   * Returns: void
   * Exceptions: IOException
   ****************************************************************************/
-  void writeFilterOutputPort(byte datum) {
+  public void writeFilterOutputPort(byte datum) {
     try {
       outputWritePort.write((int) datum);
       outputWritePort.flush();
@@ -176,7 +176,7 @@ public abstract class FilterFramework extends Thread {
   * Returns: void
   * Exceptions: IOExecption
   ****************************************************************************/
-  void closePorts() {
+  public void closePorts() {
     try {
       inputReadPort.close();
       outputWritePort.close();
