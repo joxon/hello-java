@@ -143,6 +143,16 @@ public class MiddleFilter extends FilterFramework {
             altitudeLastLast = altitudeLast;
             altitudeLast = altitude;
           }
+
+          //
+          // Adds asterisks for OutputB
+          //
+          if (isWildJump) {
+            send((byte) 1);
+          } else {
+            send((byte) 0);
+          }
+
           break;
         // !
 

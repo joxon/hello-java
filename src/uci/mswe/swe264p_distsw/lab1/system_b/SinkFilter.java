@@ -41,6 +41,7 @@ public class SinkFilter extends FilterFramework {
 
     double velocity = 0;
     double altitude = 0;
+    boolean isWildJump = false;
     double pressure = 0;
     double temperature = 0;
 
@@ -159,6 +160,11 @@ public class SinkFilter extends FilterFramework {
 
         case ID_ALTITUDE:
           altitude = Double.longBitsToDouble(measurement);
+          //
+          // Adds asterisks for OutputB
+          //
+          dataByte = readFilterInputPort();
+          isWildJump = dataByte == 1;
           break;
 
         case ID_PRESSURE:
@@ -178,7 +184,7 @@ public class SinkFilter extends FilterFramework {
 
           String sTime = timestampFormat.format(timestamp.getTime());
           String sVelo = String.format("%3.5f", velocity);
-          String sAlti = String.format("%3.5f", altitude);
+          String sAlti = String.format("%3.5f", altitude) + (isWildJump ? "*" : "");
           String sPres = String.format("%3.5f", pressure);
           String sTemp = String.format("%3.5f", temperature);
 
