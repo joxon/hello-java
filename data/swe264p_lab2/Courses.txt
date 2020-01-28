@@ -1,0 +1,15 @@
+CS112 A M 1030 1200 Horton Introduction to Computer Programming
+CS112 B W 1330 1400 Heyer Introduction to Computer Programming
+CS112 C T 0900 1230 Bealer Introduction to Computer Programming
+CS211 A M 1100 1230 Kurtz Object-Oriented Programming
+CS211 B T 0930 1200 Worth Object-Oriented Programming
+CS211 C F 1430 1600 Adams Object-Oriented Programming
+CS421 A T 1100 1230 Schmidt Introduction to Software Engineering
+CS421 B W 1100 1230 Stevens Introduction to Software Engineering
+CS421 C F 1830 2000 Keys Introduction to Software Engineering
+CS475 A M 0900 1030 Delmar Concurrent and Distributed Software Systems
+CS475 B T 0900 1030 Faires Concurrent and Distributed Software Systems
+CS475 C W 1830 2000 Weber Concurrent and Distributed Software Systems
+SWE443 A T 430 700 Hughs Software Architecture
+SWE443 B W 0900 1030 Feiner Software Architecture
+SWE443 C F 1200 1330 Morgan Software Architecture
