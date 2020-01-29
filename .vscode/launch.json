@@ -2,16 +2,9 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - SystemMain",
+      "name": "swe264p_distsw.lab2.mod.SystemMain",
       "request": "launch",
       "mainClass": "uci.mswe.swe264p_distsw.lab2.mod.SystemMain",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - SystemMain",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe264p_distsw.lab2.SystemMain",
       "projectName": "hello-java"
     },
     {

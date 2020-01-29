@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.handlers;
 
 /**
  * @(#)ListStudentsRegisteredHandler.java
@@ -9,6 +9,8 @@ package uci.mswe.swe264p_distsw.lab2.mod;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import uci.mswe.swe264p_distsw.lab2.mod.*;
 
 /**
  * "List students who registered for a course" command event handler.

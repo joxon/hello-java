@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.handlers;
 
 /**
  * @(#)ListAllStudentsHandler.java
@@ -8,6 +8,8 @@ package uci.mswe.swe264p_distsw.lab2.mod;
  */
 
 import java.util.ArrayList;
+
+import uci.mswe.swe264p_distsw.lab2.mod.*;
 
 /**
  * "List all students" command event handler.

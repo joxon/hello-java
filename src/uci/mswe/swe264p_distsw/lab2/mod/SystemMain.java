@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import uci.mswe.swe264p_distsw.lab2.mod.handlers.*;
+
 /**
  * Class to hold system main method.
  */
@@ -48,19 +50,23 @@ class SystemMain {
 
     // Create components.
     try {
-      DataBase db;
-      db = new DataBase(studentFileName, courseFileName);
+      DataBase db = new DataBase(studentFileName, courseFileName);
 
-      ListAllStudentsHandler objCommandEventHandler1 = new ListAllStudentsHandler(db, EventBus.EV_LIST_ALL_STUDENTS,
-          EventBus.EV_SHOW);
-      ListAllCoursesHandler objCommandEventHandler2 = new ListAllCoursesHandler(db, EventBus.EV_LIST_ALL_COURSES,
-          EventBus.EV_SHOW);
-      ListStudentsRegisteredHandler objCommandEventHandler3 = new ListStudentsRegisteredHandler(db,
-          EventBus.EV_LIST_STUDENTS_REGISTERED, EventBus.EV_SHOW);
+      ListAllStudentsHandler objCommandEventHandler1 //
+          = new ListAllStudentsHandler(db, EventBus.EV_LIST_ALL_STUDENTS, EventBus.EV_SHOW);
+
+      ListAllCoursesHandler objCommandEventHandler2 //
+          = new ListAllCoursesHandler(db, EventBus.EV_LIST_ALL_COURSES, EventBus.EV_SHOW);
+
+      ListStudentsRegisteredHandler objCommandEventHandler3 //
+          = new ListStudentsRegisteredHandler(db, EventBus.EV_LIST_STUDENTS_REGISTERED, EventBus.EV_SHOW);
+
       ListCoursesRegisteredHandler objCommandEventHandler4 = new ListCoursesRegisteredHandler(db,
           EventBus.EV_LIST_COURSES_REGISTERED, EventBus.EV_SHOW);
+
       ListCoursesCompletedHandler objCommandEventHandler5 = new ListCoursesCompletedHandler(db,
           EventBus.EV_LIST_COURSES_COMPLETED, EventBus.EV_SHOW);
+
       RegisterStudentHandler objCommandEventHandler6 = new RegisterStudentHandler(db, EventBus.EV_REGISTER_STUDENT,
           EventBus.EV_SHOW);
 
