@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.database;
 
 /**
  * @(#)Course.java

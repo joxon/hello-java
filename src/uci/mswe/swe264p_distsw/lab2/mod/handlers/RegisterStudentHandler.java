@@ -10,7 +10,7 @@ package uci.mswe.swe264p_distsw.lab2.mod.handlers;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import uci.mswe.swe264p_distsw.lab2.mod.*;
+import uci.mswe.swe264p_distsw.lab2.mod.database.*;
 
 /**
  * "Register a student for a course" command event handler.

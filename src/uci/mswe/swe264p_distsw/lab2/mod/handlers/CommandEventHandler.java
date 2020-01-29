@@ -10,7 +10,8 @@ package uci.mswe.swe264p_distsw.lab2.mod.handlers;
 import java.util.Observable;
 import java.util.Observer;
 
-import uci.mswe.swe264p_distsw.lab2.mod.*;
+import uci.mswe.swe264p_distsw.lab2.mod.EventBus;
+import uci.mswe.swe264p_distsw.lab2.mod.database.*;
 
 /**
  * This class is a superclass for command event handler classes. Subclasses only need to

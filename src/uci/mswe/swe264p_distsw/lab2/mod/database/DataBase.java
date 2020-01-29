@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.database;
 
 /**
  * @(#)DataBase.java
@@ -24,12 +24,12 @@ public class DataBase {
   /**
    * A list of <code>Student</code> objects containing student records.
    */
-  protected ArrayList vStudent;
+  protected ArrayList<Student> vStudent;
 
   /**
    * A list of <code>Course</code> objects containing course records.
    */
-  protected ArrayList vCourse;
+  protected ArrayList<Course> vCourse;
 
   /**
    * Construct a database that provides access to student and course data. Initial data are filled
@@ -45,8 +45,8 @@ public class DataBase {
     BufferedReader objCourseFile = new BufferedReader(new FileReader(sCourseFileName));
 
     // Initialize student and course lists.
-    this.vStudent = new ArrayList();
-    this.vCourse = new ArrayList();
+    this.vStudent = new ArrayList<Student>();
+    this.vCourse = new ArrayList<Course>();
 
     // Populate student and course lists.
     while (objStudentFile.ready()) {
@@ -66,7 +66,7 @@ public class DataBase {
    *
    * @return an <code>ArrayList</code> of <code>Student</code> objects containing student records
    */
-  public ArrayList getAllStudentRecords() {
+  public ArrayList<Student> getAllStudentRecords() {
     // Return the student list as it is.
     return this.vStudent;
   }
@@ -76,7 +76,7 @@ public class DataBase {
    *
    * @return an <code>ArrayList</code> of <code>Course</code> objects containing course records
    */
-  public ArrayList getAllCourseRecords() {
+  public ArrayList<Course> getAllCourseRecords() {
     // Return the course list as it is.
     return this.vCourse;
   }

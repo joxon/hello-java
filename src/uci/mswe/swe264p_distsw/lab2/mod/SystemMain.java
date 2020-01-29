@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import uci.mswe.swe264p_distsw.lab2.mod.database.DataBase;
 import uci.mswe.swe264p_distsw.lab2.mod.handlers.*;
 
 /**
@@ -25,7 +26,9 @@ class SystemMain {
    * @param args array of input parameters
    */
   public static void main(String args[]) {
+
     String studentFileName, courseFileName;
+
     // Check the number of parameters.
     if (args.length == 2) {
       studentFileName = args[0];
@@ -45,44 +48,30 @@ class SystemMain {
       System.exit(1);
     }
 
-    // Initialize event bus.
-    EventBus.initialize();
-
     // Create components.
     try {
-      DataBase db = new DataBase(studentFileName, courseFileName);
+      final var db = new DataBase(studentFileName, courseFileName);
 
-      ListAllStudentsHandler objCommandEventHandler1 //
-          = new ListAllStudentsHandler(db, EventBus.EV_LIST_ALL_STUDENTS, EventBus.EV_SHOW);
+      // Initialize event bus.
+      EventBus.initialize();
 
-      ListAllCoursesHandler objCommandEventHandler2 //
-          = new ListAllCoursesHandler(db, EventBus.EV_LIST_ALL_COURSES, EventBus.EV_SHOW);
-
-      ListStudentsRegisteredHandler objCommandEventHandler3 //
-          = new ListStudentsRegisteredHandler(db, EventBus.EV_LIST_STUDENTS_REGISTERED, EventBus.EV_SHOW);
-
-      ListCoursesRegisteredHandler objCommandEventHandler4 = new ListCoursesRegisteredHandler(db,
-          EventBus.EV_LIST_COURSES_REGISTERED, EventBus.EV_SHOW);
-
-      ListCoursesCompletedHandler objCommandEventHandler5 = new ListCoursesCompletedHandler(db,
-          EventBus.EV_LIST_COURSES_COMPLETED, EventBus.EV_SHOW);
-
-      RegisterStudentHandler objCommandEventHandler6 = new RegisterStudentHandler(db, EventBus.EV_REGISTER_STUDENT,
-          EventBus.EV_SHOW);
-
-      ClientInput objClientInput = new ClientInput();
-      ClientOutput objClientOutput = new ClientOutput();
-
-      // Start the system.
-      objClientInput.start();
-    } catch (FileNotFoundException e) {
-      // Dump the exception information for debugging.
-      e.printStackTrace();
-      System.exit(1);
+      // ! Creating new handlers depends on DataBase and EventBus
+      new ListAllStudentsHandler(db, EventBus.EV_LIST_ALL_STUDENTS, EventBus.EV_SHOW);
+      new ListAllCoursesHandler(db, EventBus.EV_LIST_ALL_COURSES, EventBus.EV_SHOW);
+      new ListStudentsRegisteredHandler(db, EventBus.EV_LIST_STUDENTS_REGISTERED, EventBus.EV_SHOW);
+      new ListCoursesRegisteredHandler(db, EventBus.EV_LIST_COURSES_REGISTERED, EventBus.EV_SHOW);
+      new ListCoursesCompletedHandler(db, EventBus.EV_LIST_COURSES_COMPLETED, EventBus.EV_SHOW);
+      new RegisterStudentHandler(db, EventBus.EV_REGISTER_STUDENT, EventBus.EV_SHOW);
     } catch (IOException e) {
       // Dump the exception information for debugging.
       e.printStackTrace();
       System.exit(1);
     }
+
+    // Initialize output.
+    new ClientOutput();
+
+    // Start the system.
+    new ClientInput().start();
   }
 }
