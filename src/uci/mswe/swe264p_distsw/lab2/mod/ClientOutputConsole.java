@@ -20,13 +20,13 @@ import java.util.Observer;
  * @version 1.0
  */
 @SuppressWarnings("deprecation")
-public class ClientOutput implements Observer {
+public class ClientOutputConsole implements Observer {
 
   /**
    * Constructs a client output component. A new client output component subscribes to show events
    * at the time of creation.
    */
-  public ClientOutput() {
+  public ClientOutputConsole() {
     // Subscribe to SHOW event.
     EventBus.subscribeTo(EventBus.EV_SHOW, this);
   }

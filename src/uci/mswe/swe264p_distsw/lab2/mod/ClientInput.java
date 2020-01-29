@@ -42,7 +42,11 @@ public class ClientInput extends Thread {
         EventBus.announce(EventBus.EV_SHOW, "6) Register a student for a course");
         EventBus.announce(EventBus.EV_SHOW, "x) Exit");
         EventBus.announce(EventBus.EV_SHOW, "\nEnter your choice and press return >> ");
+
         String sChoice = objReader.readLine().trim();
+
+        // Echoing to the log file
+        EventBus.announce(EventBus.EV_SHOW, sChoice);
 
         // Execute command 1: List all students.
         if (sChoice.equals("1")) {
@@ -122,6 +126,9 @@ public class ClientInput extends Thread {
 
       // Clean up the resources.
       objReader.close();
+
+      ClientOutputLogFile.close();
+
     } catch (Exception e) {
       // Dump the exception information for debugging.
       e.printStackTrace();

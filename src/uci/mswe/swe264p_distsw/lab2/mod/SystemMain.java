@@ -68,7 +68,8 @@ class SystemMain {
     }
 
     // Initialize output.
-    new ClientOutput();
+    new ClientOutputConsole();
+    new ClientOutputLogFile();
 
     // Start the system.
     new ClientInput().start();
