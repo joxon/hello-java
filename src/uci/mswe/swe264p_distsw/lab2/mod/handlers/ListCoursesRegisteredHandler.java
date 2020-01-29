@@ -49,7 +49,9 @@ public class ListCoursesRegisteredHandler extends CommandEventHandler {
     // Construct a list of course information and return it.
     String sReturn = "";
     for (int i = 0; i < vCourse.size(); i++) {
-      sReturn += (i == 0 ? "" : "\n") + ((Course) vCourse.get(i)).toString();
+      // announce overbooked
+      Course course = vCourse.get(i);
+      sReturn += (i == 0 ? "" : "\n") + course.toString() + Constants.getOverbookString(course);
     }
     return sReturn;
   }
