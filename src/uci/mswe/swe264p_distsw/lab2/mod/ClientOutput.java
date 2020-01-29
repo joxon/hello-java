@@ -19,6 +19,7 @@ import java.util.Observer;
  * @author Jung Soo Kim
  * @version 1.0
  */
+@SuppressWarnings("deprecation")
 public class ClientOutput implements Observer {
 
   /**

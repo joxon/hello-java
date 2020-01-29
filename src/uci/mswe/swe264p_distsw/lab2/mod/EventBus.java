@@ -18,6 +18,7 @@ import java.util.Observer;
  * object. This ensures that the existence of other components is completely hidden to a component
  * and it's safe to subscribe to an event when there is no component that can announce the event.
  */
+@SuppressWarnings("deprecation")
 public class EventBus {
 
   /**

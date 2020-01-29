@@ -35,7 +35,7 @@ public class ListAllStudentsHandler extends CommandEventHandler {
    */
   protected String execute(String param) {
     // Get all student records.
-    ArrayList vStudent = this.objDataBase.getAllStudentRecords();
+    ArrayList<Student> vStudent = this.objDataBase.getAllStudentRecords();
 
     // Construct a list of student information and return it.
     String sReturn = "";

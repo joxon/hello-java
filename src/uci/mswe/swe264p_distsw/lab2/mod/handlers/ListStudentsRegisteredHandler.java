@@ -45,7 +45,7 @@ public class ListStudentsRegisteredHandler extends CommandEventHandler {
     if (objCourse == null) {
       return "Invalid course ID or course section";
     }
-    ArrayList vStudent = objCourse.getRegisteredStudents();
+    ArrayList<Student> vStudent = objCourse.getRegisteredStudents();
 
     // Construct a list of student information and return it.
     String sReturn = "";

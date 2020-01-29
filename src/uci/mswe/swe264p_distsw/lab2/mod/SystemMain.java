@@ -8,7 +8,6 @@ package uci.mswe.swe264p_distsw.lab2.mod;
  */
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import uci.mswe.swe264p_distsw.lab2.mod.database.DataBase;

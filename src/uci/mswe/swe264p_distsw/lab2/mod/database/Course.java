@@ -60,7 +60,7 @@ public class Course {
    * A list containing the students who registered for this course. Elements in the list are
    * <code>Student</code> objects representing records of registered students.
    */
-  protected ArrayList vRegistered;
+  protected ArrayList<Student> vRegistered;
 
   /**
    * Constructs a course record by parsing the given string. The string <code>sInput</code> is
@@ -92,7 +92,7 @@ public class Course {
     }
 
     // Prepare to store students who will register for this course.
-    this.vRegistered = new ArrayList();
+    this.vRegistered = new ArrayList<Student>();
   }
 
   /**
@@ -160,7 +160,7 @@ public class Course {
     * @return the students who registered for this course as an <code>ArrayList</code> of
     *         <code>Students</code>s
     */
-  public ArrayList getRegisteredStudents() {
+  public ArrayList<Student> getRegisteredStudents() {
     return this.vRegistered;
   }
 

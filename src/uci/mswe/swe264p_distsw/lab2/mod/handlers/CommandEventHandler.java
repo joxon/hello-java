@@ -18,6 +18,7 @@ import uci.mswe.swe264p_distsw.lab2.mod.database.*;
  * define the <code>execute</code> method for command processing if they handle
  * one event and generate one output event.
  */
+@SuppressWarnings("deprecation")
 abstract public class CommandEventHandler implements Observer {
 
   /**

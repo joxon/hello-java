@@ -40,13 +40,13 @@ public class Student {
    * A list containing the courses this student has completed. Elements in the list are
    * <code>String</code> objects representing completed course numbers.
    */
-  protected ArrayList vCompleted;
+  protected ArrayList<String> vCompletedCourseIDs;
 
   /**
    * A list containing the courses this student is registered for. Elements in the list are
    * <code>Course</code> objects representing records of registered courses.
    */
-  protected ArrayList vRegistered;
+  protected ArrayList<Course> vRegistered;
 
   /**
    * The balance in the student account.
@@ -78,13 +78,13 @@ public class Student {
     this.iBalance = Integer.parseInt(objTokenizer.nextToken());
 
     // Get the courses this student has completed.
-    this.vCompleted = new ArrayList();
+    this.vCompletedCourseIDs = new ArrayList<String>();
     while (objTokenizer.hasMoreTokens()) {
-      this.vCompleted.add(objTokenizer.nextToken());
+      this.vCompletedCourseIDs.add(objTokenizer.nextToken());
     }
 
     // Prepare to store the courses this student will register for.
-    this.vRegistered = new ArrayList();
+    this.vRegistered = new ArrayList<Course>();
   }
 
   /**
@@ -112,9 +112,9 @@ public class Student {
    *
    * @return the courses this student has registered for as an <code>ArrayList</code> of
    *         <code>String</code>s
-   * @see    #getCompletedCourses()
+   * @see    #getCompletedCourseIDs()
    */
-  public ArrayList getRegisteredCourses() {
+  public ArrayList<Course> getRegisteredCourses() {
     return this.vRegistered;
   }
 
@@ -125,8 +125,8 @@ public class Student {
    *         <code>Course</code>s
    * @see    #getRegisteredCourses()
    */
-  public ArrayList getCompletedCourses() {
-    return this.vCompleted;
+  public ArrayList<String> getCompletedCourseIDs() {
+    return this.vCompletedCourseIDs;
   }
 
   /**
@@ -152,8 +152,8 @@ public class Student {
     String sReturn = this.sSID + " " + this.sName + " " + this.sProgram + " " + this.iBalance;
 
     // Append the completed course numbers.
-    for (int i = 0; i < this.vCompleted.size(); i++) {
-      sReturn = sReturn + " " + this.vCompleted.get(i).toString();
+    for (int i = 0; i < this.vCompletedCourseIDs.size(); i++) {
+      sReturn = sReturn + " " + this.vCompletedCourseIDs.get(i).toString();
     }
 
     return sReturn;

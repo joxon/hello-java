@@ -44,7 +44,7 @@ public class ListCoursesCompletedHandler extends CommandEventHandler {
     if (objStudent == null) {
       return "Invalid student ID";
     }
-    ArrayList vCourseID = objStudent.getCompletedCourses();
+    ArrayList<String> vCourseID = objStudent.getCompletedCourseIDs();
 
     // Construct a list of course information and return it.
     String sReturn = "";
