@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.io;
 
 /**
  * @(#)ClientOutput.java
@@ -9,6 +9,8 @@ package uci.mswe.swe264p_distsw.lab2.mod;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import uci.mswe.swe264p_distsw.lab2.mod.*;
 
 /**
  * This class represents a client output component which is responsible for displaying text messages

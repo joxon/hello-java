@@ -1,8 +1,10 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.io;
 
 import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
+
+import uci.mswe.swe264p_distsw.lab2.mod.*;
 
 @SuppressWarnings("deprecation")
 public class ClientOutputLogFile implements Observer {

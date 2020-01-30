@@ -1,4 +1,4 @@
-package uci.mswe.swe264p_distsw.lab2.mod;
+package uci.mswe.swe264p_distsw.lab2.mod.io;
 
 /**
  * @(#)ClientInput.java
@@ -10,6 +10,8 @@ package uci.mswe.swe264p_distsw.lab2.mod;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import uci.mswe.swe264p_distsw.lab2.mod.*;
 
 /**
  * This class represents a client input component which is responsible for getting user input and
