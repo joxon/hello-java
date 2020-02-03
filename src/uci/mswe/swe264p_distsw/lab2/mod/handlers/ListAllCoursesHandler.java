@@ -43,7 +43,6 @@ public class ListAllCoursesHandler extends CommandEventHandler {
       // announce overbooked
       Course course = vCourse.get(i);
       sReturn += (i == 0 ? "" : "\n") + course.toString() + Constants.getOverbookString(course);
-
     }
     return sReturn;
   }
