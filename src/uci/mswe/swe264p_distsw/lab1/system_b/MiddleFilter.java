@@ -49,6 +49,7 @@ public class MiddleFilter extends FilterFramework {
     final double ALTITUDE_BASE = 10000.0;
     final double ALTITUDE_WILD_JUMP = 100.0;
     double altitude = 0;
+    double altitudeWild = 0;
     double altitudeLast = ALTITUDE_BASE;
     double altitudeLastLast = ALTITUDE_BASE;
     int altitudeCount = 0;
@@ -119,6 +120,7 @@ public class MiddleFilter extends FilterFramework {
               // Update the altitude
               //
               // System.out.print(">= ALTITUDE_BASE: old:" + altitude);
+              altitudeWild = altitude;
               altitude = (altitudeLast + altitudeLastLast) / 2;
               // System.out.println("; new:" + altitude);
             } else {
@@ -166,7 +168,7 @@ public class MiddleFilter extends FilterFramework {
           if (isWildJump) {
             String sTime = timestampFormat.format(timestamp.getTime());
             String sVelo = String.format("%3.5f", velocity);
-            String sAlti = String.format("%3.5f", altitude);
+            String sAlti = String.format("%3.5f", altitudeWild);
             String sPres = String.format("%3.5f", pressure);
             String sTemp = String.format("%3.5f", temperature);
 
