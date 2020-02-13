@@ -4,7 +4,7 @@
       "type": "java",
       "name": "swe264p_distsw.lab2.mod.SystemMain",
       "request": "launch",
-      "mainClass": "uci.mswe.swe264p_distsw.lab2.mod.SystemMain",
+      "mainClass": "edu.uci.swe264p_distsw.lab2.mod.SystemMain",
       "projectName": "hello-java"
     },
     {
@@ -18,21 +18,21 @@
       "type": "java",
       "name": "swe264p_distsw.lab1.system_b.Plumber",
       "request": "launch",
-      "mainClass": "uci.mswe.swe264p_distsw.lab1.system_b.Plumber",
+      "mainClass": "edu.uci.swe264p_distsw.lab1.system_b.Plumber",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe264p_distsw.lab1.system_a.Plumber",
       "request": "launch",
-      "mainClass": "uci.mswe.swe264p_distsw.lab1.system_a.Plumber",
+      "mainClass": "edu.uci.swe264p_distsw.lab1.system_a.Plumber",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe264p_distsw.lab1.sample.Plumber",
       "request": "launch",
-      "mainClass": "uci.mswe.swe264p_distsw.lab1.sample.Plumber",
+      "mainClass": "edu.uci.swe264p_distsw.lab1.sample.Plumber",
       "projectName": "hello-java"
     },
     {
@@ -86,17 +86,17 @@
     },
     {
       "type": "java",
-      "name": "swe245p.ex32 StudentRosterFXML",
+      "name": "swe245p.ex41 ShapeTransformationsFXMLWithCSS",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRosterFXML",
+      "mainClass": "edu.uci.swe245p_gui.ex41_applying_css_to_ex31.ShapeTransformationsFXMLWithCSS",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "projectName": "hello-java"
     },
     {
       "type": "java",
-      "name": "swe245p.ex41 ShapeTransformationsFXMLWithCSS",
+      "name": "swe245p.ex32 StudentRosterFXML",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex41_applying_css_to_ex31.ShapeTransformationsFXMLWithCSS",
+      "mainClass": "edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRosterFXML",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "projectName": "hello-java"
     },
@@ -104,7 +104,7 @@
       "type": "java",
       "name": "swe245p.ex31 ShapeTransformationsFXML",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex31_applying_fxml_to_ex11.ShapeTransformationsFXML",
+      "mainClass": "edu.uci.swe245p_gui.ex31_applying_fxml_to_ex11.ShapeTransformationsFXML",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls,javafx.fxml",
       "projectName": "hello-java"
     },
@@ -112,7 +112,7 @@
       "type": "java",
       "name": "swe245p.ex23 StudentRosterWithTabs",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex23_tabs_and_stats.StudentRosterWithTabs",
+      "mainClass": "edu.uci.swe245p_gui.ex23_tabs_and_stats.StudentRosterWithTabs",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
@@ -120,7 +120,7 @@
       "type": "java",
       "name": "swe245p.ex22 StudentRosterWithTable",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex22_adding_a_table.StudentRosterWithTable",
+      "mainClass": "edu.uci.swe245p_gui.ex22_adding_a_table.StudentRosterWithTable",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
@@ -128,7 +128,7 @@
       "type": "java",
       "name": "swe245p.ex21 StudentRoster",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ex21_student_roster.StudentRoster",
+      "mainClass": "edu.uci.swe245p_gui.ex21_student_roster.StudentRoster",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
@@ -137,14 +137,14 @@
       "name": "swe245p.ex11 ShapeTransformations",
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
-      "mainClass": "uci.mswe.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
+      "mainClass": "edu.uci.swe245p_gui.ex11_shape_transformations.ShapeTransformations",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe245p ApplicationTemplate",
       "request": "launch",
-      "mainClass": "uci.mswe.swe245p_gui.ApplicationTemplate",
+      "mainClass": "edu.uci.swe245p_gui.ApplicationTemplate",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
       "projectName": "hello-java"
     },
@@ -153,49 +153,49 @@
       "name": "swe245p HelloFX",
       "request": "launch",
       "vmArgs": "--module-path lib/javafx-sdk-13.0.1/lib --add-modules javafx.controls",
-      "mainClass": "uci.mswe.swe245p_gui.HelloFX",
+      "mainClass": "edu.uci.swe245p_gui.HelloFX",
       "projectName": "hello-java"
     },
     {
       "name": "swe244p.ex5 pythonMultiThreadedFrequencyCount",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/src/uci/mswe/swe244p/ex5_word_counter_python/mt_freq_count.py",
+      "program": "${workspaceFolder}/src/edu/uci/swe244p/ex5_word_counter_python/mt_freq_count.py",
       "console": "integratedTerminal"
     },
     {
       "type": "java",
       "name": "swe244p.ex42 javaMultiThreadedFrequencyCount",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex42_word_counter.MultiThreadedFrequencyCount",
+      "mainClass": "edu.uci.swe244p.ex42_word_counter.MultiThreadedFrequencyCount",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex42 SingleThreadedFrequencyCount",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex42_word_counter.SingleThreadedFrequencyCount",
+      "mainClass": "edu.uci.swe244p.ex42_word_counter.SingleThreadedFrequencyCount",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex41 Multithreaded WebServer",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex41_web_server.WebServer",
+      "mainClass": "edu.uci.swe244p.ex41_web_server.WebServer",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex35 BankAccounts",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex35_bank_account.BankAccounts",
+      "mainClass": "edu.uci.swe244p.ex35_bank_account.BankAccounts",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex34_display_v2.Main3",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex34_display_v2.Main3",
+      "mainClass": "edu.uci.swe244p.ex34_display_v2.Main3",
       "projectName": "hello-java"
     },
     {
@@ -203,7 +203,7 @@
       "name": "swe244p.ex33 MessageQueue p=1 c=3",
       "args": "1 3",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "mainClass": "edu.uci.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java"
     },
     {
@@ -211,7 +211,7 @@
       "name": "swe244p.ex33 MessageQueue p=2 c=2",
       "args": "2 2",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "mainClass": "edu.uci.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java"
     },
     {
@@ -219,7 +219,7 @@
       "name": "swe244p.ex33 MessageQueue p=1 c=2",
       "args": "1 2",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "mainClass": "edu.uci.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java"
     },
     {
@@ -227,7 +227,7 @@
       "name": "swe244p.ex33 MessageQueue p=2 c=1",
       "args": "2 1",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "mainClass": "edu.uci.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java"
     },
     {
@@ -235,56 +235,63 @@
       "name": "swe244p.ex33 MessageQueue p=1 c=1",
       "args": "1 1",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex33_message_queue.MessageQueue",
+      "mainClass": "edu.uci.swe244p.ex33_message_queue.MessageQueue",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex32 VectorTest",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex32_vector.VectorTest",
+      "mainClass": "edu.uci.swe244p.ex32_vector.VectorTest",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex31 HashMapTest",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex31_hashmap.HashMapTest",
+      "mainClass": "edu.uci.swe244p.ex31_hashmap.HashMapTest",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex22_bridge.Main",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex22_bridge.Main",
+      "mainClass": "edu.uci.swe244p.ex22_bridge.Main",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex21_display.Main3",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex21_display.Main3",
+      "mainClass": "edu.uci.swe244p.ex21_display.Main3",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe244p.ex1 MultiThreadedHelloWorld",
       "request": "launch",
-      "mainClass": "uci.mswe.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
+      "mainClass": "edu.uci.swe244p.ex1_hello_world.MultiThreadedHelloWorld",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe243p.ex51 SchoolManager",
+      "request": "launch",
+      "mainClass": "edu.uci.swe243p.ex51_jdbc_mysql.SchoolManager",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe242p.ex4 UDPFileClient",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileClient",
+      "mainClass": "edu.uci.swe242p.ex4_udp_file_server.UDPFileClient",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe242p.ex4 UDPFileServer with custom path",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
+      "mainClass": "edu.uci.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "${command:SpecifyProgramArgs}",
       "projectName": "hello-java"
     },
@@ -292,7 +299,7 @@
       "type": "java",
       "name": "swe242p.ex4 UDPFileServer with preset path",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex4_udp_file_server.UDPFileServer",
+      "mainClass": "edu.uci.swe242p.ex4_udp_file_server.UDPFileServer",
       "args": "./data/in/",
       "projectName": "hello-java"
     },
@@ -300,14 +307,14 @@
       "type": "java",
       "name": "swe242p.ex3 TCPFileClient",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileClient",
+      "mainClass": "edu.uci.swe242p.ex3_tcp_file_server.TCPFileClient",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe242p.ex3 TCPFileServer with custom path",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
+      "mainClass": "edu.uci.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "${command:SpecifyProgramArgs}",
       "projectName": "hello-java"
     },
@@ -315,7 +322,7 @@
       "type": "java",
       "name": "swe242p.ex3 TCPFileServer with preset path",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex3_tcp_file_server.TCPFileServer",
+      "mainClass": "edu.uci.swe242p.ex3_tcp_file_server.TCPFileServer",
       "args": "./data/in/",
       "projectName": "hello-java"
     },
@@ -323,7 +330,7 @@
       "type": "java",
       "name": "swe242p.ex2 LineCounts with custom args",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
+      "mainClass": "edu.uci.swe242p.ex2_line_counts.LineCounts",
       "args": "${command:SpecifyProgramArgs}",
       "projectName": "hello-java"
     },
@@ -331,7 +338,7 @@
       "type": "java",
       "name": "swe242p.ex2 LineCounts with preset args",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCounts",
+      "mainClass": "edu.uci.swe242p.ex2_line_counts.LineCounts",
       "args": "./non-exist.txt ./data/in/one-line-0.txt ./data/in/one-line-1.txt ./data/in/one-line-2.txt ./data/in/pride-and-prejudice.txt",
       "projectName": "hello-java"
     },
@@ -339,42 +346,35 @@
       "type": "java",
       "name": "swe242p.ex2 LineCountsMethods demo",
       "request": "launch",
-      "mainClass": "uci.mswe.swe242p.ex2_line_counts.LineCountsMethods",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "swe243p.ex51 SchoolManager",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe243p.ex51_jdbc_mysql.SchoolManager",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "swe241p.ex1 RunSets",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex1_set_implementations.RunSets",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "swe241p.ex2 RunSortings",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex2_sorting_algorithms.RunSortings",
-      "projectName": "hello-java"
-    },
-    {
-      "type": "java",
-      "name": "swe241p.ex3 GraphConversion",
-      "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex3_graph_conversion.GraphConversion",
+      "mainClass": "edu.uci.swe242p.ex2_line_counts.LineCountsMethods",
       "projectName": "hello-java"
     },
     {
       "type": "java",
       "name": "swe241p.ex4 GraphTraversal",
       "request": "launch",
-      "mainClass": "uci.mswe.swe241p.ex4_graph_traversal.GraphTraversal",
+      "mainClass": "edu.uci.swe241p.ex4_graph_traversal.GraphTraversal",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe241p.ex3 GraphConversion",
+      "request": "launch",
+      "mainClass": "edu.uci.swe241p.ex3_graph_conversion.GraphConversion",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe241p.ex2 RunSortings",
+      "request": "launch",
+      "mainClass": "edu.uci.swe241p.ex2_sorting_algorithms.RunSortings",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe241p.ex1 RunSets",
+      "request": "launch",
+      "mainClass": "edu.uci.swe241p.ex1_set_implementations.RunSets",
       "projectName": "hello-java"
     }
   ]

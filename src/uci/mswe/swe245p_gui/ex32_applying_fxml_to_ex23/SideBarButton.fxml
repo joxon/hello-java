@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Button?>
-<fx:root type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx"
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="uci.mswe.swe245p_gui.ex32_applying_fxml_to_ex23.SideBarButton" />

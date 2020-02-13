@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?><?import javafx.scene.control.Label?><?import javafx.scene.control.RadioButton?><?import javafx.scene.control.Slider?><?import javafx.scene.control.TextField?><?import javafx.scene.layout.BorderPane?><?import javafx.scene.layout.ColumnConstraints?><?import javafx.scene.layout.GridPane?><?import javafx.scene.layout.HBox?><?import javafx.scene.layout.RowConstraints?><?import javafx.scene.layout.StackPane?><?import javafx.scene.layout.VBox?><?import javafx.scene.shape.Rectangle?><?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+    onKeyPressed="#handleKeyPressed" prefHeight="400.0" prefWidth="600.0"
+    xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="edu.uci.swe245p_gui.ex31_applying_fxml_to_ex11.ShapeTransformationsController">
+  <!-- canvas must be placed first to ensure it is below the controls -->
+  <center>
+    <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: GRAY;"
+        BorderPane.alignment="CENTER">
+      <StackPane fx:id="container" maxHeight="300.0" maxWidth="300.0" onMouseClicked="#reset"
+          prefHeight="300.0" prefWidth="300.0">
+        <Rectangle fx:id="square" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="300.0"
+            stroke="BLACK" strokeType="INSIDE" width="300.0" />
+        <Label text="Junxian Chen" textFill="GREY">
+          <font>
+            <Font name="Segoe Script Bold" size="30.0" />
+          </font>
+        </Label>
+      </StackPane>
+    </StackPane>
+  </center>
+
+  <!--controls-->
+  <left>
+    <VBox fx:id="controlBox" minHeight="400.0" minWidth="150.0" prefHeight="400.0" prefWidth="150.0"
+        style="-fx-background-color: LIGHTGRAY;" BorderPane.alignment="CENTER">
+      <children>
+
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label text="Rotate" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Button fx:id="rotateLeftButton" mnemonicParsing="false" onAction="#rotateLeft"
+                    text="(L)" />
+                <Button fx:id="rotateRightButton" mnemonicParsing="false" onAction="#rotateRight"
+                    text="(R)" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label text="Move" />
+            <GridPane prefHeight="94.0" prefWidth="114.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <children>
+                <Button fx:id="moveUpButton" mnemonicParsing="false" onAction="#moveUp" text="(↑)"
+                    GridPane.columnIndex="1" />
+                <Button fx:id="moveLeftButton" mnemonicParsing="false" onAction="#moveLeft"
+                    text="(←)" GridPane.rowIndex="1" />
+                <Button fx:id="moveDownButton" mnemonicParsing="false" onAction="#moveDown"
+                    text="(↓)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="moveRightButton" mnemonicParsing="false" onAction="#moveRight"
+                    text="(→)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+              </children>
+            </GridPane>
+          </children>
+        </VBox>
+
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label text="Scaling (50-200%)" />
+            <Slider fx:id="scaleSlider" majorTickUnit="50.0" max="200.0" min="50.0"
+                minorTickCount="1" showTickLabels="true" showTickMarks="true" value="100.0" />
+            <TextField fx:id="scaleText" alignment="CENTER" text="100%" />
+          </children>
+        </VBox>
+
+        <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+          <children>
+            <Label text="Color" />
+            <RadioButton fx:id="whiteRadio" mnemonicParsing="false" text="White" />
+            <RadioButton fx:id="blackRadio" mnemonicParsing="false" text="Black" />
+            <RadioButton fx:id="redRadio" mnemonicParsing="false" text="Red" />
+            <RadioButton fx:id="greenRadio" mnemonicParsing="false" text="Green" />
+            <RadioButton fx:id="blueRadio" mnemonicParsing="false" text="Blue" />
+          </children>
+        </VBox>
+
+      </children>
+    </VBox>
+  </left>
+
+</BorderPane>

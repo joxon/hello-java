@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?import javafx.scene.control.TabPane?><?import javafx.scene.layout.BorderPane?><?import edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.FileMenuBar?><?import edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.RosterTab?><?import edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.SideBar?><?import edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.StatsTab?><?import edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.StatusBar?>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/10.0.2-internal"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="edu.uci.swe245p_gui.ex32_applying_fxml_to_ex23.StudentRoster"
+    stylesheets="@StudentRoster.css">
+
+  <top>
+    <FileMenuBar fx:id="fileMenuBar" />
+  </top>
+
+  <left>
+    <SideBar fx:id="sideBar" />
+  </left>
+
+  <center>
+    <TabPane>
+      <RosterTab fx:id="rosterTab" />
+      <StatsTab fx:id="statsTab" />
+    </TabPane>
+  </center>
+
+  <bottom>
+    <StatusBar fx:id="statusBar" />
+  </bottom>
+
+</BorderPane>
