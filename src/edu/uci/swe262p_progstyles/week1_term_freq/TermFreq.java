@@ -34,7 +34,11 @@ public class TermFreq {
     try {
       try (Stream<String> lines = Files.lines(Path.of(args[0]))) {
         lines.forEach(line -> {
-          String[] words = line.split("\\W+");
+          // Be careful. Some words are wrapped with underscores.
+          // Examples: _very_ | _as good_ | _Mr. Darcy_
+          // \w (word character) = [a-zA-Z0-9_]
+          // \W (non-word-character) = [^a-zA-Z0-9_]
+          String[] words = line.split("[^a-zA-Z]+");
           for (String word : words) {
             String w = word.toLowerCase();
             if (!STOP_WORDS.contains(w) && w.length() > 1) {
@@ -57,16 +61,10 @@ public class TermFreq {
     descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
     // print first 25 words
-    StringBuilder result = new StringBuilder();
-    int i = 1;
-    for (Map.Entry<String, Integer> entry : descendingList) {
-      result.append(entry.getKey()).append("  -  ").append(entry.getValue());
-      if (i == 25) {
-        break;
-      } else {
-        result.append("\n");
-        ++i;
-      }
+    final StringBuilder result = new StringBuilder();
+    for (int i = 0; i < 25; ++i) {
+      final Map.Entry<String, Integer> entry = descendingList.get(i);
+      result.append(entry.getKey()).append("  -  ").append(entry.getValue()).append("\n");
     }
     System.out.println(result);
   }
