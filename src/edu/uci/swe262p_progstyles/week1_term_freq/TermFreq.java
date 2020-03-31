@@ -11,28 +11,34 @@ import java.util.stream.Stream;
  */
 public class TermFreq {
   public static void main(String[] args) {
+    // process arguments
     if (args.length != 1) {
-      System.err.println("Please provide exactly ONE argument.");
-      return;
+      System.err.println("Please provide exactly ONE argument. Current: " + args.length);
+      System.exit(1);
+    }
+
+    final Path path = Path.of(args[0]);
+    if (!path.toFile().exists()) {
+      System.err.println(path + " does not exist.");
+      System.exit(1);
     }
 
     // load stop words
-    final String DATA_DIR = "data/swe262p_week1/";
-    final String PATH_STOP_WORDS = DATA_DIR + "stop_words.txt";
-    final Set<String> STOP_WORDS = new HashSet<>();
+    final String PATH_STOP_WORDS = "data/swe262p_week1/stop_words.txt";
+    final Set<String> stopWords = new HashSet<>();
     try {
       final byte[] bytes = Files.readAllBytes(Path.of(PATH_STOP_WORDS));
       final String[] words = new String(bytes).split(",");
-      STOP_WORDS.addAll(Arrays.asList((words)));
+      stopWords.addAll(Arrays.asList((words)));
     } catch (IOException e) {
       System.err.println("Error reading stop_words.txt");
-      return;
+      System.exit(1);
     }
 
     // start counting
     final HashMap<String, Integer> freqMap = new HashMap<>();
     try {
-      try (Stream<String> lines = Files.lines(Path.of(args[0]))) {
+      try (Stream<String> lines = Files.lines(path)) {
         lines.forEach(line -> {
           // Be careful. Some words are wrapped with underscores.
           // Examples: _very_ | _as good_ | _Mr. Darcy_
@@ -41,7 +47,7 @@ public class TermFreq {
           String[] words = line.split("[^a-zA-Z]+");
           for (String word : words) {
             String w = word.toLowerCase();
-            if (!STOP_WORDS.contains(w) && w.length() > 1) {
+            if (!stopWords.contains(w) && w.length() > 1) {
               if (freqMap.containsKey(w)) {
                 freqMap.put(w, freqMap.get(w) + 1);
               } else {
@@ -53,11 +59,11 @@ public class TermFreq {
       }
     } catch (IOException e) {
       e.printStackTrace();
-      return;
+      System.exit(1);
     }
 
     // sort results
-    List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(freqMap.entrySet());
+    final List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(freqMap.entrySet());
     descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
     // print first 25 words
