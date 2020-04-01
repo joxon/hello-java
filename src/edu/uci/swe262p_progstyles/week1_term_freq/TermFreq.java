@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 /**
- * Created by Joxon on 2020-03-30.
+ * Created by Junxian Chen on 2020-03-30.
  */
 public class TermFreq {
   public static void main(String[] args) {
