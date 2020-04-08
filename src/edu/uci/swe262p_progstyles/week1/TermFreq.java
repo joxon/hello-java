@@ -1,4 +1,4 @@
-package edu.uci.swe262p_progstyles.week1_term_freq;
+package edu.uci.swe262p_progstyles.week1;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ public class TermFreq {
     }
 
     // load stop words
-    final String PATH_STOP_WORDS = "data/swe262p_week1/stop_words.txt";
+    final String PATH_STOP_WORDS = "data/swe262p/stop_words.txt";
     final Set<String> stopWords = new HashSet<>();
     try {
       final byte[] bytes = Files.readAllBytes(Path.of(PATH_STOP_WORDS));

@@ -2,6 +2,30 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe262p_progstyles.week2.Five",
+      "request": "launch",
+      "mainClass": "edu.uci.swe262p_progstyles.week2.Five",
+      "args": "data/swe262p/pride-and-prejudice.txt",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe262p_progstyles.week2.Four",
+      "request": "launch",
+      "mainClass": "edu.uci.swe262p_progstyles.week2.Four",
+      "args": "data/swe262p/pride-and-prejudice.txt",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
+      "name": "swe262p_progstyles.week1.TermFreq",
+      "request": "launch",
+      "mainClass": "edu.uci.swe262p_progstyles.week1.TermFreq",
+      "args": "data/swe262p/pride-and-prejudice.txt",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe264p_distsw.lab2.mod.SystemMain",
       "request": "launch",
       "mainClass": "edu.uci.swe264p_distsw.lab2.mod.SystemMain",
