@@ -14,3 +14,7 @@
 - `swe264p`: SW ARCHITECT lec A (37955)
 - `swe261p`: SW TEST & DEBUG lec A (37950)
 - `swe265p`: REVERSE ENG & MODEL lec A (37960)
+
+## Spring 2020 @ UCI MSWE
+
+- `swe262p`: PROGRAMMING STYLES (37900)
