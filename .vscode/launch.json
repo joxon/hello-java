@@ -2,6 +2,14 @@
   "configurations": [
     {
       "type": "java",
+      "name": "swe262p_progstyles.week3.Thirteen",
+      "request": "launch",
+      "mainClass": "edu.uci.swe262p_progstyles.week3.Thirteen",
+      "args": "data/swe262p/pride-and-prejudice.txt",
+      "projectName": "hello-java"
+    },
+    {
+      "type": "java",
       "name": "swe262p_progstyles.week3.Eleven",
       "request": "launch",
       "mainClass": "edu.uci.swe262p_progstyles.week3.Eleven",
