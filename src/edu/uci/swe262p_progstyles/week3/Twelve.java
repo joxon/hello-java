@@ -87,23 +87,6 @@ public class Twelve {
                 }
             }
         });
-        frequencyMapManager.put("top25", new Runnable() {
-            @Override
-            public void run() {
-                // sort results
-                final List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(
-                        ((HashMap<String, Integer>) frequencyMapManager.get("frequencyMap")).entrySet());
-                descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
-
-                // print first 25 words
-                final StringBuilder result = new StringBuilder();
-                for (int i = 0; i < 25; ++i) {
-                    final Map.Entry<String, Integer> entry = descendingList.get(i);
-                    result.append(entry.getKey()).append("  -  ").append(entry.getValue()).append("\n");
-                }
-                System.out.println(result);
-            }
-        });
     }
 
     public static void main(String[] args) {
@@ -127,6 +110,23 @@ public class Twelve {
             }
         });
 
+        frequencyMapManager.put("top25", new Runnable() {
+            @Override
+            public void run() {
+                // sort results
+                final List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(
+                        ((HashMap<String, Integer>) frequencyMapManager.get("frequencyMap")).entrySet());
+                descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
+
+                // print first 25 words
+                final StringBuilder result = new StringBuilder();
+                for (int i = 0; i < 25; ++i) {
+                    final Map.Entry<String, Integer> entry = descendingList.get(i);
+                    result.append(entry.getKey()).append("  -  ").append(entry.getValue()).append("\n");
+                }
+                System.out.println(result);
+            }
+        });
         ((Runnable) frequencyMapManager.get("top25")).run();
     }
 }
