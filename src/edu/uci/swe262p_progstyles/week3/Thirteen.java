@@ -9,14 +9,14 @@ import java.util.stream.Stream;
 /**
  * Created by Junxian Chen on 2020-04-16.
  *
- * @see https://github.com/crista/exercises-in-programming-style/tree/master/14-abstract-things
+ * @see https://github.com/crista/exercises-in-programming-style/tree/master/14--things
  */
 
-abstract class AbstractTextLinesManager {
-    abstract Stream<String> getLines();
+interface ITextLinesManager {
+    Stream<String> getLines();
 }
 
-final class TextLinesManagerr extends AbstractTextLinesManager {
+final class TextLinesManagerr implements ITextLinesManager {
 
     private Stream<String> lines;
 
@@ -33,11 +33,11 @@ final class TextLinesManagerr extends AbstractTextLinesManager {
     }
 }
 
-abstract class AbstractStopWordsManager {
-    abstract boolean isStopWord(String w);
+interface IStopWordsManager {
+    boolean isStopWord(String w);
 }
 
-final class StopWordsManagerr extends AbstractStopWordsManager {
+final class StopWordsManagerr implements IStopWordsManager {
 
     private final Set<String> stopWords = new HashSet<>();
 
@@ -59,13 +59,13 @@ final class StopWordsManagerr extends AbstractStopWordsManager {
     }
 }
 
-abstract class AbstractFrequencyMapManager {
-    abstract HashMap<String, Integer> getFrequencyMap();
+interface IFrequencyMapManager {
+    HashMap<String, Integer> getFrequencyMap();
 
-    abstract void increment(String w);
+    void increment(String w);
 }
 
-final class FrequencyMapManagerr extends AbstractFrequencyMapManager {
+final class FrequencyMapManagerr implements IFrequencyMapManager {
 
     private final HashMap<String, Integer> frequencyMap = new HashMap<>();
 
