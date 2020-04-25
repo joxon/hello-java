@@ -4,38 +4,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.function.Function;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
  * Created by Junxian Chen on 2020-04-21.
  *
- * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/10-the-one">the-one</a>
+ * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/09-kick-forward">kick-forward</a>
  */
 
-@SuppressWarnings("ALL")
-public class Nine {
+public class Eight {
 
-    private static class Monad {
-        private Object object;
-
-        public Monad(String[] object) {
-            this.object = object;
-        }
-
-        public Monad bind(Function<Object, Object> function) {
-            object = function.apply(object);
-            return this;
-        }
-
-        public void print() {
-            System.out.println(object);
-        }
-    }
-
-    private static final Function<Object, Object> buildPathFromArguments = (object) -> {
-        final String[] args = (String[]) object;
-
+    private static void buildPathFromArguments(String[] args,
+                                               BiConsumer<Path,
+                                                       BiConsumer<Stream<String>,
+                                                               BiConsumer<HashMap<String, Integer>,
+                                                                       BiConsumer<List<Map.Entry<String, Integer>>,
+                                                                               Consumer<Object>>>>> function) {
         // process arguments
         if (args.length != 1) {
             System.err.println("Please provide exactly ONE argument. Current: " + args.length);
@@ -48,23 +34,26 @@ public class Nine {
             System.exit(1);
         }
 
-        return path;
-    };
+        function.accept(path, Eight::buildFrequencyMapFromLines);
+    }
 
-    private static final Function<Object, Object> buildLinesFromPath = (object) -> {
-        final Path path = (Path) object;
+    private static void buildLinesFromPath(Path path,
+                                           BiConsumer<Stream<String>,
+                                                   BiConsumer<HashMap<String, Integer>,
+                                                           BiConsumer<List<Map.Entry<String, Integer>>,
+                                                                   Consumer<Object>>>> function) {
         try {
-            return Files.lines(path);
+            function.accept(Files.lines(path), Eight::buildSortedListFromMap);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
-        return null;
-    };
+    }
 
-    private static final Function<Object, Object> buildFrequencyMapFromLines = (object) -> {
-        final Stream<String> lines = (Stream<String>) object;
-
+    private static void buildFrequencyMapFromLines(Stream<String> lines,
+                                                   BiConsumer<HashMap<String, Integer>,
+                                                           BiConsumer<List<Map.Entry<String, Integer>>,
+                                                                   Consumer<Object>>> function) {
         // load stop words
         final String PATH_STOP_WORDS = "data/swe262p/stop_words.txt";
         final Set<String> stopWords = new HashSet<>();
@@ -97,32 +86,35 @@ public class Nine {
             }
         });
 
-        return freqMap;
-    };
+        function.accept(freqMap, Eight::printTop25);
+    }
 
-    private static final Function<Object, Object> buildSortedResultFromMap = (object) -> {
-        final HashMap<String, Integer> freqMap = (HashMap<String, Integer>) object;
-
+    private static void buildSortedListFromMap(HashMap<String, Integer> freqMap,
+                                               BiConsumer<List<Map.Entry<String, Integer>>,
+                                                       Consumer<Object>> function) {
         // sort results
         List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(freqMap.entrySet());
         descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
+        function.accept(descendingList, Eight::noOperation);
+    }
+
+    private static void printTop25(List<Map.Entry<String, Integer>> descendingList, Consumer<Object> function) {
         // print first 25 words
         final StringBuilder result = new StringBuilder();
         for (int i = 0; i < 25; ++i) {
             final Map.Entry<String, Integer> entry = descendingList.get(i);
             result.append(entry.getKey()).append("  -  ").append(entry.getValue()).append("\n");
         }
+        System.out.println(result);
 
-        return result;
-    };
+        function.accept(null);
+    }
+
+    private static void noOperation(Object object) {
+    }
 
     public static void main(String[] args) {
-        new Monad(args)
-                .bind(buildPathFromArguments)
-                .bind(buildLinesFromPath)
-                .bind(buildFrequencyMapFromLines)
-                .bind(buildSortedResultFromMap)
-                .print();
+        buildPathFromArguments(args, Eight::buildLinesFromPath);
     }
 }
