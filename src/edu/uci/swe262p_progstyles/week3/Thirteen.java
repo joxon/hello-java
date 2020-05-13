@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * Created by Junxian Chen on 2020-04-16.
  *
- * @see https://github.com/crista/exercises-in-programming-style/tree/master/14--things
+ * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/14-abstract-things">abstract-things</a>
  */
 
 interface ITextLinesManager {
@@ -28,6 +28,7 @@ final class TextLinesManagerr implements ITextLinesManager {
         }
     }
 
+    @Override
     public Stream<String> getLines() {
         return lines;
     }
@@ -54,6 +55,7 @@ final class StopWordsManagerr implements IStopWordsManager {
         }
     }
 
+    @Override
     public boolean isStopWord(String w) {
         return stopWords.contains(w);
     }
@@ -69,10 +71,12 @@ final class FrequencyMapManagerr implements IFrequencyMapManager {
 
     private final HashMap<String, Integer> frequencyMap = new HashMap<>();
 
+    @Override
     public HashMap<String, Integer> getFrequencyMap() {
         return frequencyMap;
     }
 
+    @Override
     public void increment(String w) {
         if (frequencyMap.containsKey(w)) {
             frequencyMap.put(w, frequencyMap.get(w) + 1);
@@ -88,13 +92,13 @@ final class MainControllerr {
     private StopWordsManagerr stopWordsManager;
     private FrequencyMapManagerr frequencyMapManager;
 
-    public MainControllerr(String spath) throws Exception {
+    public MainControllerr(String spath) {
         this.textLinesManager = new TextLinesManagerr(spath);
         this.stopWordsManager = new StopWordsManagerr();
         this.frequencyMapManager = new FrequencyMapManagerr();
     }
 
-    public void run() throws Exception {
+    public void run() {
         // start counting
         textLinesManager.getLines().forEach(line -> {
             try {
@@ -141,7 +145,7 @@ public class Thirteen {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         validateArguments(args);
         new MainControllerr(args[0]).run();
     }

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * Created by Junxian Chen on 2020-04-07.
  *
- * @see https://github.com/crista/exercises-in-programming-style/tree/master/05-cookbook
+ * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/05-cookbook">cookbook</a>
  */
 public class Four {
 

@@ -9,16 +9,16 @@ import java.util.stream.Stream;
 /**
  * Created by Junxian Chen on 2020-04-16.
  *
- * @see https://github.com/crista/exercises-in-programming-style/tree/master/12-letterbox
+ * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/12-letterbox">letterbox</a>
  */
 
 interface Responsive {
     abstract class BaseResponse {
         BaseResponse() {
         }
-    };
+    }
 
-    public BaseResponse dispatch(String[] messages) throws Exception;
+    BaseResponse dispatch(String[] messages) throws Exception;
 }
 
 final class TextLinesManager implements Responsive {
@@ -40,11 +40,12 @@ final class TextLinesManager implements Responsive {
 
     private Stream<String> lines;
 
+    @Override
     public Response dispatch(String[] messages) throws Exception {
         final String method = messages[0];
-        if (method == "init") {
+        if (method.equals("init")) {
             return this.init(messages[1]);
-        } else if (method == "get") {
+        } else if (method.equals("get")) {
             return this.get();
         } else {
             throw new Exception("LinesManager: unknown method " + method);
@@ -84,11 +85,12 @@ final class StopWordsManager implements Responsive {
 
     private final Set<String> stopWords = new HashSet<>();
 
+    @Override
     public Response dispatch(String[] messages) throws Exception {
         final String method = messages[0];
-        if (method == "init") {
+        if (method.equals("init")) {
             return this.init();
-        } else if (method == "isStopWord") {
+        } else if (method.equals("isStopWord")) {
             return this.isStopWord(messages[1]);
         } else {
             throw new Exception("StopWordManager: unknown method " + method);
@@ -133,11 +135,12 @@ final class FrequencyMapManager implements Responsive {
 
     private final HashMap<String, Integer> frequencyMap = new HashMap<>();
 
+    @Override
     public Response dispatch(String[] messages) throws Exception {
         final String method = messages[0];
-        if (method == "get") {
+        if (method.equals("get")) {
             return this.get();
-        } else if (method == "increment") {
+        } else if (method.equals("increment")) {
             return this.increment(messages[1]);
         } else {
             throw new Exception("FrequencyMapManager: unknown method " + method);
@@ -166,9 +169,9 @@ final class MainController {
 
     public void dispatch(String[] messages) throws Exception {
         final String method = messages[0];
-        if (method == "init") {
+        if (method.equals("init")) {
             init(messages[1]);
-        } else if (method == "run") {
+        } else if (method.equals("run")) {
             run();
         } else {
             throw new Exception("MainController: unknown method " + method);
@@ -177,23 +180,23 @@ final class MainController {
 
     private void init(String spath) throws Exception {
         this.textLinesManager = new TextLinesManager();
-        textLinesManager.dispatch(new String[] { "init", spath });
+        textLinesManager.dispatch(new String[]{"init", spath});
 
         this.stopWordsManager = new StopWordsManager();
-        stopWordsManager.dispatch(new String[] { "init" });
+        stopWordsManager.dispatch(new String[]{"init"});
 
         this.frequencyMapManager = new FrequencyMapManager();
     }
 
     private void run() throws Exception {
         // start counting
-        textLinesManager.dispatch(new String[] { "get" }).getLines().forEach(line -> {
+        textLinesManager.dispatch(new String[]{"get"}).getLines().forEach(line -> {
             try {
                 String[] words = line.split("[^a-zA-Z]+");
                 for (String word : words) {
                     String w = word.toLowerCase();
-                    if (!stopWordsManager.dispatch(new String[] { "isStopWord", w }).isStopWord() && w.length() > 1) {
-                        frequencyMapManager.dispatch(new String[] { "increment", w });
+                    if (!stopWordsManager.dispatch(new String[]{"isStopWord", w}).isStopWord() && w.length() > 1) {
+                        frequencyMapManager.dispatch(new String[]{"increment", w});
                     }
                 }
             } catch (Exception e) {
@@ -203,7 +206,7 @@ final class MainController {
 
         // sort results
         final List<Map.Entry<String, Integer>> descendingList = new ArrayList<>(
-                frequencyMapManager.dispatch(new String[] { "get" }).getFrequencyMap().entrySet());
+                frequencyMapManager.dispatch(new String[]{"get"}).getFrequencyMap().entrySet());
         descendingList.sort((a, b) -> b.getValue().compareTo(a.getValue()));
 
         // print first 25 words
@@ -234,8 +237,8 @@ public class Eleven {
 
     private void run(String[] args) throws Exception {
         MainController controller = new MainController();
-        controller.dispatch(new String[] { "init", args[0] });
-        controller.dispatch(new String[] { "run" });
+        controller.dispatch(new String[]{"init", args[0]});
+        controller.dispatch(new String[]{"run"});
     }
 
     public static void main(String[] args) throws Exception {

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * Created by Junxian Chen on 2020-04-07.
  *
- * @see https://github.com/crista/exercises-in-programming-style/tree/master/06-pipeline
+ * @see <a href="https://github.com/crista/exercises-in-programming-style/tree/master/06-pipeline">pipeline</a>
  */
 public class Five {
 
