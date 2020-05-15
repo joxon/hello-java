@@ -17,7 +17,8 @@ public class Common {
         final Set<String> stopWords = new HashSet<>();
         Files.lines(Path.of("data/swe262p/stop_words.txt"))
                 .forEach(line -> Collections.addAll(stopWords, line.split(",")));
-        
+        stopWords.addAll(Arrays.asList("abcdefghijklmnopqrstuvwxyz".split("")));
+
 //        loadWords(args[0]);
         final List<String> words = new ArrayList<>();
         Files.lines(Path.of(args[0]))

@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Main-Class: edu.uci.swe262p_progstyles.week7.nineteen.src.framework.Framework
