@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 // have to suppress warnings for unchecked casts
 // because we mean to manage type cast manually to make it look as dynamic as Python
 @SuppressWarnings("unchecked")
-public class TwentySeven {
+public class TwentySix {
 
     private static class Column {
         // Made the data field an Object so we can make it dynamic like Python
