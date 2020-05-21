@@ -139,5 +139,38 @@ public class TwentySix {
 
         ((List<Pair>) sortedData.data).subList(0, 25)
                 .forEach(pair -> System.out.println(pair.word + "  -  " + pair.count));
+
+        // Make the example program interactive by
+        // allowing the user to enter new file names
+        // that are then added to the data space,
+        // the columns updated, and the top 25 words displayed again.
+        final var scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Please input a file path to add to the data space (Use 'q' to quit):");
+            final var input = scanner.nextLine();
+            if (input.equals("q")) {
+                break;
+            }
+
+            // add new words to the data space
+            try {
+                Files.lines(Path.of(input))
+                        .forEach(line -> Arrays.stream(line.split("[^a-zA-Z]+"))
+                                .map(String::toLowerCase)
+                                .filter(word -> word.length() > 1)
+                                .forEach(((List<String>) allWords.data)::add));
+            } catch (Exception e) {
+                System.out.println(String.format("%s does not exist.", input));
+                continue;
+            }
+
+            // update the columns
+            update();
+
+            // display the top 25 words again
+            ((List<Pair>) sortedData.data).subList(0, 25)
+                    .forEach(pair -> System.out.println(pair.word + "  -  " + pair.count));
+        }
+        scanner.close();
     }
 }

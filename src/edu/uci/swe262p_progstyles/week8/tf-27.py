@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# https://github.com/crista/exercises-in-programming-style/blob/master/27-spreadsheet/tf-27.py
 import itertools
 import operator
 import re
