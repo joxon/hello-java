@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by Junxian Chen on 2020-05-02.
  */
 public class Common {
 
+    public static final String PATH_STOP_WORDS = "data/swe262p/stop_words.txt";
 
     public static void main(String[] args) throws IOException {
 //        loadStopWords();
@@ -40,9 +40,7 @@ public class Common {
 //        sortAndPrint();
         map.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue((a, b) -> b - a))
-                .collect(Collectors.toList())
-                .subList(0, 25)
+                .limit(25)
                 .forEach(entry -> System.out.println(entry.getKey() + "  -  " + entry.getValue()));
     }
-
 }
