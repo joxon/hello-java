@@ -17,6 +17,9 @@ import java.util.stream.Stream;
  */
 public class TwentySeven {
 
+    // Set it to true to get debug output
+    private static final boolean DEBUGGING = false;
+
     private static Iterable<Character> characters(String fileName) {
         return () -> { // Anonymous Iterable, overriding the iterator() method
             try {
@@ -61,6 +64,7 @@ public class TwentySeven {
                 }
             }
         }
+
         return () -> words.build().iterator();
     }
 
@@ -72,6 +76,7 @@ public class TwentySeven {
                 .flatMap(line -> Arrays.stream(line.split(",")))
                 .collect(Collectors.toSet());
         stopWords.addAll(Arrays.asList("abcdefghijklmnopqrstuvwxyz".split("")));
+
         for (var word : allWords(fileName)) {
             if (!stopWords.contains(word)) {
                 words.add(word);
@@ -82,25 +87,29 @@ public class TwentySeven {
     }
 
     private static Iterable<List<Map.Entry<String, Integer>>> countAndSort(String fileName) throws IOException {
-        Stream.Builder<List<Map.Entry<String, Integer>>> lists = Stream.builder();
+        Stream.Builder<List<Map.Entry<String, Integer>>> sortedLists = Stream.builder();
 
-        final var freqs = new HashMap<String, Integer>();
-//        var i = 1;
+        final var frequencyMap = new HashMap<String, Integer>();
+        var i = 1;
         for (var word : nonStopWords(fileName)) {
-            freqs.put(word, freqs.containsKey(word) ? freqs.get(word) + 1 : 1);
-            // For debugging
-//            if (i % 5000 == 0) {
-//                lists.add(freqs.entrySet().stream()
-//                        .sorted(Map.Entry.comparingByValue((a, b) -> b - a))
-//                        .collect(Collectors.toUnmodifiableList()));
-//            }
-//            ++i;
+            frequencyMap.put(word, frequencyMap.containsKey(word) ? frequencyMap.get(word) + 1 : 1);
+            // For debugging: print results for every 5000 words
+            if (DEBUGGING) {
+                if (i % 5000 == 0) {
+                    sortedLists.add(frequencyMap.entrySet().stream()
+                            .sorted(Map.Entry.comparingByValue((a, b) -> b - a))
+                            .limit(25)
+                            .collect(Collectors.toUnmodifiableList()));
+                }
+                ++i;
+            }
         }
-        lists.add(freqs.entrySet().stream()
+        sortedLists.add(frequencyMap.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue((a, b) -> b - a))
+                .limit(25)
                 .collect(Collectors.toUnmodifiableList()));
 
-        return () -> lists.build().iterator();
+        return () -> sortedLists.build().iterator();
     }
 
     private static void validateArguments(String[] args) {
@@ -119,9 +128,9 @@ public class TwentySeven {
     public static void main(String[] args) throws IOException {
         validateArguments(args);
 
-        for (var wordFreqs : countAndSort(args[0])) {
-//            System.out.println("-----------------------------");
-            for (var entry : wordFreqs.subList(0, Math.min(25, wordFreqs.size()))) {
+        for (var wordFrequencyList : countAndSort(args[0])) {
+            System.out.print(DEBUGGING ? "-----------------------------\n" : "");
+            for (var entry : wordFrequencyList.subList(0, Math.min(25, wordFrequencyList.size()))) {
                 System.out.println(entry.getKey() + " - " + entry.getValue());
             }
         }
