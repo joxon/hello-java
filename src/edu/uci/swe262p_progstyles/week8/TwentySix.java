@@ -105,48 +105,24 @@ public class TwentySix {
         }
     }
 
-    private static void validateArguments(String[] args) {
-        // process arguments
-        if (args.length != 1) {
-            System.err.println("Please provide exactly ONE argument. Current: " + args.length);
-            System.exit(1);
-        }
-
-        final Path path = Path.of(args[0]);
-        if (!path.toFile().exists()) {
-            System.err.println(path + " does not exist.");
-            System.exit(1);
-        }
-    }
-
     public static void main(String[] args) throws IOException {
-        validateArguments(args);
-
-        // Load the fixed data into the first 2 columns
+        // Load the data into the first 2 columns
         allWords.data = new ArrayList<String>();
-        Files.lines(Path.of(args[0]))
-                .forEach(line -> Arrays.stream(line.split("[^a-zA-Z]+"))
-                        .map(String::toLowerCase)
-                        .filter(word -> word.length() > 1)
-                        .forEach(((List<String>) allWords.data)::add));
 
-        stopWords.data = new HashSet<String>();
-        Files.lines(Path.of("data/swe262p/stop_words.txt"))
-                .forEach(line -> Collections.addAll(((Set<String>) stopWords.data), line.split(",")));
-
-        // Update the columns with formulas
-        update();
-
-        ((List<Pair>) sortedData.data).subList(0, 25)
-                .forEach(pair -> System.out.println(pair.word + "  -  " + pair.count));
+        stopWords.data = Files.lines(Path.of("data/swe262p/stop_words.txt"))
+                .flatMap(line -> Arrays.stream(line.split(",")))
+                .collect(Collectors.toUnmodifiableSet());
 
         // Make the example program interactive by
         // allowing the user to enter new file names
         // that are then added to the data space,
         // the columns updated, and the top 25 words displayed again.
+        final var allWordsData = (List<String>) allWords.data;
         final var scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Please input a file path to add to the data space (Use 'q' to quit):");
+            System.out.println("Please input a file path to add to the data space:");
+            System.out.println("(You can try providing ‘data/swe262p/pride-and-prejudice.txt’ twice)");
+            System.out.println("(Use 'q' to quit)");
             final var input = scanner.nextLine();
             if (input.equals("q")) {
                 break;
@@ -158,17 +134,18 @@ public class TwentySix {
                         .forEach(line -> Arrays.stream(line.split("[^a-zA-Z]+"))
                                 .map(String::toLowerCase)
                                 .filter(word -> word.length() > 1)
-                                .forEach(((List<String>) allWords.data)::add));
+                                .forEach(allWordsData::add));
             } catch (Exception e) {
                 System.out.println(String.format("%s does not exist.", input));
                 continue;
             }
 
-            // update the columns
+            // Update the columns with formulas
             update();
 
             // display the top 25 words again
-            ((List<Pair>) sortedData.data).subList(0, 25)
+            var sorted = ((List<Pair>) sortedData.data);
+            sorted.subList(0, Math.min(25, sorted.size()))
                     .forEach(pair -> System.out.println(pair.word + " - " + pair.count));
         }
         scanner.close();
