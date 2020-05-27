@@ -75,7 +75,10 @@ public class ThirtyThree {
     // region Internal functions of the server-side application
 
     private static StateAndLinks getDefaultHandler(List<String> arguments) {
-        return new StateAndLinks("What would you like to do?\n1 - Quit" + "\n2 - Upload file",
+        return new StateAndLinks(
+                "What would you like to do?\n" +
+                        "1 - Quit\n" +
+                        "2 - Upload file",
                 Map.of("1", new Request("post", "execution", null),
                         "2", new Request("get", "file_form", null)));
     }
